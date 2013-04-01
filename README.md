@@ -2,6 +2,7 @@ Twitter WordPress Plugin
 ========================
 
 Twitter plugin allows you to add follow button in the most easily and flexible way.
+
 Official plugin page: http://bestwebsoft.com/plugin/twitter-plugin/
 
 Features
