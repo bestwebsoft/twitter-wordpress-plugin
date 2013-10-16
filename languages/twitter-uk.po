@@ -1,0 +1,197 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: twitter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-04 14:14+0300\n"
+"PO-Revision-Date: 2013-10-02 13:45+0300\n"
+"Last-Translator: \n"
+"Language-Team: bestwebsoft.com <plugin@bestwebsoft.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ua_UA\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-Language: Ukrainian\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: twitter.php:33
+#: twitter.php:133
+msgid "Twitter Settings"
+msgstr "Установки Twitter"
+
+#: twitter.php:33
+msgid "Twitter"
+msgstr "Twitter"
+
+#: twitter.php:86
+msgid "Settings saved"
+msgstr "Устаноки збережено"
+
+#: twitter.php:108
+msgid "Error: File size > 32K"
+msgstr "Помилка: Розмір файлу > 32K"
+
+#: twitter.php:110
+msgid "Error: Invalid file type"
+msgstr "Помилка: Невірний тип файлу"
+
+#: twitter.php:118
+msgid "Error: moving file failed"
+msgstr "Помилка: не вдалося перемістити файл"
+
+#: twitter.php:121
+msgid "Error: check image width or height"
+msgstr "Помилка: перевірте ширину або висоту зображення"
+
+#: twitter.php:125
+msgid "Uploading Error: check image properties"
+msgstr "Помилка завантаження: перевірте властивості зображення"
+
+#: twitter.php:140
+msgid "Settings for the button \"Follow Me\":"
+msgstr "Установки для кнопки \"Follow Me\":"
+
+#: twitter.php:144
+msgid "Enter your username:"
+msgstr "Введіть ім'я користувача:"
+
+#: twitter.php:148
+msgid "If you do not have Twitter account yet, you should create it using this link"
+msgstr "Якщо ви ще не маєте акаунту Twitte, вам слід створити його, використовуючи це посилання"
+
+#: twitter.php:149
+msgid "Paste the shortcode [follow_me] into the necessary page or post to use the \"Follow Me\" button."
+msgstr "Додайте шорткод [follow_me] в контент сторінки або поста, де ви хочете вивести кнопку \"Follow Me\"."
+
+#: twitter.php:150
+msgid "If you would like to use this button in some other place, please paste this line into the template source code"
+msgstr "Якщо ви хочете використовувати цю кнопку в іншому місці, будь ласка, додайте цей рядок у вихідний код шаблону"
+
+#: twitter.php:155
+msgid "Choose display settings:"
+msgstr "Виберіть показувати установки:"
+
+#: twitter.php:159
+msgid "Standard button"
+msgstr "Стандартна кнопка"
+
+#: twitter.php:161
+msgid "Custom button"
+msgstr "Кастомна кнопка"
+
+#: twitter.php:171
+msgid "Current image:"
+msgstr "Поточне зображення: "
+
+#: twitter.php:179
+msgid "\"Follow Me\" image:"
+msgstr "Зображення \"Follow Me\:"
+
+#: twitter.php:185
+msgid "Image properties: max image width:100px; max image height:100px; max image size:32Kb; image types:\"jpg\", \"jpeg\"."
+msgstr "Властивості зображення: макс. ширина зображення: 100px; макс. висота зображення: 100px; макс. розмір зображення: 32Kb; типи зображень: \"jpg\", \"jpeg\"."
+
+#: twitter.php:192
+msgid "\"Twitter\" button settings:"
+msgstr "Установки кнопки \"Twitter\":"
+
+#: twitter.php:195
+msgid "Disable the \"Twitter\" button:"
+msgstr "Вимкнути кнопку \"Twitter\:"
+
+#: twitter.php:198
+msgid "The button \"T\" will not be displayed. Just the shortcode [follow_me] will work."
+msgstr "Кнопка \"T\" не буде відображатися. Буде працювати тільки шорткод [follow_me]."
+
+#: twitter.php:203
+msgid "Choose the \"Twitter\" icon position:"
+msgstr "Виберіть розташування піктограми \"Twitter\:"
+
+#: twitter.php:206
+msgid "Top position"
+msgstr "Верхнє положення"
+
+#: twitter.php:207
+msgid "Bottom position"
+msgstr "Нижнє положення"
+
+#: twitter.php:208
+msgid "By clicking this icon a user can add the article he/she likes to his/her Twitter page."
+msgstr "При натисканні на цю піктограму користувач може додати статтю, яка йому сподобалась, до своєї сторінки Twitter."
+
+#: twitter.php:214
+msgid "Save Changes"
+msgstr "Зберегти зміни"
+
+#: twitter.php:271
+msgid "Click here if you like this article."
+msgstr "Натисніть тут, якщо Вам сподобалася ця стаття."
+
+#: twitter.php:293
+#: twitter.php:304
+msgid "Settings"
+msgstr "Установки"
+
+#: twitter.php:305
+msgid "FAQ"
+msgstr "Часті питання"
+
+#: twitter.php:306
+msgid "Support"
+msgstr "Підтримка"
+
+#, fuzzy
+#~ msgid "Pro plugins"
+#~ msgstr "Плагины BWS"
+#~ msgid "Activated plugins"
+#~ msgstr "Активоване плагіни"
+#~ msgid "Read more"
+#~ msgstr "Читати далі"
+#~ msgid "Installed plugins"
+#~ msgstr "Встановлені плагіни"
+#~ msgid "Recommended plugins"
+#~ msgstr "Рекомендовані плагіни"
+
+#, fuzzy
+#~ msgid "Free plugins"
+#~ msgstr "Рекомендовані плагіни"
+#~ msgid "Download"
+#~ msgstr "Завантажити"
+#~ msgid "Install %s"
+#~ msgstr "Встановіть %s"
+#~ msgid "Install now from wordpress.org"
+#~ msgstr "Встановити зараз від wordpress.org"
+
+#, fuzzy
+#~ msgid "Active Plugins"
+#~ msgstr "Активоване плагіни"
+
+#, fuzzy
+#~ msgid "Inactive Plugins"
+#~ msgstr "Активоване плагіни"
+
+#, fuzzy
+#~ msgid "Send to support"
+#~ msgstr "Підтримка"
+
+#, fuzzy
+#~ msgid ""
+#~ "If you have any questions, please contact us via plugin@bestwebsoft.com "
+#~ "or fill out the contact form on our website"
+#~ msgstr ""
+#~ "Якщо у Вас виникли питання, будь ласка, зв'яжіться з нами через "
+#~ "plugin@bestwebsoft.com або заповнивши контактну форму на нашому сайті"
+#~ msgid "Options saved."
+#~ msgstr "Налаштування збережені."
+#~ msgid "Settings for the button \"Twitter\":"
+#~ msgstr "Налаштування для кнопки \"Twitter\":"
+#~ msgid "Turn off the button \"Twitter\":"
+#~ msgstr "Вимкніть кнопку \"Twitter\":"
+#~ msgid "Choose a position for an icon \"Twitter\":"
+#~ msgstr "Вибрати позиції для значка \"Twitter\":"
+#~ msgid "Install Now"
+#~ msgstr "Установить сейчас"
+
