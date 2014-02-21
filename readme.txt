@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=10&product_id=13
 Tags: tvit, twit, twet, tvet, tvitt, twitt, twett, tvett, tviter, twiter, tweter, twiter, follow button, twitter follow button, twitter share, twitter follow, twitter share button, button, connect, twitter connect, twiter conect, tweet, tweeter, tweetter 
 Requires at least: 3.0
-Tested up to: 3.6.1
-Stable tag: 2.29
+Tested up to: 3.8.1
+Stable tag: 2.33
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Add a Twitter "Follow" button to your WordPress website.
 
 Twitter plugin allows you to add the Follow button the easiest way.
 
-<a href="http://wordpress.org/extend/plugins/twitter-plugin/faq/" target="_blank">FAQ</a>
+<a href="http://wordpress.org/plugins/twitter-plugin/faq/" target="_blank">FAQ</a>
 <a href="http://support.bestwebsoft.com" target="_blank">Support</a>
 
 = Features =
@@ -24,33 +24,26 @@ Twitter plugin allows you to add the Follow button the easiest way.
 * Display: This plugin allows you to choose the button position - top, bottom.
 * Display: Use a standard button with the number of followers or replace it with some custom image.
 
+= Recommended Plugins =
+
+The author of the Twitter also recommends the following plugins:
+
+* <a href="http://wordpress.org/plugins/updater/">Updater</a> - This plugin updates WordPress core and the plugins to the recent versions. You can also use the auto mode or manual mode for updating and set email notifications.
+There is also a premium version of the plugin <a href="http://bestwebsoft.com/plugin/updater-pro/?k=4e3cbf90f06b1a8d47346da9a8ea106b">Updater Pro</a> with more useful features available. It can make backup of all your files and database before updating. Also it can forbid some plugins or WordPress Core update.
+
 = Translation =
 
-* Arabic (ar_AR) (thanks to Albayan Design Hani Aladoli)
 * Danish (da_DK) (thanks to <a href="mailto:admin@artikelforlaget.dk">Tom</a>, www.artikelforlaget.dk)
-* Dutch (nl_NL) (thanks to <a href="mailto:jan-willem.jwr.wilmsen@essent.nl">Jan-Willem</a>, www.directic.nl)
-* Hebrew (he_IL) (thanks to Sagive SEO)
-* Italian (it_IT) (thanks to Manuel)
 * Russian (ru_RU)
-* Slovak (sk_SK) (thanks to Branco Radenovich)
-* Spanish (es_ES)(thanks to <a href="mailto:mrjosefernando@gmail.com">Fernando De León</a>)
 * Ukrainian (uk)
 
 If you create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files  <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
-
-= Technical support =
-
-Dear users, our plugins are available for free download. If you have any questions or recommendations regarding the functionality of our plugins (existing options, new options, current issues), please feel free to contact us. Please note that we accept requests in English only. All messages in another languages won't be accepted.
-
-If you notice any bugs in the plugins, you can notify us about it and we'll investigate and fix the issue then. Your request should contain URL of the website, issues description and WordPress admin panel credentials.
-Moreover we can customize the plugin according to your requirements. It's a paid service (as a rule it costs $40, but the price can vary depending on the amount of the necessary changes and their complexity). Please note that we could also include this or that feature (developed for you) in the next release and share with the other users then. 
-We can fix some things for free for the users who provide translation of our plugin into their native language (this should be a new translation of a certain plugin, you can check available translations on the official plugin page).
 
 == Installation ==
 
 1. Upload the folder `Twitter` to the directory `/wp-content/plugins/`.
 2. Activate the plugin via the 'Plugins' menu in your WordPress admin panel.
-3. You can adjust the necessary settings using your WordPress admin panel in "Settings" > "Twitter".
+3. You can adjust the necessary settings using your WordPress admin panel in "BWS Plugins" -> "Twitter".
 
 == Frequently Asked Questions ==
 
@@ -78,16 +71,41 @@ In the WordPress admin panel go to "Settings", find the Twitter plugin settings 
 
 2. After saving your settings you should refresh the web page, where the Twitter icon should be placed.
 
+= I have some problems with the plugin's work. What Information should I provide to receive proper support? =
+
+Please make sure that the problem hasn't been discussed yet on our forum (<a href="http://support.bestwebsoft.com" target="_blank">http://support.bestwebsoft.com</a>). If no, please provide the following data along with your problem's description:
+1. the link to the page where the problem occurs
+2. the name of the plugin and its version. If you are using a pro version - your order number.
+3. the version of your WordPress installation
+4. copy and paste into the message your system status report. Please read more here: <a href="http://bestwebsoft.com/wp-content/uploads/manual/wp_plugin/general/System_Status.pdf" target="_blank">System_Status.pdf</a>
+
 == Screenshots ==
 
-1. Settings to place the Twitter icon below the content.
-2. Display the Twitter icon below the content.
-3. Place the Twitter icon above the content.
-4. Display the Twitter icon above the content.
-5. Display on the page.
-6. Shortcode settings.
+1. Twitter Settings page.
+2. Pasting [follow_me] shortcode into the content.
+3. Twitter "Like" button in the front-end.
+4. Default Twitter "Follow" button in the front-end.
+5. Custom Twitter "Follow" button in the front-end.
 
 == Changelog ==
+
+= V2.33 - 06.02.2014 =
+* Update : Screenshots are updated.
+* Update : BWS plugins section is updated.
+* Update : We updated all functionality for wordpress 3.8.1.
+
+= V2.32 - 26.12.2013 =
+* Update : BWS plugins section is updated.
+* Update : We updated all functionality for wordpress 3.8.
+
+= V2.31 - 07.11.2013 =
+* Bugfix : Bug related with displaying "Follow Me" button is fixed.
+
+= V2.30 - 07.11.2013 =
+* NEW : Add checking installed wordpress version.
+* Update : We updated all functionality for wordpress 3.7.1.
+* Update : Activation of radio button or checkbox by clicking on its label.
+* Update : Screenshots are updated.
 
 = V2.29 - 11.10.2013 =
 * Bugfix : We fixed the bug of displaying button when post title has special characters.
@@ -203,6 +221,18 @@ In the WordPress admin panel go to "Settings", find the Twitter plugin settings 
 * Ability to install Twitter icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.33 =
+Screenshots are updated. BWS plugins section is updated. We updated all functionality for wordpress 3.8.1.
+
+= V2.32 =
+BWS plugins section is updated. We updated all functionality for wordpress 3.8.
+
+= V2.31 =
+Bug related with displaying "Follow Me" button is fixed.
+
+= V2.30 =
+Add checking installed wordpress version. We updated all functionality for wordpress 3.7.1. Activation of radio button or checkbox by clicking on its label. Screenshots are updated.
 
 = V2.29 =
 We fixed the bug of displaying button when post title has special characters.
