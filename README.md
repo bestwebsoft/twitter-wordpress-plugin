@@ -1,9 +1,16 @@
-Twitter WordPress Plugin
+<a href="http://bestwebsoft.com/plugin/twitter-plugin/" target=_blank>Twitter WordPress Plugin</a>
 ========================
 
-Twitter plugin allows you to add follow button in the most easily and flexible way.
+Twitter plugin allows you to add the Follow button the easiest way. 
 
-Official plugin page: http://bestwebsoft.com/plugin/twitter-plugin/
+<img src="http://bestwebsoft.com/wp-content/uploads/2011/07/twitter-plugin.jpg" />
+
+<a href="http://bestwebsoft.com/plugin/twitter-plugin/#description" target=_blank>Description</a> | 
+<a href="http://bestwebsoft.com/plugin/twitter-plugin/#installation" target=_blank>Installation</a> | 
+<a href="http://bestwebsoft.com/plugin/twitter-plugin/#faq" target=_blank>FAQ</a> | 
+<a href="http://bestwebsoft.com/plugin/twitter-plugin/#screenshots" target=_blank>Screenshots</a> | 
+<a href="http://bestwebsoft.com/plugin/twitter-plugin/#changelog" target=_blank>Changelog</a> | 
+<a href="http://bestwebsoft.com/plugin/twitter-plugin/#download" target=_blank>Download</a>
 
 Features
 -----------------------------
@@ -15,14 +22,8 @@ Features
 
 Translation
 -----------------------------
-* Arabic (ar_AR) (thanks to Albayan Design Hani Aladoli)
-* Danish (da_DK) (thanks to <a href="mailto:admin@artikelforlaget.dk">Tom</a>, www.artikelforlaget.dk)
-* Dutch (nl_NL) (thanks to <a href="mailto:jan-willem.jwr.wilmsen@essent.nl">Jan-Willem</a>, www.directic.nl)
-* Hebrew (he_IL) (thanks to Sagive SEO)
-* Italian (it_IT) (thanks to Manuel)
+* Danish (da_DK) (thanks to Tom, www.artikelforlaget.dk)
 * Russian (ru_RU)
-* Slovak (sk_SK) (thanks to Branco Radenovich)
-* Spanish (es_ES)(thanks to <a href="mailto:mrjosefernando@gmail.com">Fernando De León</a>)
 * Ukrainian (uk)
 
 If you create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files  <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
