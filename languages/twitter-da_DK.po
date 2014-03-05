@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: twitter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-25 16:58+0300\n"
-"PO-Revision-Date: 2013-12-25 16:58+0300\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2014-02-27 18:02+0300\n"
+"PO-Revision-Date: 2014-02-27 18:03+0300\n"
+"Last-Translator: bestwebsoft.com <plugins@bestwebsoft.com>\n"
 "Language-Team: Tom <admin@artikelforlaget.dk>\n"
 "Language: sk_SK\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,8 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: twitter.php:35 twitter.php:162
+#: twitter.php:35
+#: twitter.php:319
 msgid "Twitter Settings"
 msgstr "Twitter indstillinger"
 
@@ -24,192 +25,286 @@ msgstr "Twitter indstillinger"
 msgid "Twitter"
 msgstr "Twitter"
 
-#: twitter.php:115
+#: twitter.php:120
+msgid "requires"
+msgstr ""
+
+#: twitter.php:120
+msgid "or higher, that is why it has been deactivated! Please upgrade WordPress and try again."
+msgstr ""
+
+#: twitter.php:120
+msgid "Back to the WordPress"
+msgstr ""
+
+#: twitter.php:120
+#, fuzzy
+msgid "Plugins page"
+msgstr "BWS pluginy"
+
+#: twitter.php:148
 msgid "Settings saved"
 msgstr "Indstillinger gemt"
 
-#: twitter.php:137
+#: twitter.php:170
 msgid "Error: File size > 32K"
 msgstr "FEJL: fil størrelse > 32K"
 
-#: twitter.php:139
+#: twitter.php:172
 msgid "Error: Invalid file type"
 msgstr "FEJL: ugyldig fil type"
 
-#: twitter.php:145
+#: twitter.php:178
 msgid "Upload successful."
 msgstr ""
 
-#: twitter.php:147
+#: twitter.php:180
 msgid "Error: moving file failed"
 msgstr "FEJL: fejl under flytning af fil"
 
-#: twitter.php:150
+#: twitter.php:183
 msgid "Error: check image width or height"
 msgstr "FEJL: tjek billede bredde eller højde"
 
-#: twitter.php:154
+#: twitter.php:187
 msgid "Uploading Error: check image properties"
 msgstr "Oploading Fejl: tjek billedegenskaber"
 
-#: twitter.php:164
+#: twitter.php:213
+#: twitter.php:252
+msgid "Wrong license key"
+msgstr ""
+
+#: twitter.php:245
+msgid "Something went wrong. Try again later. If the error will appear again, please, contact us <a href=http://support.bestwebsoft.com>BestWebSoft</a>. We are sorry for inconvenience."
+msgstr ""
+
+#: twitter.php:254
+msgid "This license key is bind to another site"
+msgstr ""
+
+#: twitter.php:256
+msgid "Unfortunately, you have exceeded the number of available tries. Please, upload the plugin manually."
+msgstr ""
+
+#: twitter.php:274
+msgid "Failed to open the zip archive. Please, upload the plugin manually"
+msgstr ""
+
+#: twitter.php:280
+msgid "Your server does not support either ZipArchive or Phar. Please, upload the plugin manually"
+msgstr ""
+
+#: twitter.php:284
+#: twitter.php:293
+msgid "Failed to download the zip archive. Please, upload the plugin manually"
+msgstr ""
+
+#: twitter.php:297
+msgid "Something went wrong. Try again later or upload the plugin manually. We are sorry for inconvienience."
+msgstr ""
+
+#: twitter.php:312
+msgid "Please, enter Your license key"
+msgstr ""
+
+#: twitter.php:321
+#: twitter.php:570
+#: twitter.php:582
+msgid "Settings"
+msgstr "Indstillinger"
+
+#: twitter.php:322
+#, fuzzy
+msgid "Extra settings"
+msgstr "Twitter indstillinger"
+
+#: twitter.php:323
+msgid "Go PRO"
+msgstr ""
+
+#: twitter.php:326
 msgid "Notice:"
 msgstr ""
 
-#: twitter.php:164
-msgid ""
-"The plugin's settings have been changed. In order to save them please don't "
-"forget to click the 'Save Changes' button."
+#: twitter.php:326
+msgid "The plugin's settings have been changed. In order to save them please don't forget to click the 'Save Changes' button."
 msgstr ""
 
-#: twitter.php:170
+#: twitter.php:332
 msgid "Settings for the button \"Follow Me\":"
 msgstr "Indstillinger for knappen \"Follow Me\":"
 
-#: twitter.php:174
+#: twitter.php:336
 msgid "Enter your username:"
 msgstr "Indtast dit brugernavn:"
 
-#: twitter.php:178
-msgid ""
-"If you do not have Twitter account yet, you should create it using this link"
-msgstr ""
-"Hvis du ikke har en Twitter konto endnu, kan du oprette en ved at følge "
-"dette link"
+#: twitter.php:340
+msgid "If you do not have Twitter account yet, you should create it using this link"
+msgstr "Hvis du ikke har en Twitter konto endnu, kan du oprette en ved at følge dette link"
 
-#: twitter.php:179
+#: twitter.php:341
 #, fuzzy
-msgid ""
-"Paste the shortcode &lsqb;follow_me&rsqb; into the necessary page or post to "
-"use the \"Follow Me\" button."
-msgstr ""
-"Indsæt shortcoden [follow_me] på den nødvenlige side eller indlæg for at "
-"bruge \"Follow Me\" knappen."
+msgid "Paste the shortcode &lsqb;follow_me&rsqb; into the necessary page or post to use the \"Follow Me\" button."
+msgstr "Indsæt shortcoden [follow_me] på den nødvenlige side eller indlæg for at bruge \"Follow Me\" knappen."
 
-#: twitter.php:180
-msgid ""
-"If you would like to use this button in some other place, please paste this "
-"line into the template source code"
-msgstr ""
-"Hvis du ønsker at bruge denne knap et andet sted, så indsæt teksten herunder "
-"ind i skabelonens kildekode."
+#: twitter.php:342
+msgid "If you would like to use this button in some other place, please paste this line into the template source code"
+msgstr "Hvis du ønsker at bruge denne knap et andet sted, så indsæt teksten herunder ind i skabelonens kildekode."
 
-#: twitter.php:185
+#: twitter.php:347
 msgid "Choose display settings:"
 msgstr "Vælg visnings indstillinger"
 
-#: twitter.php:189
+#: twitter.php:351
 msgid "Standard button"
 msgstr "Standard knap"
 
-#: twitter.php:191
+#: twitter.php:353
 msgid "Custom button"
 msgstr "Brugerdefineret knap"
 
-#: twitter.php:201
+#: twitter.php:363
 msgid "Current image:"
 msgstr "Nuværende billede"
 
-#: twitter.php:209
+#: twitter.php:371
 msgid "\"Follow Me\" image:"
 msgstr "\"Follow Me\" billede:"
 
-#: twitter.php:215
-msgid ""
-"Image properties: max image width:100px; max image height:100px; max image "
-"size:32Kb; image types:\"jpg\", \"jpeg\"."
-msgstr ""
-"Billedegenskaber: Maks bredde: 100px; maks. højde: 100px; Maks billede "
-"størrelse: 32Kb; Billede type:\"jpg\", \"jpeg\"."
+#: twitter.php:377
+msgid "Image properties: max image width:100px; max image height:100px; max image size:32Kb; image types:\"jpg\", \"jpeg\"."
+msgstr "Billedegenskaber: Maks bredde: 100px; maks. højde: 100px; Maks billede størrelse: 32Kb; Billede type:\"jpg\", \"jpeg\"."
 
-#: twitter.php:222
+#: twitter.php:384
 #, fuzzy
 msgid "Settings for the \"Twitter\" button:"
 msgstr "Indstillinger for knappen \"Twitter\":"
 
-#: twitter.php:225
+#: twitter.php:387
 msgid "Disable the \"Twitter\" button:"
 msgstr "Slå \"Twitter\" knappen fra:"
 
-#: twitter.php:228
+#: twitter.php:390
 #, fuzzy
-msgid ""
-"The button \"T\" will not be displayed. Just the shortcode &lsqb;"
-"follow_me&rsqb; will work."
-msgstr ""
-"Knappen \"T\" vil ikke blive vist. Kun shortcoden [follow_me] vil virke."
+msgid "The button \"T\" will not be displayed. Just the shortcode &lsqb;follow_me&rsqb; will work."
+msgstr "Knappen \"T\" vil ikke blive vist. Kun shortcoden [follow_me] vil virke."
 
-#: twitter.php:233
+#: twitter.php:395
 msgid "Choose the \"Twitter\" icon position:"
 msgstr "Vælg \"Twitter\" ikon position:"
 
-#: twitter.php:236
+#: twitter.php:398
 msgid "Top position"
 msgstr "Top position"
 
-#: twitter.php:237
+#: twitter.php:399
 msgid "Bottom position"
 msgstr "Bund position"
 
-#: twitter.php:238
-msgid ""
-"By clicking this icon a user can add the article he/she likes to his/her "
-"Twitter page."
-msgstr ""
-"Når en bruger klikker på dette ikon, tilføjer brugeren til deres twitter "
-"side at de synes godt det, sammen med et link."
+#: twitter.php:400
+msgid "By clicking this icon a user can add the article he/she likes to his/her Twitter page."
+msgstr "Når en bruger klikker på dette ikon, tilføjer brugeren til deres twitter side at de synes godt det, sammen med et link."
 
-#: twitter.php:244
+#: twitter.php:406
+#: twitter.php:444
 msgid "Save Changes"
 msgstr "Gem ændringer"
 
-#: twitter.php:253
+#: twitter.php:414
 msgid "If you enjoy our plugin, please give it 5 stars on WordPress"
 msgstr ""
 
-#: twitter.php:254
+#: twitter.php:415
 #, fuzzy
 msgid "Rate the plugin"
 msgstr "Anbefalede plugins"
 
-#: twitter.php:257
+#: twitter.php:418
 msgid "If there is something wrong about it, please contact us"
 msgstr ""
 
-#: twitter.php:309
+#: twitter.php:426
+msgid "Please choose the necessary post types (or single pages) where Twitter button will be displayed:"
+msgstr ""
+
+#: twitter.php:433
+msgid "Show URL for pages"
+msgstr ""
+
+#: twitter.php:439
+msgid "Example of site pages' tree"
+msgstr ""
+
+#: twitter.php:449
+msgid "This functionality is available in the Pro version of the plugin. For more details, please follow the link"
+msgstr ""
+
+#: twitter.php:463
+msgid "Congratulations! The PRO version of the plugin is successfully download and activated."
+msgstr ""
+
+#: twitter.php:465
+msgid "Please, go to"
+msgstr ""
+
+#: twitter.php:465
+#, fuzzy
+msgid "the setting page"
+msgstr "Indstillinger gemt"
+
+#: twitter.php:466
+msgid "You will be redirected automatically in 5 seconds."
+msgstr ""
+
+#: twitter.php:471
+msgid "You can download and activate"
+msgstr ""
+
+#: twitter.php:473
+msgid "version of this plugin by entering Your license key."
+msgstr ""
+
+#: twitter.php:475
+msgid "You can find your license key on your personal page Client area, by clicking on the link"
+msgstr ""
+
+#: twitter.php:477
+msgid "(your username is the email you specify when purchasing the product)."
+msgstr ""
+
+#: twitter.php:485
+#: twitter.php:495
+msgid "Go!"
+msgstr ""
+
+#: twitter.php:488
+msgid "Unfortunately, you have exceeded the number of available tries per day. Please, upload the plugin manually."
+msgstr ""
+
+#: twitter.php:549
 msgid "Click here if you like this article."
 msgstr "Klik her hvis du kan lide denne artikel."
 
-#: twitter.php:330 twitter.php:342
-msgid "Settings"
-msgstr "Indstillinger"
-
-#: twitter.php:343
+#: twitter.php:583
 msgid "FAQ"
 msgstr "FAQ"
 
-#: twitter.php:344
+#: twitter.php:584
 msgid "Support"
 msgstr "Support"
 
-#: twitter.php:368
-msgid "requires"
+#: twitter.php:649
+msgid "Learn More"
 msgstr ""
 
-#: twitter.php:368
-msgid ""
-"or higher, that is why it has been deactivated! Please upgrade WordPress and "
-"try again."
+#: twitter.php:651
+msgid "It's time to upgrade your <strong>Twitter</strong> to <strong>PRO</strong> version"
 msgstr ""
 
-#: twitter.php:368
-msgid "Back to the WordPress"
+#: twitter.php:652
+msgid "Extend standard plugin functionality with new great options"
 msgstr ""
-
-#: twitter.php:368
-#, fuzzy
-msgid "Plugins page"
-msgstr "BWS pluginy"
 
 #~ msgid "\"Twitter\" button settings:"
 #~ msgstr "\"Twitter\" knap indstillinger:"

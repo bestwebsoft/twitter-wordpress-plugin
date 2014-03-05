@@ -4,18 +4,21 @@ Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=10
 Tags: tvit, twit, twet, tvet, tvitt, twitt, twett, tvett, tviter, twiter, tweter, twiter, follow button, twitter follow button, twitter share, twitter follow, twitter share button, button, connect, twitter connect, twiter conect, tweet, tweeter, tweetter 
 Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: 2.33
+Stable tag: 2.34
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Add a Twitter "Follow" button to your WordPress website.
+Add a Twitter "Follow" and "Like" buttons to your WordPress website.
 
 == Description ==
 
-Twitter plugin allows you to add the Follow button the easiest way.
+Twitter plugin allows you to add the Follow and the Like buttons the easiest way.
 
 <a href="http://wordpress.org/plugins/twitter-plugin/faq/" target="_blank">FAQ</a>
+
 <a href="http://support.bestwebsoft.com" target="_blank">Support</a>
+
+<a href="http://bestwebsoft.com/plugin/twitter-pro/?k=5d5eadeb5acd19904cbbcf3104f6ea13" target="_blank">Upgrade to Pro Version</a>
 
 = Features =
 
@@ -41,7 +44,7 @@ If you create your own language pack or update the existing one, you can send <a
 
 == Installation ==
 
-1. Upload the folder `Twitter` to the directory `/wp-content/plugins/`.
+1. Upload the folder `twitter-plugin` to the directory `/wp-content/plugins/`.
 2. Activate the plugin via the 'Plugins' menu in your WordPress admin panel.
 3. You can adjust the necessary settings using your WordPress admin panel in "BWS Plugins" -> "Twitter".
 
@@ -88,6 +91,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 5. Custom Twitter "Follow" button in the front-end.
 
 == Changelog ==
+
+= V2.34 - 04.03.2014 =
+* Budfix : Plugin optimization is done.
+* Update : Plugin tabs is added.
 
 = V2.33 - 06.02.2014 =
 * Update : Screenshots are updated.
@@ -221,6 +228,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Ability to install Twitter icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.34 =
+Plugin optimization is done. Plugin tabs is added.
 
 = V2.33 =
 Screenshots are updated. BWS plugins section is updated. We updated all functionality for wordpress 3.8.1.
