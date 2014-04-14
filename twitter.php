@@ -4,7 +4,7 @@ Plugin Name: Twitter
 Plugin URI:  http://bestwebsoft.com/plugin/
 Description: Plugin to add a link to the page author to twitter.
 Author: BestWebSoft
-Version: 2.34
+Version: 2.35
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -26,11 +26,50 @@ License: GPLv2 or later
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-require_once( dirname( __FILE__ ) . '/bws_menu/bws_menu.php' );
-
 /* Add BWS menu */
 if ( ! function_exists ( 'twttr_add_pages' ) ) {
 	function twttr_add_pages() {
+		global $bstwbsftwppdtplgns_options, $wpmu, $bstwbsftwppdtplgns_added_menu;
+		$bws_menu_version = '1.2.6';
+		$base = plugin_basename(__FILE__);
+
+		if ( ! isset( $bstwbsftwppdtplgns_options ) ) {
+			if ( 1 == $wpmu ) {
+				if ( ! get_site_option( 'bstwbsftwppdtplgns_options' ) )
+					add_site_option( 'bstwbsftwppdtplgns_options', array(), '', 'yes' );
+				$bstwbsftwppdtplgns_options = get_site_option( 'bstwbsftwppdtplgns_options' );
+			} else {
+				if ( ! get_option( 'bstwbsftwppdtplgns_options' ) )
+					add_option( 'bstwbsftwppdtplgns_options', array(), '', 'yes' );
+				$bstwbsftwppdtplgns_options = get_option( 'bstwbsftwppdtplgns_options' );
+			}
+		}
+
+		if ( isset( $bstwbsftwppdtplgns_options['bws_menu_version'] ) ) {
+			$bstwbsftwppdtplgns_options['bws_menu']['version'][ $base ] = $bws_menu_version;
+			unset( $bstwbsftwppdtplgns_options['bws_menu_version'] );
+			update_option( 'bstwbsftwppdtplgns_options', $bstwbsftwppdtplgns_options, '', 'yes' );
+			require_once( dirname( __FILE__ ) . '/bws_menu/bws_menu.php' );
+		} else if ( ! isset( $bstwbsftwppdtplgns_options['bws_menu']['version'][ $base ] ) || $bstwbsftwppdtplgns_options['bws_menu']['version'][ $base ] < $bws_menu_version ) {
+			$bstwbsftwppdtplgns_options['bws_menu']['version'][ $base ] = $bws_menu_version;
+			update_option( 'bstwbsftwppdtplgns_options', $bstwbsftwppdtplgns_options, '', 'yes' );
+			require_once( dirname( __FILE__ ) . '/bws_menu/bws_menu.php' );
+		} else if ( ! isset( $bstwbsftwppdtplgns_added_menu ) ) {
+			$plugin_with_newer_menu = $base;
+			foreach ( $bstwbsftwppdtplgns_options['bws_menu']['version'] as $key => $value ) {
+				if ( $bws_menu_version < $value && is_plugin_active( $base ) ) {
+					$plugin_with_newer_menu = $key;
+				}
+			}
+			$plugin_with_newer_menu = explode( '/', $plugin_with_newer_menu );
+			$wp_content_dir = defined( 'WP_CONTENT_DIR' ) ? basename( WP_CONTENT_DIR ) : 'wp-content';
+			if ( file_exists( ABSPATH . $wp_content_dir . '/plugins/' . $plugin_with_newer_menu[0] . '/bws_menu/bws_menu.php' ) )
+				require_once( ABSPATH . $wp_content_dir . '/plugins/' . $plugin_with_newer_menu[0] . '/bws_menu/bws_menu.php' );
+			else
+				require_once( dirname( __FILE__ ) . '/bws_menu/bws_menu.php' );
+			$bstwbsftwppdtplgns_added_menu = true;			
+		}
+
 		add_menu_page( 'BWS Plugins', 'BWS Plugins', 'manage_options', 'bws_plugins', 'bws_add_menu_render', plugins_url( 'images/px.png', __FILE__ ), 1001 );
 		add_submenu_page( 'bws_plugins', __( 'Twitter Settings', 'twitter' ), __( 'Twitter', 'twitter' ), 'manage_options', 'twitter.php', 'twttr_settings_page' );
 	}
@@ -123,14 +162,13 @@ if ( ! function_exists( 'twttr_settings' ) ) {
 /* Function check if plugin is compatible with current WP version  */
 if ( ! function_exists ( 'twttr_version_check' ) ) {
 	function twttr_version_check() {
-		global $wp_version;
-		$plugin_data	=	get_plugin_data( __FILE__, false );
+		global $wp_version, $twttr_plugin_info;
 		$require_wp		=	"3.0"; /* Wordpress at least requires version */
 		$plugin			=	plugin_basename( __FILE__ );
 	 	if ( version_compare( $wp_version, $require_wp, "<" ) ) {
 			if ( is_plugin_active( $plugin ) ) {
 				deactivate_plugins( $plugin );
-				wp_die( "<strong>" . $plugin_data['Name'] . " </strong> " . __( 'requires', 'twitter' ) . " <strong>WordPress " . $require_wp . "</strong> " . __( 'or higher, that is why it has been deactivated! Please upgrade WordPress and try again.', 'twitter') . "<br /><br />" . __( 'Back to the WordPress', 'twitter') . " <a href='" . get_admin_url( null, 'plugins.php' ) . "'>" . __( 'Plugins page', 'twitter') . "</a>." );
+				wp_die( "<strong>" . $twttr_plugin_info['Name'] . " </strong> " . __( 'requires', 'twitter' ) . " <strong>WordPress " . $require_wp . "</strong> " . __( 'or higher, that is why it has been deactivated! Please upgrade WordPress and try again.', 'twitter') . "<br /><br />" . __( 'Back to the WordPress', 'twitter') . " <a href='" . get_admin_url( null, 'plugins.php' ) . "'>" . __( 'Plugins page', 'twitter') . "</a>." );
 			}
 		}
 	}
@@ -205,19 +243,9 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 
 		/* GO PRO */
 		if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) {
-			global $wpmu;
+			global $bstwbsftwppdtplgns_options;
 
 			$bws_license_key = ( isset( $_POST['bws_license_key'] ) ) ? trim( $_POST['bws_license_key'] ) : "";
-			$bstwbsftwppdtplgns_options_defaults = array();
-			if ( 1 == $wpmu ) {
-				if ( !get_site_option( 'bstwbsftwppdtplgns_options' ) )
-					add_site_option( 'bstwbsftwppdtplgns_options', $bstwbsftwppdtplgns_options_defaults, '', 'yes' );
-				$bstwbsftwppdtplgns_options = get_site_option( 'bstwbsftwppdtplgns_options' );
-			} else {
-				if ( !get_option( 'bstwbsftwppdtplgns_options' ) )
-					add_option( 'bstwbsftwppdtplgns_options', $bstwbsftwppdtplgns_options_defaults, '', 'yes' );
-				$bstwbsftwppdtplgns_options = get_option( 'bstwbsftwppdtplgns_options' );
-			}
 
 			if ( isset( $_POST['bws_license_submit'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'bws_license_nonce_name' ) ) {
 				if ( '' != $bws_license_key ) { 
@@ -269,7 +297,6 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 											}
 										}
 										if ( '' == $error ) {
-											global $wpmu;																					
 											$bstwbsftwppdtplgns_options[ $bws_license_plugin ] = $bws_license_key;
 
 											$url = 'http://bestwebsoft.com/wp-content/plugins/paid-products/plugins/downloads/?bws_first_download=' . $bws_license_plugin . '&bws_license_key=' . $bws_license_key . '&download_from=5';
@@ -324,13 +351,12 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 		 			$error = __( "Please, enter Your license key", 'twitter' );
 		 		}
 		 	}
-		}
-		?>
+		} ?>
 		<div class="wrap">
 			<div class="icon32 icon32-bws" id="icon-options-general"></div>
-			<h2><?php echo __( "Twitter Settings", 'twitter' ); ?></h2>
+			<h2><?php _e( "Twitter Settings", 'twitter' ); ?></h2>
 			<h2 class="nav-tab-wrapper">
-				<a class="nav-tab<?php if ( !isset( $_GET['action'] ) ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php"><?php _e( 'Settings', 'twitter' ); ?></a>
+				<a class="nav-tab<?php if ( ! isset( $_GET['action'] ) ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php"><?php _e( 'Settings', 'twitter' ); ?></a>
 				<a class="nav-tab<?php if ( isset( $_GET['action'] ) && 'extra' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php&amp;action=extra"><?php _e( 'Extra settings', 'twitter' ); ?></a>
 				<a class="nav-tab bws_go_pro_tab<?php if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php&amp;action=go_pro"><?php _e( 'Go PRO', 'twitter' ); ?></a>
 			</h2>
@@ -396,7 +422,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 							<th scope="row" colspan="2"><?php echo __( 'Settings for the "Twitter" button:', 'twitter' ); ?></th>
 						</tr>
 						<tr>
-							<th><?php echo __( 'Disable the "Twitter" button:', 'twitter' ); ?></th>
+							<th><?php _e( 'Disable the "Twitter" button:', 'twitter' ); ?></th>
 							<td>
 								<input type="checkbox" name="twttr_disable" value="1" <?php if ( 1 == $twttr_options["disable"] ) echo "checked=\"checked\""; ?> />
 								<span style="color: rgb(136, 136, 136); font-size: 10px;"> <?php echo __( 'The button "T" will not be displayed. Just the shortcode &lsqb;follow_me&rsqb; will work.', 'twitter' ); ?></span><br />
@@ -404,7 +430,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 						</tr>
 						<tr>
 							<th>
-								<?php echo __( 'Choose the "Twitter" icon position:', 'twitter' ); ?>
+								<?php _e( 'Choose the "Twitter" icon position:', 'twitter' ); ?>
 							</th>
 							<td>
 								<label><input type="radio" name="twttr_position" value="1" <?php if ( 1 == $twttr_options['position'] ) echo 'checked="checked"'?> /> <?php echo __( 'Top position', 'twitter' ); ?></label><br />
@@ -432,39 +458,51 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 					</div>
 				</div>
 			<?php } elseif ( 'extra' == $_GET['action'] ) { ?>
-				<table class="form-table bws_pro_version">
-					<tr valign="top">
-						<td colspan="2">
-							<?php _e( 'Please choose the necessary post types (or single pages) where Twitter button will be displayed:', 'twitter' ); ?>
-						</td>
-					</tr>
-					<tr valign="top">
-						<td colspan="2">
-							<label>
-								<input disabled="disabled" checked="checked" id="twttrpr_jstree_url" type="checkbox" name="twttrpr_jstree_url" value="1" />
-								<?php _e( "Show URL for pages", 'twitter' );?>
-							</label>
-						</td>
-					</tr>
-					<tr valign="top">
-						<td colspan="2">
-							<img src="<?php echo plugins_url( 'images/pro_screen_1.png', __FILE__ ); ?>" alt="<?php _e( "Example of site pages' tree", 'twitter' ); ?>" title="<?php _e( "Example of site pages' tree", 'twitter' ); ?>" />
-						</td>
-					</tr>
-					<tr valign="top">
-						<td colspan="2">
-							<input disabled="disabled" type="submit" class="button-primary" value="<?php _e( 'Save Changes', 'twitter' ); ?>" />
-						</td>
-					</tr>
-					<tr class="bws_pro_version_tooltip">
-						<th scope="row" colspan="2">
-							<?php _e( 'This functionality is available in the Pro version of the plugin. For more details, please follow the link', 'twitter' ); ?> 
-							<a href="http://bestwebsoft.com/plugin/twitter-pro/?k=a8417eabe3c9fb0c2c5bed79e76de43c&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Twitter Pro">
-								Twitter Pro
-							</a>
-						</th>
-					</tr>					
-				</table>
+				<div class="bws_pro_version_bloc">
+					<div class="bws_pro_version_table_bloc">	
+						<div class="bws_table_bg"></div>											
+						<table class="form-table bws_pro_version">
+							<tr valign="top">
+								<td colspan="2">
+									<?php _e( 'Please choose the necessary post types (or single pages) where Twitter button will be displayed:', 'twitter' ); ?>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td colspan="2">
+									<label>
+										<input disabled="disabled" checked="checked" id="twttrpr_jstree_url" type="checkbox" name="twttrpr_jstree_url" value="1" />
+										<?php _e( "Show URL for pages", 'twitter' );?>
+									</label>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td colspan="2">
+									<img src="<?php echo plugins_url( 'images/pro_screen_1.png', __FILE__ ); ?>" alt="<?php _e( "Example of site pages' tree", 'twitter' ); ?>" title="<?php _e( "Example of site pages' tree", 'twitter' ); ?>" />
+								</td>
+							</tr>
+							<tr valign="top">
+								<td colspan="2">
+									<input disabled="disabled" type="submit" class="button-primary" value="<?php _e( 'Save Changes', 'twitter' ); ?>" />
+								</td>
+							</tr>
+							<tr valign="top">
+								<th scope="row" colspan="2">
+									* <?php _e( 'If you upgrade to Pro version all your settings will be saved.', 'twitter' ); ?>
+								</th>
+							</tr>				
+						</table>	
+					</div>
+					<div class="bws_pro_version_tooltip">
+						<div class="bws_info">
+							<?php _e( 'Unlock premium options by upgrading to a PRO version.', 'twitter' ); ?> 
+							<a href="http://bestwebsoft.com/plugin/twitter-pro/?k=a8417eabe3c9fb0c2c5bed79e76de43c&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Twitter Pro"><?php _e( 'Learn More', 'twitter' ); ?></a>				
+						</div>
+						<a class="bws_button" href="http://bestwebsoft.com/plugin/twitter-pro/?k=a8417eabe3c9fb0c2c5bed79e76de43c&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>#purchase" target="_blank" title="Twitter Pro">
+							<?php _e( 'Go', 'twitter' ); ?> <strong>PRO</strong>
+						</a>	
+						<div class="clear"></div>					
+					</div>
+				</div>
 			<?php } elseif ( 'go_pro' == $_GET['action'] ) { ?>
 				<?php if ( isset( $pro_plugin_is_activated ) && true === $pro_plugin_is_activated ) { ?>
 					<script type="text/javascript">
@@ -602,24 +640,27 @@ if ( ! function_exists( 'twttr_links' ) ) {
 /* Registering and apllying styles and scripts */
 if ( ! function_exists( 'twttr_admin_head' ) ) {
 	function twttr_admin_head() {
-		global $wp_version;
-		if ( $wp_version < 3.8 )
-			wp_enqueue_style( 'twttr_stylesheet', plugins_url( 'css/style_wp_before_3.8.css', __FILE__ ) );	
-		else
-			wp_enqueue_style( 'twttr_stylesheet', plugins_url( 'css/style.css', __FILE__ ) );
-
 		if ( isset( $_GET['page'] ) && "twitter.php" == $_GET['page'] )
 			wp_enqueue_script( 'twttr_script', plugins_url( 'js/script.js', __FILE__ ) );
 	}
 }
 
+/* Registering and apllying styles and scripts */
+if ( ! function_exists( 'twttr_wp_head' ) ) {
+	function twttr_wp_head() {
+		wp_enqueue_style( 'twttr_stylesheet', plugins_url( 'css/style.css', __FILE__ ) );
+	}
+}
+
 if ( ! function_exists ( 'twttr_plugin_banner' ) ) {
 	function twttr_plugin_banner() {
-		global $hook_suffix, $twttr_plugin_info;	
-		if ( 'plugins.php' == $hook_suffix ) {   
+		global $hook_suffix;	
+		if ( 'plugins.php' == $hook_suffix ) {  
+			global $twttr_plugin_info, $bstwbsftwppdtplgns_cookie_add;
 			$banner_array = array(
 				array( 'pdtr_hide_banner_on_plugin_page', 'updater/updater.php', '1.12' ),
-				array( 'cntctfrmtdb_hide_banner_on_plugin_page', 'contact-form-to-db/contact_form_to_db.php', '1.2' ),
+				array( 'cntctfrmtdb_hide_banner_on_plugin_page', 'contact-form-to-db/contact_form_to_db.php', '1.2' ),		
+				array( 'gglmps_hide_banner_on_plugin_page', 'bws-google-maps/bws-google-maps.php', '1.2' ),		
 				array( 'fcbkbttn_hide_banner_on_plugin_page', 'facebook-button-plugin/facebook-button-plugin.php', '2.29' ),
 				array( 'twttr_hide_banner_on_plugin_page', 'twitter-plugin/twitter.php', '2.34' ),
 				array( 'pdfprnt_hide_banner_on_plugin_page', 'pdf-print/pdf-print.php', '1.7.1' ),
@@ -636,20 +677,26 @@ if ( ! function_exists ( 'twttr_plugin_banner' ) ) {
 			
 			if ( ! function_exists( 'is_plugin_active_for_network' ) )
 				require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+
 			$active_plugins = get_option( 'active_plugins' );			
 			$all_plugins = get_plugins();
 			$this_banner = 'twttr_hide_banner_on_plugin_page';
 			foreach ( $banner_array as $key => $value ) {
 				if ( $this_banner == $value[0] ) {
 					global $wp_version;
-		       		echo '<script type="text/javascript" src="' . plugins_url( 'js/c_o_o_k_i_e.js', __FILE__ ) . '"></script>
+		       		if ( ! isset( $bstwbsftwppdtplgns_cookie_add ) ) {
+						echo '<script type="text/javascript" src="' . plugins_url( 'js/c_o_o_k_i_e.js', __FILE__ ) . '"></script>';
+						$bstwbsftwppdtplgns_cookie_add = true;
+					} ?>
 					<script type="text/javascript">		
 						(function($) {
 							$(document).ready( function() {		
 								var hide_message = $.cookie( "twttr_hide_banner_on_plugin_page" );
 								if ( hide_message == "true") {
 									$( ".twttr_message" ).css( "display", "none" );
-								};
+								} else {
+									$( ".twttr_message" ).css( "display", "block" );
+								}
 								$( ".twttr_close_icon" ).click( function() {
 									$( ".twttr_message" ).css( "display", "none" );
 									$.cookie( "twttr_hide_banner_on_plugin_page", "true", { expires: 32 } );
@@ -658,17 +705,21 @@ if ( ! function_exists ( 'twttr_plugin_banner' ) ) {
 						})(jQuery);				
 					</script>
 					<div class="updated" style="padding: 0; margin: 0; border: none; background: none;">					                      
-						<div class="twttr_message bws_banner_on_plugin_page">
-							<img class="twttr_close_icon close_icon" title="" src="' . plugins_url( 'images/close_banner.png', __FILE__ ) . '" alt=""/>
-							<a class="button" target="_blank" href="http://bestwebsoft.com/plugin/twitter-pro/?k=137342f0aa4b561cf7f93c190d95c890&pn=76&v=' . $twttr_plugin_info["Version"] . '&wp_v=' . $wp_version . '">' . __( "Learn More", 'twitter' ) . '</a>				
-							<div class="text">
-								' . __( "It's time to upgrade your <strong>Twitter</strong> to <strong>PRO</strong> version", 'twitter' ) . '!<br />
-								<span>' . __( 'Extend standard plugin functionality with new great options', 'twitter' ) . '.</span>
-							</div> 					
-							<img class="icon" title="" src="' . plugins_url( 'images/banner.png', __FILE__ ) . '" alt=""/>	
+						<div class="twttr_message bws_banner_on_plugin_page" style="display: none;">
+							<img class="twttr_close_icon close_icon" title="" src="<?php echo plugins_url( 'images/close_banner.png', __FILE__ ); ?>" alt=""/>
+							<div class="button_div">
+								<a class="button" target="_blank" href="http://bestwebsoft.com/plugin/twitter-pro/?k=137342f0aa4b561cf7f93c190d95c890&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( "Learn More", 'twitter' ); ?></a>				
+							</div>
+							<div class="text"><?php
+								_e( "It's time to upgrade your <strong>Twitter</strong> to <strong>PRO</strong> version", 'twitter' ); ?>!<br />
+								<span><?php _e( 'Extend standard plugin functionality with new great options', 'twitter' ); ?>.</span>
+							</div> 	
+							<div class="icon">				
+								<img title="" src="<?php echo plugins_url( 'images/banner.png', __FILE__ ); ?>" alt=""/>
+							</div>	
 						</div>  
-					</div>';
-					break;
+					</div>
+					<?php break;
 				}
 				if ( isset( $all_plugins[ $value[1] ] ) && $all_plugins[ $value[1] ]["Version"] >= $value[2] && ( 0 < count( preg_grep( '/' . str_replace( '/', '\/', $value[1] ) . '/', $active_plugins ) ) || is_plugin_active_for_network( $value[1] ) ) && ! isset( $_COOKIE[ $value[0] ] ) ) {
 					break;
@@ -692,7 +743,7 @@ add_action( 'init', 'twttr_init' );
 add_action( 'admin_init', 'twttr_admin_init' );
 /* Adding stylesheets */
 add_action( 'admin_enqueue_scripts', 'twttr_admin_head' );
-add_action( 'wp_enqueue_scripts', 'twttr_admin_head' );
+add_action( 'wp_enqueue_scripts', 'twttr_wp_head' );
 /* Adding plugin buttons */
 add_shortcode( 'follow_me', 'twttr_follow_me' );
 add_filter( 'widget_text', 'do_shortcode' );

@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=10&product_id=13
 Tags: tvit, twit, twet, tvet, tvitt, twitt, twett, tvett, tviter, twiter, tweter, twiter, follow button, twitter follow button, twitter share, twitter follow, twitter share button, button, connect, twitter connect, twiter conect, tweet, tweeter, tweetter 
 Requires at least: 3.0
-Tested up to: 3.8.1
-Stable tag: 2.34
+Tested up to: 3.8.2
+Stable tag: 2.35
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,6 +13,8 @@ Add a Twitter "Follow" and "Like" buttons to your WordPress website.
 == Description ==
 
 Twitter plugin allows you to add the Follow and the Like buttons the easiest way.
+
+http://www.youtube.com/watch?v=jyI06kL_lQI
 
 <a href="http://wordpress.org/plugins/twitter-plugin/faq/" target="_blank">FAQ</a>
 
@@ -80,7 +82,7 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 1. the link to the page where the problem occurs
 2. the name of the plugin and its version. If you are using a pro version - your order number.
 3. the version of your WordPress installation
-4. copy and paste into the message your system status report. Please read more here: <a href="http://bestwebsoft.com/wp-content/uploads/manual/wp_plugin/general/System_Status.pdf" target="_blank">System_Status.pdf</a>
+4. copy and paste into the message your system status report. Please read more here: <a href="https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit" target="_blank">Instuction on System Status</a>
 
 == Screenshots ==
 
@@ -92,7 +94,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
-= V2.34 - 04.03.2014 =
+= V2.35 - 11.04.2014 =
+* Update : We updated all functionality for wordpress 3.8.2.
+
+= V2.34 - 04.03.2014 = 
 * Budfix : Plugin optimization is done.
 * Update : Plugin tabs is added.
 
@@ -228,6 +233,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Ability to install Twitter icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.35 =
+We updated all functionality for wordpress 3.8.2.
 
 = V2.34 =
 Plugin optimization is done. Plugin tabs is added.
