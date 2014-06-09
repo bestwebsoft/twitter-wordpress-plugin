@@ -4,7 +4,7 @@ Plugin Name: Twitter
 Plugin URI:  http://bestwebsoft.com/plugin/
 Description: Plugin to add a link to the page author to twitter.
 Author: BestWebSoft
-Version: 2.35
+Version: 2.36
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -30,7 +30,8 @@ License: GPLv2 or later
 if ( ! function_exists ( 'twttr_add_pages' ) ) {
 	function twttr_add_pages() {
 		global $bstwbsftwppdtplgns_options, $wpmu, $bstwbsftwppdtplgns_added_menu;
-		$bws_menu_version = '1.2.6';
+		$bws_menu_version = get_plugin_data( plugin_dir_path( __FILE__ ) . "bws_menu/bws_menu.php" );
+		$bws_menu_version = $bws_menu_version["Version"];
 		$base = plugin_basename(__FILE__);
 
 		if ( ! isset( $bstwbsftwppdtplgns_options ) ) {
@@ -117,7 +118,7 @@ if ( ! function_exists( 'twttr_settings' ) ) {
 			'url_twitter' 			=>	'admin',
 			'display_option'		=>	'custom',
 			'count_icon' 			=>	1,
-			'img_link' 				=>	plugins_url( "images/twitter-follow.gif", __FILE__ ),
+			'img_link' 				=>	plugins_url( "images/twitter-follow.jpg", __FILE__ ),
 			'position' 				=>	'',
 			'disable' 				=>	'0'
 		);
@@ -180,9 +181,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 		global $twttr_options, $wp_version, $twttr_plugin_info;
 		$copy = false;
 		$message = $error = "";
-
-		if ( false !== @copy( plugin_dir_path( __FILE__ ) . "images/twitter-follow.jpg", plugin_dir_path( __FILE__ ) . "images/twitter-follow1.jpg" ) )
-			$copy = true;
+		$upload_dir = wp_upload_dir();
 
 		if ( isset( $_REQUEST['twttr_form_submit'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'twttr_nonce_name' ) ) {
 			$twttr_options['url_twitter']		=	$_REQUEST['twttr_url_twitter'];
@@ -199,6 +198,12 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 
 			/* Form options */
 			if ( isset( $_FILES['upload_file']['tmp_name'] ) && "" != $_FILES['upload_file']['tmp_name'] ) {
+				if ( ! $upload_dir["error"] ) {
+					$twttr_cstm_mg_folder = $upload_dir['basedir'] . '/twitter-logo';
+					if ( ! is_dir( $twttr_cstm_mg_folder ) ) {
+						wp_mkdir_p( $twttr_cstm_mg_folder, 0755 );
+					}
+				}
 				$max_image_width	=	100;
 				$max_image_height	=	100;
 				$max_image_size		=	32 * 1024;
@@ -207,8 +212,8 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 				$new_name			=	'twitter-follow' . $twttr_options['count_icon'];
 				$new_ext			=	'.jpg';
 				$namefile			=	$new_name . $new_ext;
-				$uploaddir			=	$_REQUEST['home'] . 'wp-content/plugins/twitter-plugin/images/'; /* The directory in which we will take the file: */
-				$uploadfile			=	$uploaddir . $namefile;
+				/*$uploaddir			=	$_REQUEST['home'] . 'wp-content/plugins/twitter-plugin/images/'; /* The directory in which we will take the file: */
+				$uploadfile			=	$twttr_cstm_mg_folder . '/' . $namefile;
 
 				/* Checks is file download initiated by user */
 				if ( isset( $_FILES['upload_file'] ) && 'custom' == $_REQUEST['twttr_display_option'] )	{
@@ -216,7 +221,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 					if ( is_uploaded_file( $_FILES['upload_file']['tmp_name'] ) ) {
 						$filename	=	$_FILES['upload_file']['tmp_name'];
 						$ext		=	substr( $_FILES['upload_file']['name'], 1 + strrpos( $_FILES['upload_file']['name'], '.' ) );
-						if ( filesize ( $filename ) > $max_image_size ) {
+						if ( filesize( $filename ) > $max_image_size ) {
 							$error = __( "Error: File size > 32K", 'twitter' );
 						} elseif ( ! in_array( $ext, $valid_types ) ) {
 							$error = __( "Error: Invalid file type", 'twitter' );
@@ -224,8 +229,9 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 							$size = GetImageSize( $filename );
 							if ( ( $size ) && ( $size[0] <= $max_image_width ) && ( $size[1] <= $max_image_height ) ) {
 								/* If file satisfies requirements, we will move them from temp to your plugin folder and rename to 'twitter_ico.jpg' */
-								if ( move_uploaded_file ( $_FILES['upload_file']['tmp_name'], $uploadfile ) ) {
+								if ( move_uploaded_file( $_FILES['upload_file']['tmp_name'], $uploadfile ) ) {
 									$message .= '. ' . __( "Upload successful.", 'twitter' );
+									twttr_update_option();
 								} else {
 									$error = __( "Error: moving file failed", 'twitter' );
 								}
@@ -239,7 +245,6 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 				}
 			}
 		}
-		twttr_update_option();
 
 		/* GO PRO */
 		if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) {
@@ -261,7 +266,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 						}	
 
 						/* download Pro */
-						if ( !function_exists( 'get_plugins' ) )
+						if ( ! function_exists( 'get_plugins' ) )
 							require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 						if ( ! function_exists( 'is_plugin_active_for_network' ) )
 							require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
@@ -358,6 +363,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 			<h2 class="nav-tab-wrapper">
 				<a class="nav-tab<?php if ( ! isset( $_GET['action'] ) ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php"><?php _e( 'Settings', 'twitter' ); ?></a>
 				<a class="nav-tab<?php if ( isset( $_GET['action'] ) && 'extra' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php&amp;action=extra"><?php _e( 'Extra settings', 'twitter' ); ?></a>
+				<a class="nav-tab" href="http://bestwebsoft.com/plugin/twitter-plugin/#faq" target="_blank"><?php _e( 'FAQ', 'twitter' ); ?></a>
 				<a class="nav-tab bws_go_pro_tab<?php if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php&amp;action=go_pro"><?php _e( 'Go PRO', 'twitter' ); ?></a>
 			</h2>
 			<div class="updated fade" <?php if ( empty( $message ) || "" != $error ) echo "style=\"display:none\""; ?>><p><strong><?php echo $message; ?></strong></p></div>
@@ -385,12 +391,14 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 								<?php echo __( "Choose display settings:", 'twitter' ); ?>
 							</th>
 							<td>
-								<select name="twttr_display_option" onchange="if ( this . value == 'custom' ) { getElementById ( 'twttr_display_option_custom' ) . style.display = 'block'; } else { getElementById ( 'twttr_display_option_custom' ) . style.display = 'none'; }">
-									<option <?php if ( 'standart' == $twttr_options['display_option'] ) echo 'selected="selected"'; ?> value="standart"><?php echo __( "Standard button", 'twitter' ); ?></option>
-									<?php if ( $copy || 'custom' == $twttr_options['display_option'] ) { ?>
+								<?php if ( scandir( $upload_dir['basedir'] ) && is_writable( $upload_dir['basedir'] ) ) { ?>
+									<select name="twttr_display_option" onchange="if ( this . value == 'custom' ) { getElementById ( 'twttr_display_option_custom' ) . style.display = 'block'; } else { getElementById ( 'twttr_display_option_custom' ) . style.display = 'none'; }">
+										<option <?php if ( 'standart' == $twttr_options['display_option'] ) echo 'selected="selected"'; ?> value="standart"><?php echo __( "Standard button", 'twitter' ); ?></option>
 										<option <?php if ( 'custom' == $twttr_options['display_option'] ) echo 'selected="selected"'; ?> value="custom"><?php echo __( "Custom button", 'twitter' ); ?></option>
-									<?php } ?>
-								</select>
+									</select>
+								<?php } else {
+									echo __( "To use custom image You need to setup permissions to upload directory of your site", 'twitter' ) . " - " .$upload_dir['basedir'];
+								} ?>
 							</td>
 						</tr>
 						<tr>
@@ -409,8 +417,8 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 											<?php echo __( '"Follow Me" image:', 'twitter' ); ?>
 										</th>
 										<td>
-											<input type="hidden" name="MAX_FILE_SIZE" value="64000"/>
-											<input type="hidden" name="home" value="<?php echo ABSPATH ; ?>"/>
+											<!--<input type="hidden" name="MAX_FILE_SIZE" value="64000"/>
+											<input type="hidden" name="home" value="<?php echo ABSPATH ; ?>"/>-->
 											<input type="file" name="upload_file" style="width:196px;" /><br />
 											<span style="color: rgb(136, 136, 136); font-size: 10px;"><?php echo __( 'Image properties: max image width:100px; max image height:100px; max image size:32Kb; image types:"jpg", "jpeg".', 'twitter' ); ?></span>
 										</td>
@@ -477,7 +485,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 							</tr>
 							<tr valign="top">
 								<td colspan="2">
-									<img src="<?php echo plugins_url( 'images/pro_screen_1.png', __FILE__ ); ?>" alt="<?php _e( "Example of site pages' tree", 'twitter' ); ?>" title="<?php _e( "Example of site pages' tree", 'twitter' ); ?>" />
+									<img src="<?php echo plugins_url( 'images/pro_screen_1.png', __FILE__ ); ?>" alt="<?php _e( "Example of the site's pages tree", 'twitter' ); ?>" title="<?php _e( "Example of the site's pages tree", 'twitter' ); ?>" />
 								</td>
 							</tr>
 							<tr valign="top">
@@ -561,7 +569,8 @@ if ( ! function_exists( 'twttr_update_option' ) ) {
 		if ( 'standart' == $twttr_options[ 'display_option' ] ) {
 			$twttr_img_link	=	plugins_url( 'images/twitter-follow.jpg', __FILE__ );
 		} else if ( 'custom' == $twttr_options['display_option'] ) {
-			$twttr_img_link	= plugins_url( 'images/twitter-follow' . $twttr_options['count_icon'] . '.jpg', __FILE__ );
+			$upload_dir = wp_upload_dir();
+			$twttr_img_link = $upload_dir['baseurl'] . '/twitter-logo/twitter-follow' . $twttr_options['count_icon'] . '.jpg';
 		}
 		$twttr_options['img_link'] = $twttr_img_link;
 		update_option( "twttr_options", $twttr_options );
@@ -658,9 +667,12 @@ if ( ! function_exists ( 'twttr_plugin_banner' ) ) {
 		if ( 'plugins.php' == $hook_suffix ) {  
 			global $twttr_plugin_info, $bstwbsftwppdtplgns_cookie_add;
 			$banner_array = array(
+				array( 'sndr_hide_banner_on_plugin_page', 'sender/sender.php', '0.5' ),
+				array( 'srrl_hide_banner_on_plugin_page', 'user-role/user-role.php', '1.4' ),
 				array( 'pdtr_hide_banner_on_plugin_page', 'updater/updater.php', '1.12' ),
-				array( 'cntctfrmtdb_hide_banner_on_plugin_page', 'contact-form-to-db/contact_form_to_db.php', '1.2' ),		
-				array( 'gglmps_hide_banner_on_plugin_page', 'bws-google-maps/bws-google-maps.php', '1.2' ),		
+				array( 'cntctfrmtdb_hide_banner_on_plugin_page', 'contact-form-to-db/contact_form_to_db.php', '1.2' ),
+				array( 'cntctfrmmlt_hide_banner_on_plugin_page', 'contact-form-multi/contact-form-multi.php', '1.0.7' ),
+				array( 'gglmps_hide_banner_on_plugin_page', 'bws-google-maps/bws-google-maps.php', '1.2' ),
 				array( 'fcbkbttn_hide_banner_on_plugin_page', 'facebook-button-plugin/facebook-button-plugin.php', '2.29' ),
 				array( 'twttr_hide_banner_on_plugin_page', 'twitter-plugin/twitter.php', '2.34' ),
 				array( 'pdfprnt_hide_banner_on_plugin_page', 'pdf-print/pdf-print.php', '1.7.1' ),
@@ -668,9 +680,9 @@ if ( ! function_exists ( 'twttr_plugin_banner' ) ) {
 				array( 'gglstmp_hide_banner_on_plugin_page', 'google-sitemap-plugin/google-sitemap-plugin.php', '2.8.4' ),
 				array( 'cntctfrmpr_for_ctfrmtdb_hide_banner_on_plugin_page', 'contact-form-pro/contact_form_pro.php', '1.14' ),
 				array( 'cntctfrm_for_ctfrmtdb_hide_banner_on_plugin_page', 'contact-form-plugin/contact_form.php', '3.62' ),
-				array( 'cntctfrm_hide_banner_on_plugin_page', 'contact-form-plugin/contact_form.php', '3.47' ),	
+				array( 'cntctfrm_hide_banner_on_plugin_page', 'contact-form-plugin/contact_form.php', '3.47' ),
 				array( 'cptch_hide_banner_on_plugin_page', 'captcha/captcha.php', '3.8.4' ),
-				array( 'gllr_hide_banner_on_plugin_page', 'gallery-plugin/gallery-plugin.php', '3.9.1' )				
+				array( 'gllr_hide_banner_on_plugin_page', 'gallery-plugin/gallery-plugin.php', '3.9.1' )
 			);
 			if ( ! $twttr_plugin_info )
 				$twttr_plugin_info = get_plugin_data( __FILE__ );
@@ -732,6 +744,15 @@ if ( ! function_exists ( 'twttr_plugin_banner' ) ) {
 /* Function for delete options */
 if ( ! function_exists( 'twttr_delete_options' ) ) {
 	function twttr_delete_options() {
+		$upload_dir = wp_upload_dir();
+		$twttr_cstm_mg_folder = $upload_dir['basedir'] . '/twitter-logo/';
+		if ( is_dir( $twttr_cstm_mg_folder ) ) {
+			$twttr_cstm_mg_files = scandir( $twttr_cstm_mg_folder );
+			foreach ( $twttr_cstm_mg_files as $value ) {
+				@unlink ( $twttr_cstm_mg_folder . $value );
+			}
+			@rmdir( $twttr_cstm_mg_folder );
+		}
 		delete_option( 'twttr_options' );
 		delete_site_option( 'twttr_options' );
 	}
