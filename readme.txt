@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: add twitter button, button, connect, follow button, social, social button, social account, tvet, tvett, tvit, tviter, tvitt, tweet, tweeter, tweetter, twet, tweter, twett, twit, twiter, twiter conect, twitt, twitter button display, twitter connect, twitter follow, twitter follow button, twitter like, twitter like button, twitter plugin, twitter share, twitter share button
 Requires at least: 3.0
-Tested up to: 3.9.1
-Stable tag: 2.36
+Tested up to: 4.0-beta3
+Stable tag: 2.37
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Add a Twitter "Follow" and "Like" buttons to your WordPress website.
 
 == Description ==
 
-Twitter plugin allows you to add the Follow and the Like buttons the easiest way.
+Twitter plugin allows you to add the Follow and the Like buttons the easiest way. Want to be always in touch with your friends and readers? Cannot imagine your life without Twitter? It is all in several clicks!
 
 http://www.youtube.com/watch?v=jyI06kL_lQI
 
@@ -93,6 +93,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 5. Custom Twitter "Follow" button in the front-end.
 
 == Changelog ==
+
+= V2.37 - 07.08.2014 =
+* Budfix : Security Exploit was fixed.
 
 = V2.36 - 06.06.2014 =
 * Update : BWS plugins section is updated.
@@ -239,6 +242,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Ability to install Twitter icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.37 =
+Security Exploit was fixed.
 
 = V2.36 =
 BWS plugins section is updated. We updated all functionality for wordpress 3.9.1. The Ukrainian language is updated in the plugin. Problem with custom images after updating plugin was fixed.

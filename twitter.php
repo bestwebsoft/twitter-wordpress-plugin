@@ -4,7 +4,7 @@ Plugin Name: Twitter
 Plugin URI:  http://bestwebsoft.com/plugin/
 Description: Plugin to add a link to the page author to twitter.
 Author: BestWebSoft
-Version: 2.36
+Version: 2.37
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -184,7 +184,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 		$upload_dir = wp_upload_dir();
 
 		if ( isset( $_REQUEST['twttr_form_submit'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'twttr_nonce_name' ) ) {
-			$twttr_options['url_twitter']		=	$_REQUEST['twttr_url_twitter'];
+			$twttr_options['url_twitter']		=	stripslashes( esc_html( $_REQUEST['twttr_url_twitter'] ) );
 			$twttr_options['display_option' ]	=	$_REQUEST['twttr_display_option'];
 			$twttr_options['position']			=	$_REQUEST['twttr_position'];
 			$twttr_options['disable']			=	isset( $_REQUEST["twttr_disable"] ) ? 1 : 0;
@@ -250,14 +250,14 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 		if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) {
 			global $bstwbsftwppdtplgns_options;
 
-			$bws_license_key = ( isset( $_POST['bws_license_key'] ) ) ? trim( $_POST['bws_license_key'] ) : "";
+			$bws_license_key = ( isset( $_POST['bws_license_key'] ) ) ? trim( esc_html( $_POST['bws_license_key'] ) ) : "";
 
 			if ( isset( $_POST['bws_license_submit'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'bws_license_nonce_name' ) ) {
 				if ( '' != $bws_license_key ) { 
 					if ( strlen( $bws_license_key ) != 18 ) {
 						$error = __( "Wrong license key", 'twitter' );
 					} else {
-						$bws_license_plugin = trim( $_POST['bws_license_plugin'] );	
+						$bws_license_plugin = stripslashes( esc_html( $_POST['bws_license_plugin'] ) );	
 						if ( isset( $bstwbsftwppdtplgns_options['go_pro'][ $bws_license_plugin ]['count'] ) && $bstwbsftwppdtplgns_options['go_pro'][ $bws_license_plugin ]['time'] < ( time() + (24 * 60 * 60) ) ) {
 							$bstwbsftwppdtplgns_options['go_pro'][ $bws_license_plugin ]['count'] = $bstwbsftwppdtplgns_options['go_pro'][ $bws_license_plugin ]['count'] + 1;
 						} else {
@@ -667,6 +667,7 @@ if ( ! function_exists ( 'twttr_plugin_banner' ) ) {
 		if ( 'plugins.php' == $hook_suffix ) {  
 			global $twttr_plugin_info, $bstwbsftwppdtplgns_cookie_add;
 			$banner_array = array(
+				array( 'lmtttmpts_hide_banner_on_plugin_page', 'limit-attempts/limit-attempts.php', '1.0.2' ),
 				array( 'sndr_hide_banner_on_plugin_page', 'sender/sender.php', '0.5' ),
 				array( 'srrl_hide_banner_on_plugin_page', 'user-role/user-role.php', '1.4' ),
 				array( 'pdtr_hide_banner_on_plugin_page', 'updater/updater.php', '1.12' ),
@@ -744,15 +745,21 @@ if ( ! function_exists ( 'twttr_plugin_banner' ) ) {
 /* Function for delete options */
 if ( ! function_exists( 'twttr_delete_options' ) ) {
 	function twttr_delete_options() {
-		$upload_dir = wp_upload_dir();
-		$twttr_cstm_mg_folder = $upload_dir['basedir'] . '/twitter-logo/';
-		if ( is_dir( $twttr_cstm_mg_folder ) ) {
-			$twttr_cstm_mg_files = scandir( $twttr_cstm_mg_folder );
-			foreach ( $twttr_cstm_mg_files as $value ) {
-				@unlink ( $twttr_cstm_mg_folder . $value );
+		if ( ! function_exists( 'get_plugins' ) )
+			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		$all_plugins = get_plugins();
+		if ( ! array_key_exists( 'twitter-pro/twitter-pro.php', $all_plugins ) ) {
+			/* delete custom images if no PRO version */
+			$upload_dir = wp_upload_dir();
+			$twttr_cstm_mg_folder = $upload_dir['basedir'] . '/twitter-logo/';
+			if ( is_dir( $twttr_cstm_mg_folder ) ) {
+				$twttr_cstm_mg_files = scandir( $twttr_cstm_mg_folder );
+				foreach ( $twttr_cstm_mg_files as $value ) {
+					@unlink ( $twttr_cstm_mg_folder . $value );
+				}
+				@rmdir( $twttr_cstm_mg_folder );
 			}
-			@rmdir( $twttr_cstm_mg_folder );
-		}
+		}				
 		delete_option( 'twttr_options' );
 		delete_site_option( 'twttr_options' );
 	}
