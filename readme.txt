@@ -2,9 +2,9 @@
 Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: add twitter button, button, connect, follow button, social, social button, social account, tvet, tvett, tvit, tviter, tvitt, tweet, tweeter, tweetter, twet, tweter, twett, twit, twiter, twiter conect, twitt, twitter button display, twitter connect, twitter follow, twitter follow button, twitter like, twitter like button, twitter plugin, twitter share, twitter share button
-Requires at least: 3.0
+Requires at least: 3.1
 Tested up to: 4.0
-Stable tag: 2.37
+Stable tag: 2.38
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,7 +20,7 @@ http://www.youtube.com/watch?v=jyI06kL_lQI
 
 <a href="http://support.bestwebsoft.com" target="_blank">Support</a>
 
-<a href="http://bestwebsoft.com/plugin/twitter-pro/?k=5d5eadeb5acd19904cbbcf3104f6ea13" target="_blank">Upgrade to Pro Version</a>
+<a href="http://bestwebsoft.com/products/twitter/?k=5d5eadeb5acd19904cbbcf3104f6ea13" target="_blank">Upgrade to Pro Version</a>
 
 = Features =
 
@@ -34,11 +34,10 @@ http://www.youtube.com/watch?v=jyI06kL_lQI
 The author of the Twitter also recommends the following plugins:
 
 * <a href="http://wordpress.org/plugins/updater/">Updater</a> - This plugin updates WordPress core and the plugins to the recent versions. You can also use the auto mode or manual mode for updating and set email notifications.
-There is also a premium version of the plugin <a href="http://bestwebsoft.com/plugin/updater-pro/?k=4e3cbf90f06b1a8d47346da9a8ea106b">Updater Pro</a> with more useful features available. It can make backup of all your files and database before updating. Also it can forbid some plugins or WordPress Core update.
+There is also a premium version of the plugin <a href="http://bestwebsoft.com/products/updater/?k=4e3cbf90f06b1a8d47346da9a8ea106b">Updater Pro</a> with more useful features available. It can make backup of all your files and database before updating. Also it can forbid some plugins or WordPress Core update.
 
 = Translation =
 
-* Danish (da_DK) (thanks to <a href="mailto:admin@artikelforlaget.dk">Tom</a>, www.artikelforlaget.dk)
 * Russian (ru_RU)
 * Ukrainian (uk)
 
@@ -94,8 +93,11 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V2.38 - 10.10.2014 =
+* Bugfix : Bug with sharing posts that have special characters in the title was fixed.
+
 = V2.37 - 07.08.2014 =
-* Budfix : Security Exploit was fixed.
+* Bugfix : Security Exploit was fixed.
 
 = V2.36 - 06.06.2014 =
 * Update : BWS plugins section is updated.
@@ -107,7 +109,7 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Update : We updated all functionality for wordpress 3.8.2.
 
 = V2.34 - 04.03.2014 = 
-* Budfix : Plugin optimization is done.
+* Bugfix : Plugin optimization is done.
 * Update : Plugin tabs is added.
 
 = V2.33 - 06.02.2014 =
@@ -242,6 +244,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Ability to install Twitter icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.38 =
+Bug with sharing posts that have special characters in the title was fixed.
 
 = V2.37 =
 Security Exploit was fixed.

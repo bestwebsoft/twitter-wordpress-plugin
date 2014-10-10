@@ -4,7 +4,7 @@ Plugin Name: Twitter
 Plugin URI:  http://bestwebsoft.com/plugin/
 Description: Plugin to add a link to the page author to twitter.
 Author: BestWebSoft
-Version: 2.37
+Version: 2.38
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -29,21 +29,15 @@ License: GPLv2 or later
 /* Add BWS menu */
 if ( ! function_exists ( 'twttr_add_pages' ) ) {
 	function twttr_add_pages() {
-		global $bstwbsftwppdtplgns_options, $wpmu, $bstwbsftwppdtplgns_added_menu;
+		global $bstwbsftwppdtplgns_options, $bstwbsftwppdtplgns_added_menu;
 		$bws_menu_version = get_plugin_data( plugin_dir_path( __FILE__ ) . "bws_menu/bws_menu.php" );
 		$bws_menu_version = $bws_menu_version["Version"];
 		$base = plugin_basename(__FILE__);
 
 		if ( ! isset( $bstwbsftwppdtplgns_options ) ) {
-			if ( 1 == $wpmu ) {
-				if ( ! get_site_option( 'bstwbsftwppdtplgns_options' ) )
-					add_site_option( 'bstwbsftwppdtplgns_options', array(), '', 'yes' );
-				$bstwbsftwppdtplgns_options = get_site_option( 'bstwbsftwppdtplgns_options' );
-			} else {
-				if ( ! get_option( 'bstwbsftwppdtplgns_options' ) )
-					add_option( 'bstwbsftwppdtplgns_options', array(), '', 'yes' );
-				$bstwbsftwppdtplgns_options = get_option( 'bstwbsftwppdtplgns_options' );
-			}
+			if ( ! get_option( 'bstwbsftwppdtplgns_options' ) )
+				add_option( 'bstwbsftwppdtplgns_options', array(), '', 'yes' );
+			$bstwbsftwppdtplgns_options = get_option( 'bstwbsftwppdtplgns_options' );
 		}
 
 		if ( isset( $bstwbsftwppdtplgns_options['bws_menu_version'] ) ) {
@@ -68,7 +62,7 @@ if ( ! function_exists ( 'twttr_add_pages' ) ) {
 				require_once( ABSPATH . $wp_content_dir . '/plugins/' . $plugin_with_newer_menu[0] . '/bws_menu/bws_menu.php' );
 			else
 				require_once( dirname( __FILE__ ) . '/bws_menu/bws_menu.php' );
-			$bstwbsftwppdtplgns_added_menu = true;			
+			$bstwbsftwppdtplgns_added_menu = true;
 		}
 
 		add_menu_page( 'BWS Plugins', 'BWS Plugins', 'manage_options', 'bws_plugins', 'bws_add_menu_render', plugins_url( 'images/px.png', __FILE__ ), 1001 );
@@ -81,6 +75,8 @@ if ( ! function_exists( 'twttr_init' ) ) {
 	function twttr_init() {
 		/* Internationalization, first(!) */
 		load_plugin_textdomain( 'twitter', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+		/* Function check if plugin is compatible with current WP version  */
+		twttr_version_check();
 		/* Get/Register and check settings for plugin */
 		if ( ! is_admin() || ( isset( $_GET['page'] ) && "twitter.php" == $_GET['page'] ) )
 			twttr_settings();
@@ -95,17 +91,15 @@ if ( ! function_exists( 'twttr_admin_init' ) ) {
 		if ( ! $twttr_plugin_info )
 			$twttr_plugin_info = get_plugin_data( __FILE__ );
 
-		if ( ! isset( $bws_plugin_info ) || empty( $bws_plugin_info ) )					
+		if ( ! isset( $bws_plugin_info ) || empty( $bws_plugin_info ) )
 			$bws_plugin_info = array( 'id' => '76', 'version' => $twttr_plugin_info["Version"] );
-		/* Function check if plugin is compatible with current WP version  */
-		twttr_version_check();
 	}
 }
 
 /* Register settings for plugin */
 if ( ! function_exists( 'twttr_settings' ) ) {
 	function twttr_settings() {
-		global $wpmu, $twttr_options, $twttr_plugin_info;	
+		global $twttr_options, $twttr_plugin_info;
 
 		if ( ! $twttr_plugin_info ) {
 			if ( ! function_exists( 'get_plugin_data' ) )
@@ -124,33 +118,18 @@ if ( ! function_exists( 'twttr_settings' ) ) {
 		);
 		/* Install the option defaults */
 		/* Get options from the database */
-		if ( 1 == $wpmu ) {
-			if ( ! get_site_option( 'twttr_options' ) ) {
-				if ( false !== get_site_option( 'twttr_options_array' ) ) {
-					$old_options = get_site_option( 'twttr_options_array' );
-					foreach ( $twttr_options_default as $key => $value ) {
-						if ( isset( $old_options['twttr_' . $key] ) )
-							$twttr_options_default[$key] = $old_options['twttr_' . $key];
-					}
-					delete_site_option( 'twttr_options_array' );
+		if ( ! get_option( 'twttr_options' ) ) {
+			if ( false !== get_option( 'twttr_options_array' ) ) {
+				$old_options = get_option( 'twttr_options_array' );
+				foreach ( $twttr_options_default as $key => $value ) {
+					if ( isset( $old_options['twttr_' . $key] ) )
+						$twttr_options_default[$key] = $old_options['twttr_' . $key];
 				}
-				add_site_option( 'twttr_options', $twttr_options_default, '', 'yes' );
+				delete_option( 'twttr_options_array' );
 			}
-			$twttr_options = get_site_option( 'twttr_options' );
-		} else {
-			if ( ! get_option( 'twttr_options' ) ) {
-				if ( false !== get_option( 'twttr_options_array' ) ) {
-					$old_options = get_option( 'twttr_options_array' );
-					foreach ( $twttr_options_default as $key => $value ) {
-						if ( isset( $old_options['twttr_' . $key] ) )
-							$twttr_options_default[$key] = $old_options['twttr_' . $key];
-					}
-					delete_option( 'twttr_options_array' );
-				}
-				add_option( 'twttr_options', $twttr_options_default, '', 'yes' );
-			}
-			$twttr_options = get_option( 'twttr_options' );
+			add_option( 'twttr_options', $twttr_options_default, '', 'yes' );
 		}
+		$twttr_options = get_option( 'twttr_options' );
 		
 		if ( ! isset( $twttr_options['plugin_option_version'] ) || $twttr_options['plugin_option_version'] != $twttr_plugin_info["Version"] ) {
 			$twttr_options = array_merge( $twttr_options_default, $twttr_options );
@@ -164,12 +143,16 @@ if ( ! function_exists( 'twttr_settings' ) ) {
 if ( ! function_exists ( 'twttr_version_check' ) ) {
 	function twttr_version_check() {
 		global $wp_version, $twttr_plugin_info;
-		$require_wp		=	"3.0"; /* Wordpress at least requires version */
+		$require_wp		=	"3.1"; /* Wordpress at least requires version */
 		$plugin			=	plugin_basename( __FILE__ );
 	 	if ( version_compare( $wp_version, $require_wp, "<" ) ) {
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			if ( is_plugin_active( $plugin ) ) {
 				deactivate_plugins( $plugin );
-				wp_die( "<strong>" . $twttr_plugin_info['Name'] . " </strong> " . __( 'requires', 'twitter' ) . " <strong>WordPress " . $require_wp . "</strong> " . __( 'or higher, that is why it has been deactivated! Please upgrade WordPress and try again.', 'twitter') . "<br /><br />" . __( 'Back to the WordPress', 'twitter') . " <a href='" . get_admin_url( null, 'plugins.php' ) . "'>" . __( 'Plugins page', 'twitter') . "</a>." );
+				$admin_url = ( function_exists( 'get_admin_url' ) ) ? get_admin_url( null, 'plugins.php' ) : esc_url( '/wp-admin/plugins.php' );
+				if ( ! $twttr_plugin_info )
+					$twttr_plugin_info = get_plugin_data( __FILE__, false );
+				wp_die( "<strong>" . $twttr_plugin_info['Name'] . " </strong> " . __( 'requires', 'twitter' ) . " <strong>WordPress " . $require_wp . "</strong> " . __( 'or higher, that is why it has been deactivated! Please upgrade WordPress and try again.', 'twitter') . "<br /><br />" . __( 'Back to the WordPress', 'twitter') . " <a href='" . $admin_url . "'>" . __( 'Plugins page', 'twitter') . "</a>." );
 			}
 		}
 	}
@@ -363,7 +346,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 			<h2 class="nav-tab-wrapper">
 				<a class="nav-tab<?php if ( ! isset( $_GET['action'] ) ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php"><?php _e( 'Settings', 'twitter' ); ?></a>
 				<a class="nav-tab<?php if ( isset( $_GET['action'] ) && 'extra' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php&amp;action=extra"><?php _e( 'Extra settings', 'twitter' ); ?></a>
-				<a class="nav-tab" href="http://bestwebsoft.com/plugin/twitter-plugin/#faq" target="_blank"><?php _e( 'FAQ', 'twitter' ); ?></a>
+				<a class="nav-tab" href="http://bestwebsoft.com/products/twitter/faq" target="_blank"><?php _e( 'FAQ', 'twitter' ); ?></a>
 				<a class="nav-tab bws_go_pro_tab<?php if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php&amp;action=go_pro"><?php _e( 'Go PRO', 'twitter' ); ?></a>
 			</h2>
 			<div class="updated fade" <?php if ( empty( $message ) || "" != $error ) echo "style=\"display:none\""; ?>><p><strong><?php echo $message; ?></strong></p></div>
@@ -373,31 +356,31 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 				<form method='post' action="admin.php?page=twitter.php" enctype="multipart/form-data" id="twttr_settings_form">
 					<table class="form-table">
 						<tr valign="top">
-							<th scope="row" colspan="2"><?php echo __( 'Settings for the button "Follow Me":', 'twitter' ); ?></th>
+							<th scope="row" colspan="2"><?php _e( 'Settings for the button "Follow Me":', 'twitter' ); ?></th>
 						</tr>
 						<tr valign="top">
 							<th scope="row">
-								<?php echo __( "Enter your username:", 'twitter' ); ?>
+								<?php _e( "Enter your username:", 'twitter' ); ?>
 							</th>
 							<td>
 								<input name='twttr_url_twitter' type='text' value='<?php echo $twttr_options['url_twitter'] ?>'/><br />
-								<span style="color: rgb(136, 136, 136); font-size: 10px;"><?php echo __( 'If you do not have Twitter account yet, you should create it using this link', 'twitter' ); ?> <a target="_blank" href="https://twitter.com/signup">https://twitter.com/signup</a> .</span><br />
-								<span style="color: rgb(136, 136, 136); font-size: 10px;"><?php echo __( 'Paste the shortcode &lsqb;follow_me&rsqb; into the necessary page or post to use the "Follow Me" button.', 'twitter' ); ?></span><br />
-								<span style="color: rgb(136, 136, 136); font-size: 10px;"><?php echo __( 'If you would like to use this button in some other place, please paste this line into the template source code', 'twitter' ); ?>	&#60;?php if ( function_exists( 'twttr_follow_me' ) ) echo twttr_follow_me(); ?&#62;</span>
+								<span style="color: rgb(136, 136, 136); font-size: 10px;"><?php _e( 'If you do not have Twitter account yet, you should create it using this link', 'twitter' ); ?> <a target="_blank" href="https://twitter.com/signup">https://twitter.com/signup</a> .</span><br />
+								<span style="color: rgb(136, 136, 136); font-size: 10px;"><?php _e( 'Paste the shortcode &lsqb;follow_me&rsqb; into the necessary page or post to use the "Follow Me" button.', 'twitter' ); ?></span><br />
+								<span style="color: rgb(136, 136, 136); font-size: 10px;"><?php _e( 'If you would like to use this button in some other place, please paste this line into the template source code', 'twitter' ); ?>	&#60;?php if ( function_exists( 'twttr_follow_me' ) ) echo twttr_follow_me(); ?&#62;</span>
 							</td>
 						</tr>
 						<tr valign="top">
 							<th scope="row">
-								<?php echo __( "Choose display settings:", 'twitter' ); ?>
+								<?php _e( "Choose display settings:", 'twitter' ); ?>
 							</th>
 							<td>
 								<?php if ( scandir( $upload_dir['basedir'] ) && is_writable( $upload_dir['basedir'] ) ) { ?>
 									<select name="twttr_display_option" onchange="if ( this . value == 'custom' ) { getElementById ( 'twttr_display_option_custom' ) . style.display = 'block'; } else { getElementById ( 'twttr_display_option_custom' ) . style.display = 'none'; }">
-										<option <?php if ( 'standart' == $twttr_options['display_option'] ) echo 'selected="selected"'; ?> value="standart"><?php echo __( "Standard button", 'twitter' ); ?></option>
-										<option <?php if ( 'custom' == $twttr_options['display_option'] ) echo 'selected="selected"'; ?> value="custom"><?php echo __( "Custom button", 'twitter' ); ?></option>
+										<option <?php if ( 'standart' == $twttr_options['display_option'] ) echo 'selected="selected"'; ?> value="standart"><?php _e( "Standard button", 'twitter' ); ?></option>
+										<option <?php if ( 'custom' == $twttr_options['display_option'] ) echo 'selected="selected"'; ?> value="custom"><?php _e( "Custom button", 'twitter' ); ?></option>
 									</select>
 								<?php } else {
-									echo __( "To use custom image You need to setup permissions to upload directory of your site", 'twitter' ) . " - " .$upload_dir['basedir'];
+									echo __( "To use custom image You need to setup permissions to upload directory of your site", 'twitter' ) . " - " . $upload_dir['basedir'];
 								} ?>
 							</td>
 						</tr>
@@ -406,7 +389,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 								<div id="twttr_display_option_custom" <?php if ( 'custom' == $twttr_options['display_option'] ) { echo ( 'style="display:block"' ); } else { echo ( 'style="display:none"' ); } ?>>
 									<table>
 										<th style="padding-left:0px;font-size:13px;">
-											<?php echo __( "Current image:", 'twitter' ); ?>
+											<?php _e( "Current image:", 'twitter' ); ?>
 										</th>
 										<td>
 											<img src="<?php echo $twttr_options['img_link']; ?>" />
@@ -414,26 +397,24 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 									</table>
 									<table>
 										<th style="padding-left:0px;font-size:13px;">
-											<?php echo __( '"Follow Me" image:', 'twitter' ); ?>
+											<?php _e( '"Follow Me" image:', 'twitter' ); ?>
 										</th>
 										<td>
-											<!--<input type="hidden" name="MAX_FILE_SIZE" value="64000"/>
-											<input type="hidden" name="home" value="<?php echo ABSPATH ; ?>"/>-->
 											<input type="file" name="upload_file" style="width:196px;" /><br />
-											<span style="color: rgb(136, 136, 136); font-size: 10px;"><?php echo __( 'Image properties: max image width:100px; max image height:100px; max image size:32Kb; image types:"jpg", "jpeg".', 'twitter' ); ?></span>
+											<span style="color: rgb(136, 136, 136); font-size: 10px;"><?php _e( 'Image properties: max image width:100px; max image height:100px; max image size:32Kb; image types:"jpg", "jpeg".', 'twitter' ); ?></span>
 										</td>
 									</table>
 								</div>
 							</td>
 						</tr>
 						<tr valign="top">
-							<th scope="row" colspan="2"><?php echo __( 'Settings for the "Twitter" button:', 'twitter' ); ?></th>
+							<th scope="row" colspan="2"><?php _e( 'Settings for the "Twitter" button:', 'twitter' ); ?></th>
 						</tr>
 						<tr>
 							<th><?php _e( 'Disable the "Twitter" button:', 'twitter' ); ?></th>
 							<td>
 								<input type="checkbox" name="twttr_disable" value="1" <?php if ( 1 == $twttr_options["disable"] ) echo "checked=\"checked\""; ?> />
-								<span style="color: rgb(136, 136, 136); font-size: 10px;"> <?php echo __( 'The button "T" will not be displayed. Just the shortcode &lsqb;follow_me&rsqb; will work.', 'twitter' ); ?></span><br />
+								<span style="color: rgb(136, 136, 136); font-size: 10px;"> <?php _e( 'The button "T" will not be displayed. Just the shortcode &lsqb;follow_me&rsqb; will work.', 'twitter' ); ?></span><br />
 							</td>
 						</tr>
 						<tr>
@@ -441,9 +422,9 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 								<?php _e( 'Choose the "Twitter" icon position:', 'twitter' ); ?>
 							</th>
 							<td>
-								<label><input type="radio" name="twttr_position" value="1" <?php if ( 1 == $twttr_options['position'] ) echo 'checked="checked"'?> /> <?php echo __( 'Top position', 'twitter' ); ?></label><br />
-								<label><input type="radio" name="twttr_position" value="0" <?php if ( 0 == $twttr_options['position'] ) echo 'checked="checked"'?> /> <?php echo __( 'Bottom position', 'twitter' ); ?></label><br />
-								<span style="color: rgb(136, 136, 136); font-size: 10px;"><?php echo __( 'By clicking this icon a user can add the article he/she likes to his/her Twitter page.', 'twitter' ); ?></span><br />
+								<label><input type="radio" name="twttr_position" value="1" <?php if ( 1 == $twttr_options['position'] ) echo 'checked="checked"'?> /> <?php _e( 'Top position', 'twitter' ); ?></label><br />
+								<label><input type="radio" name="twttr_position" value="0" <?php if ( 0 == $twttr_options['position'] ) echo 'checked="checked"'?> /> <?php _e( 'Bottom position', 'twitter' ); ?></label><br />
+								<span style="color: rgb(136, 136, 136); font-size: 10px;"><?php _e( 'By clicking this icon a user can add the article he/she likes to his/her Twitter page.', 'twitter' ); ?></span><br />
 							</td>
 						</tr>
 						<tr>
@@ -503,9 +484,9 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 					<div class="bws_pro_version_tooltip">
 						<div class="bws_info">
 							<?php _e( 'Unlock premium options by upgrading to a PRO version.', 'twitter' ); ?> 
-							<a href="http://bestwebsoft.com/plugin/twitter-pro/?k=a8417eabe3c9fb0c2c5bed79e76de43c&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Twitter Pro"><?php _e( 'Learn More', 'twitter' ); ?></a>				
+							<a href="http://bestwebsoft.com/products/twitter/?k=a8417eabe3c9fb0c2c5bed79e76de43c&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Twitter Pro"><?php _e( 'Learn More', 'twitter' ); ?></a>				
 						</div>
-						<a class="bws_button" href="http://bestwebsoft.com/plugin/twitter-pro/?k=a8417eabe3c9fb0c2c5bed79e76de43c&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>#purchase" target="_blank" title="Twitter Pro">
+						<a class="bws_button" href="http://bestwebsoft.com/products/twitter/buy/?k=a8417eabe3c9fb0c2c5bed79e76de43c&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Twitter Pro">
 							<?php _e( 'Go', 'twitter' ); ?> <strong>PRO</strong>
 						</a>	
 						<div class="clear"></div>					
@@ -527,7 +508,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 					<form method="post" action="admin.php?page=twitter.php&amp;action=go_pro">
 						<p>
 							<?php _e( 'You can download and activate', 'twitter' ); ?> 
-							<a href="http://bestwebsoft.com/plugin/twitter-pro/?k=a8417eabe3c9fb0c2c5bed79e76de43c&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Twitter Pro">PRO</a> 
+							<a href="http://bestwebsoft.com/products/twitter/?k=a8417eabe3c9fb0c2c5bed79e76de43c&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Twitter Pro">PRO</a> 
 							<?php _e( 'version of this plugin by entering Your license key.', 'twitter' ); ?><br />
 							<span style="color: #888888;font-size: 10px;">
 								<?php _e( 'You can find your license key on your personal page Client area, by clicking on the link', 'twitter' ); ?> 
@@ -598,8 +579,8 @@ if ( ! function_exists( 'twttr_follow_me' ) ) {
 if ( ! function_exists( 'twttr_twit' ) ) {
 	function twttr_twit( $content ) {
 		global $post, $twttr_options;
-		$permalink_post	=	get_permalink($post->ID);
-		$title_post		=	htmlspecialchars($post->post_title);
+		$permalink_post	=	get_permalink( $post->ID );
+		$title_post		=	htmlspecialchars( urlencode( $post->post_title ) );
 		if ( $title_post == 'your-post-page-title' )
 			return $content;
 		if ( 0 == $twttr_options['disable'] ) {
@@ -626,8 +607,8 @@ if ( ! function_exists( 'twttr_action_links' ) ) {
 		static $this_plugin;
 		if ( ! $this_plugin ) $this_plugin = plugin_basename( __FILE__ );
 		if ( $file == $this_plugin ) {
-			 $settings_link = '<a href="admin.php?page=twitter.php">' . __( 'Settings', 'twitter' ) . '</a>';
-			 array_unshift( $links, $settings_link );
+			$settings_link = '<a href="admin.php?page=twitter.php">' . __( 'Settings', 'twitter' ) . '</a>';
+			array_unshift( $links, $settings_link );
 		}
 		return $links;
 	}
@@ -721,7 +702,7 @@ if ( ! function_exists ( 'twttr_plugin_banner' ) ) {
 						<div class="twttr_message bws_banner_on_plugin_page" style="display: none;">
 							<img class="twttr_close_icon close_icon" title="" src="<?php echo plugins_url( 'images/close_banner.png', __FILE__ ); ?>" alt=""/>
 							<div class="button_div">
-								<a class="button" target="_blank" href="http://bestwebsoft.com/plugin/twitter-pro/?k=137342f0aa4b561cf7f93c190d95c890&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( "Learn More", 'twitter' ); ?></a>				
+								<a class="button" target="_blank" href="http://bestwebsoft.com/products/twitter/?k=137342f0aa4b561cf7f93c190d95c890&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( "Learn More", 'twitter' ); ?></a>				
 							</div>
 							<div class="text"><?php
 								_e( "It's time to upgrade your <strong>Twitter</strong> to <strong>PRO</strong> version", 'twitter' ); ?>!<br />
