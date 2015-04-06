@@ -1,10 +1,10 @@
-﻿=== Twitter ===
+﻿=== Twitter by BestWebSoft ===
 Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: add twitter button, button, connect, follow button, social, social button, social account, tvet, tvett, tvit, tviter, tvitt, tweet, tweeter, tweetter, twet, tweter, twett, twit, twiter, twiter conect, twitt, twitter button display, twitter connect, twitter follow, twitter follow button, twitter like, twitter like button, twitter plugin, twitter share, twitter share button
 Requires at least: 3.1
-Tested up to: 4.1
-Stable tag: 2.39
+Tested up to: 4.1.1
+Stable tag: 2.40
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,8 +16,9 @@ Twitter plugin allows you to add the Follow and the Like buttons the easiest way
 
 http://www.youtube.com/watch?v=jyI06kL_lQI
 
-<a href="http://wordpress.org/plugins/twitter-plugin/faq/" target="_blank">FAQ</a>
+<a href="https://www.youtube.com/watch?v=ls9754Mr8Xg" target="_blank">Video instruction on Installation</a>
 
+<a href="http://wordpress.org/plugins/twitter-plugin/faq/" target="_blank">FAQ</a>
 <a href="http://support.bestwebsoft.com" target="_blank">Support</a>
 
 <a href="http://bestwebsoft.com/products/twitter/?k=5d5eadeb5acd19904cbbcf3104f6ea13" target="_blank">Upgrade to Pro Version</a>
@@ -48,6 +49,10 @@ If you create your own language pack or update the existing one, you can send <a
 1. Upload the folder `twitter-plugin` to the directory `/wp-content/plugins/`.
 2. Activate the plugin via the 'Plugins' menu in your WordPress admin panel.
 3. You can adjust the necessary settings using your WordPress admin panel in "BWS Plugins" -> "Twitter".
+
+<a href="https://docs.google.com/document/d/1IRWS_ih2ZFfWv0s4oU3LgjwWcBxtZ4UGlI7UmvPNMSQ/edit" target="_blank">View a Step-by-step Instruction on Twitter Installation</a>.
+
+http://www.youtube.com/watch?v=ls9754Mr8Xg
 
 == Frequently Asked Questions ==
 
@@ -92,6 +97,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 5. Custom Twitter "Follow" button in the front-end.
 
 == Changelog ==
+
+= V2.40 - 06.04.2015 =
+* Update : BWS plugins section is updated.
+* Update : We updated all functionality for wordpress 4.1.1
 
 = V2.39 - 09.01.2015 =
 * Update : BWS plugins section is updated.
@@ -248,6 +257,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Ability to install Twitter icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.40 =
+BWS plugins section is updated. We updated all functionality for wordpress 4.1.1
 
 = V2.39 =
 BWS plugins section is updated. We updated all functionality for wordpress 4.1.
