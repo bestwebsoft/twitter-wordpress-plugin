@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: add twitter button, button, connect, follow button, social, social button, social account, tvet, tvett, tvit, tviter, tvitt, tweet, tweeter, tweetter, twet, tweter, twett, twit, twiter, twiter conect, twitt, twitter button display, twitter connect, twitter follow, twitter follow button, twitter like, twitter like button, twitter plugin, twitter share, twitter share button
 Requires at least: 3.1
-Tested up to: 4.1.1
-Stable tag: 2.40
+Tested up to: 4.2-RC3
+Stable tag: 2.41
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -97,6 +97,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 5. Custom Twitter "Follow" button in the front-end.
 
 == Changelog ==
+
+= V2.41 - 23.04.2015 =
+* NEW : Add ability to show button before and after post.
 
 = V2.40 - 06.04.2015 =
 * Update : BWS plugins section is updated.
@@ -257,6 +260,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Ability to install Twitter icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.41 =
+Add ability to show button before and after post.
 
 = V2.40 =
 BWS plugins section is updated. We updated all functionality for wordpress 4.1.1
