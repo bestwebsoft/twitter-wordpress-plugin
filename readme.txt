@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: add twitter button, button, connect, follow button, social, social button, social account, tvet, tvett, tvit, tviter, tvitt, tweet, tweeter, tweetter, twet, tweter, twett, twit, twiter, twiter conect, twitt, twitter button display, twitter connect, twitter follow, twitter follow button, twitter like, twitter like button, twitter plugin, twitter share, twitter share button
 Requires at least: 3.1
-Tested up to: 4.2-RC3
-Stable tag: 2.41
+Tested up to: 4.2.2
+Stable tag: 2.42
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,7 +67,6 @@ In the WordPress admin panel go to "Plugins", find the "Twitter" plugin and clic
 = After clicking the Twitter icon I see the Twitter Home page instead of the necessary account page =
 
 1. In the WordPress admin panel go to "Settings", find the "Twitter" plugin settings page and enter your Twitter login. Then click "Save Changes".
-
 2. If you do not have Twitter account yet you should create it using this link: https://twitter.com/signup. After account is created please follow the instructions above.
 
 = How to adjust the Twitter icon position on the page =
@@ -77,12 +76,12 @@ In the WordPress admin panel go to "Settings", find the Twitter plugin settings 
 = After installation and settings adjustment on the plugin settings page it is not working still =
 
 1. Please click "Save Changes". Make sure that you got the message "Settings Saved".
-
 2. After saving your settings you should refresh the web page, where the Twitter icon should be placed.
 
 = I have some problems with the plugin's work. What Information should I provide to receive proper support? =
 
 Please make sure that the problem hasn't been discussed yet on our forum (<a href="http://support.bestwebsoft.com" target="_blank">http://support.bestwebsoft.com</a>). If no, please provide the following data along with your problem's description:
+
 1. the link to the page where the problem occurs
 2. the name of the plugin and its version. If you are using a pro version - your order number.
 3. the version of your WordPress installation
@@ -97,6 +96,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 5. Custom Twitter "Follow" button in the front-end.
 
 == Changelog ==
+
+= V2.42 - 25.05.2015 =
+* Update : We updated all functionality for wordpress 4.2.2.
 
 = V2.41 - 23.04.2015 =
 * NEW : Add ability to show button before and after post.
@@ -260,6 +262,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Ability to install Twitter icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.42 =
+We updated all functionality for wordpress 4.2.2.
 
 = V2.41 =
 Add ability to show button before and after post.

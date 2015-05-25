@@ -1,10 +1,10 @@
 <?php
 /*##
 Plugin Name: Twitter by BestWebSoft
-Plugin URI:  http://bestwebsoft.com/plugin/
+Plugin URI: http://bestwebsoft.com/donate/
 Description: Plugin to add a link to the page author to twitter.
 Author: BestWebSoft
-Version: 2.41
+Version: 2.42
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -448,7 +448,7 @@ if ( ! function_exists ( 'twttr_plugin_banner' ) ) {
 		global $hook_suffix;	
 		if ( 'plugins.php' == $hook_suffix ) {  
 			global $twttr_plugin_info;
-			bws_plugin_banner( $twttr_plugin_info, 'twttr', 'twitter', '137342f0aa4b561cf7f93c190d95c890', '76', 'http://ps.w.org/twitter-plugin/assets/icon-128x128.png' );
+			bws_plugin_banner( $twttr_plugin_info, 'twttr', 'twitter', '137342f0aa4b561cf7f93c190d95c890', '76', '//ps.w.org/twitter-plugin/assets/icon-128x128.png' );
 		}
 	}
 }
