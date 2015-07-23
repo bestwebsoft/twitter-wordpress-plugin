@@ -4,7 +4,7 @@ Plugin Name: Twitter by BestWebSoft
 Plugin URI: http://bestwebsoft.com/donate/
 Description: Plugin to add a link to the page author to twitter.
 Author: BestWebSoft
-Version: 2.43
+Version: 2.44
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -51,7 +51,7 @@ if ( ! function_exists( 'twttr_init' ) ) {
 		/*## add general functions */
 		require_once( dirname( __FILE__ ) . '/bws_menu/bws_functions.php' );
 		
-		bws_wp_version_check( plugin_basename( __FILE__ ), $twttr_plugin_info, "3.1" ); /* check compatible with current WP version ##*/
+		bws_wp_version_check( plugin_basename( __FILE__ ), $twttr_plugin_info, '3.1' ); /* check compatible with current WP version ##*/
 
 		/* Get/Register and check settings for plugin */
 		if ( ! is_admin() || ( isset( $_GET['page'] ) && ( "twitter.php" == $_GET['page'] || "social-buttons.php" == $_GET['page'] ) ) )
@@ -220,8 +220,8 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 			<div id="twttr_settings_notice" class="updated fade bws_settings_form_notice" style="display:none"><p><strong><?php _e( "Notice:", 'twitter' ); ?></strong> <?php _e( "The plugin's settings have been changed. In order to save them please don't forget to click the 'Save Changes' button.", 'twitter' ); ?></p></div>
 			<div class="error" <?php if ( "" == $error ) echo "style=\"display:none\""; ?>><p><strong><?php echo $error; ?></strong></p></div>
 			<?php /*## check action */ if ( ! isset( $_GET['action'] ) ) {
-				if ( isset( $_REQUEST['bws_restore_default'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'bws_settings_nonce_name' ) ) {
-					bws_form_restore_default_confirm( plugin_basename( __FILE__ ) );
+				if ( isset( $_REQUEST['bws_restore_default'] ) && check_admin_referer( $plugin_basename, 'bws_settings_nonce_name' ) ) {
+					bws_form_restore_default_confirm( $plugin_basename );
 				} else { /* check action ##*/ ?>
 					<form method='post' action="" enctype="multipart/form-data" id="twttr_settings_form" class="bws_settings_form">
 						<table class="form-table">
@@ -270,7 +270,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 												<?php _e( '"Follow Me" image', 'twitter' ); ?>
 											</th>
 											<td>
-												<input type="file" name="upload_file" style="width:196px;" /><br />
+												<input type="file" name="upload_file" /><br />
 												<span class="bws_info"><?php _e( 'Image properties: max image width:100px; max image height:100px; max image size:32Kb; image types:"jpg", "jpeg".', 'twitter' ); ?></span>
 											</td>
 										</table>
@@ -307,7 +307,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 								</td>
 							</tr>
 						</table>
-						<?php wp_nonce_field( plugin_basename( __FILE__ ), 'twttr_nonce_name' ); ?>
+						<?php wp_nonce_field( $plugin_basename, 'twttr_nonce_name' ); ?>
 					</form>
 					<!-- general -->
 					<?php bws_form_restore_default_settings( $plugin_basename );

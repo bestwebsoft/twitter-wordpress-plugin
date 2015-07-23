@@ -4,7 +4,7 @@ Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&
 Tags: add twitter button, button, connect, follow button, social, social button, social account, tvet, tvett, tvit, tviter, tvitt, tweet, tweeter, tweetter, twet, tweter, twett, twit, twiter, twiter conect, twitt, twitter button display, twitter connect, twitter follow, twitter follow button, twitter like, twitter like button, twitter plugin, twitter share, twitter share button
 Requires at least: 3.1
 Tested up to: 4.2.2
-Stable tag: 2.43
+Stable tag: 2.44
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,7 @@ http://www.youtube.com/watch?v=jyI06kL_lQI
 <a href="https://www.youtube.com/watch?v=ls9754Mr8Xg" target="_blank">Video instruction on Installation</a>
 
 <a href="http://wordpress.org/plugins/twitter-plugin/faq/" target="_blank">FAQ</a>
+
 <a href="http://support.bestwebsoft.com" target="_blank">Support</a>
 
 <a href="http://bestwebsoft.com/products/twitter/?k=5d5eadeb5acd19904cbbcf3104f6ea13" target="_blank">Upgrade to Pro Version</a>
@@ -96,6 +97,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 5. Custom Twitter "Follow" button in the front-end.
 
 == Changelog ==
+
+= V2.44 - 23.07.2015 =
+* Update : The Ukrainian and Russian languages file are updated.
+* Bugfix : We fixed the settings page display.
 
 = V2.43 - 23.06.2015 =
 * NEW : Ability to restore settings to defaults.
@@ -265,6 +270,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Ability to install Twitter icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.44 =
+The Ukrainian and Russian languages file are updated. We fixed the settings page display.
 
 = V2.43 =
 Ability to restore settings to defaults.
