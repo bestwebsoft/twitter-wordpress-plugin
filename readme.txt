@@ -1,10 +1,10 @@
-﻿=== Twitter by BestWebSoft ===
+﻿=== Twitter Button by BestWebSoft ===
 Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
-Tags: add twitter button, button, connect, follow button, social, social button, social account, tvet, tvett, tvit, tviter, tvitt, tweet, tweeter, tweetter, twet, tweter, twett, twit, twiter, twiter conect, twitt, twitter button display, twitter connect, twitter follow, twitter follow button, twitter like, twitter like button, twitter plugin, twitter share, twitter share button
-Requires at least: 3.1
-Tested up to: 4.2.2
-Stable tag: 2.44
+Tags: add social button, add Twitter Button, advanced twitter, auto tweet, best twitter, best twitter like button, best twitter share button, best twitter plugin, button, buton, Button like, connect, custom twitter, custom twitter feeds, easy twitter, free, free twitter plugin, free twitter buttons, follow, follow button, follow me, follow us, live tweets, Like, like button, live twitter feeds, My Page button, Share, share button, share twitter, share buttons, social, social account, social button, social bookmark, social bookmarking, social media publishing, social network, social network auto publish, Social Plugins, social profiles, social share, tvet, tvett, tvit, tviter, tvitt, tweet, tweeter, tweetter, twet, tweter, twett, twit, twiter, twiter conect, twitt, twitter button display, twitter connect, twitter follow, twitter follow button, twitter fans, twitter favorites, twitter like button, twitter plugin, twitter share, twitter tool, twitter tools, Twitter Tweet, Twitter Tweet Button, twitter styling, twitter updates, twitter user tweets, twitter share button, twitter-like, twitter feed for wordpress, twitter feeds, twitter post, twitter posts, twitter profile, twitter social network, twitter super responsive, wp twitter feeds, wp twitter feeds plugin, twitter-followers, WordPress Twitter, WordPress Twitter Plugin
+Requires at least: 3.8
+Tested up to: 4.3.1
+Stable tag: 2.45
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,28 +12,28 @@ Add a Twitter "Follow" and "Like" buttons to your WordPress website.
 
 == Description ==
 
-Twitter plugin allows you to add the Follow and the Like buttons the easiest way. Want to be always in touch with your friends and readers? Cannot imagine your life without Twitter? It is all in several clicks!
+Twitter Button plugin allows you to add the Follow and the Like buttons the easiest way. Want to be always in touch with your friends and readers? Cannot imagine your life without Twitter? It is all in several clicks!
 
 http://www.youtube.com/watch?v=jyI06kL_lQI
 
-<a href="https://www.youtube.com/watch?v=ls9754Mr8Xg" target="_blank">Video instruction on Installation</a>
+<a href="https://www.youtube.com/watch?v=ls9754Mr8Xg" target="_blank">Twitter Button by BestWebSoft Video instruction on Installation</a>
 
-<a href="http://wordpress.org/plugins/twitter-plugin/faq/" target="_blank">FAQ</a>
+<a href="http://wordpress.org/plugins/twitter-plugin/faq/" target="_blank">Twitter Button by BestWebSoft FAQ</a>
 
-<a href="http://support.bestwebsoft.com" target="_blank">Support</a>
+<a href="http://support.bestwebsoft.com" target="_blank">Twitter Button by BestWebSoft Support</a>
 
-<a href="http://bestwebsoft.com/products/twitter/?k=5d5eadeb5acd19904cbbcf3104f6ea13" target="_blank">Upgrade to Pro Version</a>
+<a href="http://bestwebsoft.com/products/twitter/?k=5d5eadeb5acd19904cbbcf3104f6ea13" target="_blank">Upgrade to Twitter Button Pro by BestWebSoft</a>
 
 = Features =
 
-* Actions: Add a Twitter "Follow" button easily.
-* Actions: Add a Twitter "Like" button the easiest way.
-* Display: This plugin allows you to choose the button position - top, bottom.
-* Display: Use a standard button with the number of followers or replace it with some custom image.
+* Add a Twitter "Follow" button easily.
+* Add a Twitter "Like" button the easiest way.
+* This plugin allows you to choose the button position - Before, After, Before And After.
+* Use a standard button with the number of followers or replace it with some custom image.
 
 = Recommended Plugins =
 
-The author of the Twitter also recommends the following plugins:
+The author of the Twitter Button also recommends the following plugins:
 
 * <a href="http://wordpress.org/plugins/updater/">Updater</a> - This plugin updates WordPress core and the plugins to the recent versions. You can also use the auto mode or manual mode for updating and set email notifications.
 There is also a premium version of the plugin <a href="http://bestwebsoft.com/products/updater/?k=4e3cbf90f06b1a8d47346da9a8ea106b">Updater Pro</a> with more useful features available. It can make backup of all your files and database before updating. Also it can forbid some plugins or WordPress Core update.
@@ -49,7 +49,7 @@ If you create your own language pack or update the existing one, you can send <a
 
 1. Upload the folder `twitter-plugin` to the directory `/wp-content/plugins/`.
 2. Activate the plugin via the 'Plugins' menu in your WordPress admin panel.
-3. You can adjust the necessary settings using your WordPress admin panel in "BWS Plugins" -> "Twitter".
+3. You can adjust the necessary settings using your WordPress admin panel in "BWS Plugins" -> "Twitter Button".
 
 <a href="https://docs.google.com/document/d/1IRWS_ih2ZFfWv0s4oU3LgjwWcBxtZ4UGlI7UmvPNMSQ/edit" target="_blank">View a Step-by-step Instruction on Twitter Installation</a>.
 
@@ -57,27 +57,27 @@ http://www.youtube.com/watch?v=ls9754Mr8Xg
 
 == Frequently Asked Questions ==
 
-= I cannot see the Twitter icon in the post after the plugin installation =
+= I cannot see the Twitter Button icon in the post after the plugin installation =
 
-In the WordPress admin panel go to "Plugins", find the "Twitter" plugin and click "Activate".
+In the WordPress admin panel go to "Plugins", find the "Twitter Button" plugin and click "Activate".
 
 = How can I deactivate the plugin =
 
-In the WordPress admin panel go to "Plugins", find the "Twitter" plugin and click "Deactivate".
+In the WordPress admin panel go to "Plugins", find the "Twitter Button" plugin and click "Deactivate".
 
-= After clicking the Twitter icon I see the Twitter Home page instead of the necessary account page =
+= After clicking the Twitter Button icon I see the Twitter Button Home page instead of the necessary account page =
 
-1. In the WordPress admin panel go to "Settings", find the "Twitter" plugin settings page and enter your Twitter login. Then click "Save Changes".
+1. In the WordPress admin panel go to "Settings", find the "Twitter Button" plugin settings page and enter your Twitter login. Then click "Save Changes".
 2. If you do not have Twitter account yet you should create it using this link: https://twitter.com/signup. After account is created please follow the instructions above.
 
-= How to adjust the Twitter icon position on the page =
+= How to adjust the Twitter Button icon position on the page =
 
-In the WordPress admin panel go to "Settings", find the Twitter plugin settings page and select one of the listed positions: Top position or Bottom position. Then click "Save Changes".
+In the WordPress admin panel go to "Settings", find the Twitter Button plugin settings page and select one of the listed positions: Top position or Bottom position. Then click "Save Changes".
 
 = After installation and settings adjustment on the plugin settings page it is not working still =
 
 1. Please click "Save Changes". Make sure that you got the message "Settings Saved".
-2. After saving your settings you should refresh the web page, where the Twitter icon should be placed.
+2. After saving your settings you should refresh the web page, where the Twitter Button icon should be placed.
 
 = I have some problems with the plugin's work. What Information should I provide to receive proper support? =
 
@@ -90,13 +90,18 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Screenshots ==
 
-1. Twitter Settings page.
+1. Twitter Button Settings page.
 2. Pasting [follow_me] shortcode into the content.
-3. Twitter "Like" button in the front-end.
+3. Twitter Button "Like" button in the front-end.
 4. Default Twitter "Follow" button in the front-end.
 5. Custom Twitter "Follow" button in the front-end.
 
 == Changelog ==
+
+= V2.45 - 25.09.2015 =
+* NEW : A button for Twitter Button shortcode inserting to the content was added.
+* Update : Textdomain was changed.
+* Update : We updated all functionality for wordpress 4.3.1.
 
 = V2.44 - 23.07.2015 =
 * Update : The Ukrainian and Russian languages file are updated.
@@ -267,9 +272,12 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Twitter icon bugs are fixed.
 
 = V1.00 =
-* Ability to install Twitter icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
+* Ability to install Twitter Button icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.45 =
+A button for Twitter Button shortcode inserting to the content was added. Textdomain was changed. We updated all functionality for wordpress 4.3.1.
 
 = V2.44 =
 The Ukrainian and Russian languages file are updated. We fixed the settings page display.

@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: twitter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-23 11:19+0300\n"
-"PO-Revision-Date: 2015-07-22 11:21+0300\n"
-"Last-Translator: plugin@bestwebsoft.com <plugin@bestwebsoft.com>\n"
+"POT-Creation-Date: 2015-09-25 10:09+0300\n"
+"PO-Revision-Date: 2015-09-25 10:10+0300\n"
+"Last-Translator: bestwebsoft.com <plugins@bestwebsoft.com>\n"
 "Language-Team: BestWebSoft <plugin@bestwebsoft.com>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
@@ -16,220 +16,195 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: twitter.php:33
-msgid "Twitter Settings"
-msgstr "Настройки Twitter"
+#: twitter.php:35
+msgid "Twitter Button Settings"
+msgstr "Настройки Twitter Button"
 
-#: twitter.php:136
+#: twitter.php:150
 msgid "Settings saved"
 msgstr "Опции сохранены"
 
-#: twitter.php:164
+#: twitter.php:172
 msgid "Error: File size > 32K"
 msgstr "Ошибка: Размер файла > 32К"
 
-#: twitter.php:166
+#: twitter.php:174
 msgid "Error: Invalid file type"
 msgstr "Ошибка: Некорректный тип файла"
 
-#: twitter.php:179
+#: twitter.php:191
 msgid "Upload successful."
 msgstr "Загрузка прошла удачно."
 
-#: twitter.php:181
+#: twitter.php:193
 msgid "Error: moving file failed"
 msgstr "Ошибка: при перемещении файла произошла ошибка"
 
-#: twitter.php:184
+#: twitter.php:196
 msgid "Error: check image width or height"
 msgstr "Ошибка: Проверьте ширину и высоту изображения"
 
-#: twitter.php:188
+#: twitter.php:200
 msgid "Uploading Error: check image properties"
 msgstr "Ошибка загрузки: Проверьте опции изображения"
 
-#: twitter.php:198
+#: twitter.php:210
 msgid "All plugin settings were restored."
 msgstr "Все настройки плагина восстановлены."
 
-#: twitter.php:213 twitter.php:422 twitter.php:435
+#: twitter.php:225
+#: twitter.php:431
+#: twitter.php:444
 msgid "Settings"
 msgstr "Настройки"
 
-#: twitter.php:214
+#: twitter.php:226
 msgid "Extra settings"
 msgstr "Дополнительные настройки"
 
-#: twitter.php:215 twitter.php:436
+#: twitter.php:227
+#: twitter.php:445
 msgid "FAQ"
 msgstr "FAQ"
 
-#: twitter.php:216
+#: twitter.php:228
 msgid "Go PRO"
 msgstr "Перейти на PRO версию"
 
-#: twitter.php:220
-msgid "Notice:"
-msgstr "Внимание:"
+#: twitter.php:238
+#, php-format
+msgid "Paste the shortcode %s into the necessary page or post to use the \"Follow Me\" button."
+msgstr "Добавьте шорткод %s в контент страницы или поста, где вы хотите вывести кнопку \"Follow Me\"."
 
-#: twitter.php:220
-msgid ""
-"The plugin's settings have been changed. In order to save them please don't "
-"forget to click the 'Save Changes' button."
-msgstr ""
-"Настройки плагина были изменены. Для того, чтобы сохранить их, пожалуйста, "
-"не забудьте нажать кнопку \"Сохранить\"."
+#: twitter.php:239
+msgid "If you would like to use this button in some other place, please paste this line into the template source code"
+msgstr "Если вы хотите использовать данную кнопку в другом месте, пожалуйста, добавьте данную строку в код нужного темплейта"
 
-#: twitter.php:229
+#: twitter.php:243
 msgid "Settings for the button \"Follow Me\""
 msgstr "Настройки для кнопки \"Follow Me\""
 
-#: twitter.php:233
+#: twitter.php:247
 msgid "Enter your username"
 msgstr "Введите ваш логин"
 
-#: twitter.php:237
-msgid ""
-"If you do not have Twitter account yet, you should create it using this link"
-msgstr ""
-"Если у вас еще нет аккаунта на Twitter, вам надо создать его, перейдя по "
-"этой ссылке"
+#: twitter.php:251
+msgid "If you do not have Twitter account yet, you should create it using this link"
+msgstr "Если у вас еще нет аккаунта на Twitter, вам надо создать его, перейдя по этой ссылке"
 
-#: twitter.php:238
-msgid ""
-"Paste the shortcode &lsqb;follow_me&rsqb; into the necessary page or post to "
-"use the \"Follow Me\" button."
-msgstr ""
-"Добавьте шорткод &lsqb;follow_me&rsqb; в контент страницы или поста, где вы "
-"хотите вывести кнопку \"Follow Me\"."
-
-#: twitter.php:239
-msgid ""
-"If you would like to use this button in some other place, please paste this "
-"line into the template source code"
-msgstr ""
-"Если вы хотите использовать данную кнопку в другом месте, пожалуйста, "
-"добавьте данную строку в код нужного темплейта"
-
-#: twitter.php:244
+#: twitter.php:256
 msgid "Choose display settings"
 msgstr "Выбор опций отображения"
 
-#: twitter.php:249
+#: twitter.php:261
 msgid "Standard button"
 msgstr "Стандартная кнопка"
 
-#: twitter.php:250
+#: twitter.php:262
 msgid "Custom button"
 msgstr "Пользовательская кнопка"
 
-#: twitter.php:253
-msgid ""
-"To use custom image You need to setup permissions to upload directory of "
-"your site"
-msgstr ""
-"Для того, чтобы использовать кастомное изображение, Вам необходимо выставить "
-"необходимые права для папки загрузок Вашего сайта"
+#: twitter.php:265
+msgid "To use custom image You need to setup permissions to upload directory of your site"
+msgstr "Для того, чтобы использовать кастомное изображение, Вам необходимо выставить необходимые права для папки загрузок Вашего сайта"
 
-#: twitter.php:262
+#: twitter.php:274
 msgid "Current image"
 msgstr "Текущее изображение"
 
-#: twitter.php:270
+#: twitter.php:282
 msgid "\"Follow Me\" image"
 msgstr "\"Follow Me\" изображение"
 
-#: twitter.php:274
-msgid ""
-"Image properties: max image width:100px; max image height:100px; max image "
-"size:32Kb; image types:\"jpg\", \"jpeg\"."
-msgstr ""
-"Опции изображения для загрузки: максимальная ширина:100px; максимальная "
-"высота:100px; максимальный размер:32Kb; тип файла:\"jpg\", \"jpeg\"."
+#: twitter.php:286
+msgid "Image properties: max image width:100px; max image height:100px; max image size:32Kb; image types:\"jpg\", \"jpeg\"."
+msgstr "Опции изображения для загрузки: максимальная ширина:100px; максимальная высота:100px; максимальный размер:32Kb; тип файла:\"jpg\", \"jpeg\"."
 
-#: twitter.php:281
+#: twitter.php:293
 msgid "Settings for the \"Twitter\" button"
 msgstr "Настройки для кнопки \"Twitter\""
 
-#: twitter.php:284
+#: twitter.php:296
 msgid "Disable the \"Twitter\" button"
 msgstr "Отключить кнопку \"Twitter\""
 
-#: twitter.php:287
-msgid ""
-"The button \"T\" will not be displayed. Just the shortcode &lsqb;"
-"follow_me&rsqb; will work."
-msgstr ""
-"Кнопка \"T\" не будет отображаться. Будет работать только шорткод &lsqb;"
-"follow_me&rsqb;."
+#: twitter.php:299
+msgid "The button \"T\" will not be displayed. Just the shortcode &lsqb;follow_me&rsqb; will work."
+msgstr "Кнопка \"T\" не будет отображаться. Будет работать только шорткод &lsqb;follow_me&rsqb;."
 
-#: twitter.php:292
+#: twitter.php:304
 msgid "The \"Twitter\" icon position"
 msgstr "Выбор позиции для иконки \"Twitter\""
 
-#: twitter.php:296
+#: twitter.php:308
 msgid "Before"
 msgstr "Перед"
 
-#: twitter.php:297
+#: twitter.php:309
 msgid "After"
 msgstr "После"
 
-#: twitter.php:298
+#: twitter.php:310
 msgid "Before And After"
 msgstr "Перед и после"
 
-#: twitter.php:300
-msgid ""
-"By clicking this icon a user can add the article he/she likes to his/her "
-"Twitter page."
-msgstr ""
-"При нажатии этой иконки пользователь добавляет на свою  twitter страницу "
-"статью, которая им нравится, а также ссылку на него."
+#: twitter.php:312
+msgid "By clicking this icon a user can add the article he/she likes to his/her Twitter page."
+msgstr "При нажатии этой иконки пользователь добавляет на свою  twitter страницу статью, которая им нравится, а также ссылку на него."
 
-#: twitter.php:306 twitter.php:341
+#: twitter.php:318
+#: twitter.php:352
 msgid "Save Changes"
 msgstr "Сохранить изменения"
 
-#: twitter.php:323
-msgid ""
-"Please choose the necessary post types (or single pages) where Twitter "
-"button will be displayed:"
-msgstr ""
-"Пожалуйста, выберите те типы постов (или отдельные страницы), где будут "
-"отображаться кнопки Twitter:"
+#: twitter.php:334
+msgid "Please choose the necessary post types (or single pages) where Twitter Button will be displayed:"
+msgstr "Пожалуйста, выберите те типы постов (или отдельные страницы), где будут отображаться Twitter Button:"
 
-#: twitter.php:330
+#: twitter.php:341
 msgid "Show URL for pages"
 msgstr "Отображать URL для страниц"
 
-#: twitter.php:336
+#: twitter.php:347
 msgid "Example of the site's pages tree"
 msgstr "Пример дерева страниц сайта"
 
-#: twitter.php:346
+#: twitter.php:357
 msgid "If you upgrade to Pro version all your settings will be saved."
 msgstr "При установке Pro версии плагина, все ваши настройки сохраняются."
 
-#: twitter.php:353
-msgid "Unlock premium options by upgrading to a PRO version."
-msgstr "Активируйте премиум опции обновившись до PRO версии."
+#: twitter.php:364
+msgid "Unlock premium options by upgrading to Pro version"
+msgstr "Активируйте премиум опции обновившись до Pro версии"
 
-#: twitter.php:354
+#: twitter.php:366
 msgid "Learn More"
 msgstr "Подробнее"
 
-#: twitter.php:357
-msgid "Go"
-msgstr "Перейти на"
-
-#: twitter.php:397
+#: twitter.php:406
 msgid "Click here if you like this article."
 msgstr "Кликай, если понравилась данная статья."
 
-#: twitter.php:437
+#: twitter.php:446
 msgid "Support"
 msgstr "Поддержка"
+
+#: twitter.php:480
+msgid "Insert the shortcode to use the \"Follow Me\" button."
+msgstr "Добавьте шорткод, чтобы вывести кнопку \"Follow Me\"."
+
+#~ msgid "Notice:"
+#~ msgstr "Внимание:"
+
+#~ msgid ""
+#~ "The plugin's settings have been changed. In order to save them please "
+#~ "don't forget to click the 'Save Changes' button."
+#~ msgstr ""
+#~ "Настройки плагина были изменены. Для того, чтобы сохранить их, "
+#~ "пожалуйста, не забудьте нажать кнопку \"Сохранить\"."
+
+#~ msgid "Go"
+#~ msgstr "Перейти на"
 
 #~ msgid "Top position"
 #~ msgstr "Позиция вверху"
