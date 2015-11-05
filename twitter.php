@@ -6,7 +6,7 @@ Description: Plugin to add a link to the page author to twitter.
 Author: BestWebSoft
 Text Domain: twitter-plugin
 Domain Path: /languages
-Version: 2.45
+Version: 2.46
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -32,7 +32,8 @@ License: GPLv2 or later
 if ( ! function_exists ( 'twttr_add_pages' ) ) {
 	function twttr_add_pages() {
 		bws_add_general_menu( plugin_basename( __FILE__ ) );
-		add_submenu_page( 'bws_plugins', __( 'Twitter Button Settings', 'twitter-plugin' ), 'Twitter Button', 'manage_options', 'twitter.php', 'twttr_settings_page' );
+		$settings = add_submenu_page( 'bws_plugins', __( 'Twitter Button Settings', 'twitter-plugin' ), 'Twitter Button', 'manage_options', 'twitter.php', 'twttr_settings_page' );
+		add_action( 'load-' . $settings, 'twttr_add_tabs' );
 	}
 }
 /* end twttr_add_pages ##*/
@@ -67,20 +68,21 @@ if ( ! function_exists( 'twttr_init' ) ) {
 	}
 }
 
-/*## Function for admin_init */
+/* Function for admin_init */
 if ( ! function_exists( 'twttr_admin_init' ) ) {
 	function twttr_admin_init() {
 		/* Add variable for bws_menu */
 		global $bws_plugin_info, $twttr_plugin_info, $bws_shortcode_list;
 
+		/*## Function for bws menu */
 		if ( ! isset( $bws_plugin_info ) || empty( $bws_plugin_info ) )
 			$bws_plugin_info = array( 'id' => '76', 'version' => $twttr_plugin_info["Version"] );
 
-		/* add Twitter to global $bws_shortcode_list  */
+		/* add Twitter to global $bws_shortcode_list  ##*/
 		$bws_shortcode_list['twttr'] = array( 'name' => 'Twitter Button' );
 	}
 }
-/* end twttr_admin_init ##*/
+/* end twttr_admin_init */
 
 /* Register settings for plugin */
 if ( ! function_exists( 'twttr_settings' ) ) {
@@ -174,7 +176,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 							$error = __( "Error: Invalid file type", 'twitter-plugin' );
 						} else {							
 							$size = GetImageSize( $filename );
-							if ( ( $size ) && ( $size[0] <= $max_image_width ) && ( $size[1] <= $max_image_height ) ) {
+							if ( $size && $size[0] <= $max_image_width && $size[1] <= $max_image_height ) {
 								/* If file satisfies requirements, we will move them from temp to your plugin folder and rename to 'twitter_ico.jpg' */
 								/* Construction to rename downloading file */
 								$namefile	=	'twitter-follow' . $twttr_options['count_icon'] . '.' . $ext;
@@ -219,15 +221,13 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 		} /* end GO PRO ##*/ ?>
 		<!-- general -->
 		<div class="wrap">
-			<div class="icon32 icon32-bws" id="icon-options-general"></div>
 			<h2><?php echo $title; ?></h2>
 			<h2 class="nav-tab-wrapper">
 				<a class="nav-tab<?php if ( ! isset( $_GET['action'] ) ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php"><?php _e( 'Settings', 'twitter-plugin' ); ?></a>
 				<a class="nav-tab<?php if ( isset( $_GET['action'] ) && 'extra' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php&amp;action=extra"><?php _e( 'Extra settings', 'twitter-plugin' ); ?></a>
-				<a class="nav-tab" href="http://bestwebsoft.com/products/twitter/faq" target="_blank"><?php _e( 'FAQ', 'twitter-plugin' ); ?></a>
 				<a class="nav-tab bws_go_pro_tab<?php if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php&amp;action=go_pro"><?php _e( 'Go PRO', 'twitter-plugin' ); ?></a>
 			</h2>
-			<!-- end general -->			
+			<!-- end general -->
 			<div class="updated fade" <?php if ( empty( $message ) || "" != $error ) echo "style=\"display:none\""; ?>><p><strong><?php echo $message; ?></strong></p></div>
 			<?php bws_show_settings_notice(); ?>
 			<div class="error" <?php if ( "" == $error ) echo "style=\"display:none\""; ?>><p><strong><?php echo $error; ?></strong></p></div>
@@ -235,7 +235,21 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 				if ( isset( $_REQUEST['bws_restore_default'] ) && check_admin_referer( $plugin_basename, 'bws_settings_nonce_name' ) ) {
 					bws_form_restore_default_confirm( $plugin_basename );
 				} else { /* check action ##*/ ?>
-					<p><?php printf( __( 'Paste the shortcode %s into the necessary page or post to use the "Follow Me" button.', 'twitter-plugin' ), '<span class="bws_code">&lsqb;follow_me&rsqb;</span>' ); ?><br>
+					<br>
+					<div><?php $icon_shortcode = ( "twitter.php" == $_GET['page'] ) ? plugins_url( 'bws_menu/images/shortcode-icon.png', __FILE__ ) : plugins_url( 'social-buttons-pack/bws_menu/images/shortcode-icon.png' );
+					printf( 
+						__( "If you would like to add 'Follow Me' button to your page or post, please use %s button", 'twitter-plugin' ), 
+						'<span class="bws_code"><img style="vertical-align: sub;" src="' . $icon_shortcode . '" alt=""/></span>' ); ?> 
+						<div class="bws_help_box bws_help_box_right dashicons dashicons-editor-help">
+							<div class="bws_hidden_help_text" style="min-width: 180px;">
+								<?php printf( 
+									__( "You can add 'Follow Me' button to your page or post by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s", 'twitter-plugin' ), 
+									'<code><img style="vertical-align: sub;" src="' . $icon_shortcode . '" alt="" /></code>',
+									'<code>[follow_me]</code>'
+								); ?>
+							</div>
+						</div>
+					</div>
 					<?php _e( 'If you would like to use this button in some other place, please paste this line into the template source code', 'twitter-plugin' ); ?>	<span class="bws_code">&#60;?php if ( function_exists( 'twttr_follow_me' ) ) echo twttr_follow_me(); ?&#62;</span></p>
 					<form method='post' action="" enctype="multipart/form-data" class="bws_form">
 						<table class="form-table">
@@ -420,6 +434,27 @@ if ( ! function_exists( 'twttr_twit' ) ) {
 	}
 }
 
+/* Registering and apllying styles and scripts */
+if ( ! function_exists( 'twttr_wp_head' ) ) {
+	function twttr_wp_head() {
+		wp_enqueue_style( 'twttr_stylesheet', plugins_url( 'css/style.css', __FILE__ ) );
+	}
+}
+
+/* add shortcode content  */
+if ( ! function_exists( 'twttr_shortcode_button_content' ) ) {
+	function twttr_shortcode_button_content( $content ) {
+		global $wp_version, $post; ?>
+		<div id="twttr" style="display:none;">
+			<fieldset>
+				<?php _e( 'Insert the shortcode to use the "Follow Me" button.', 'twitter-plugin' ); ?>
+			</fieldset>
+			<input class="bws_default_shortcode" type="hidden" name="default" value="[follow_me]" />
+			<div class="clear"></div>
+		</div>
+	<?php }
+}
+
 /*## Functions creates other links on plugins page. */
 if ( ! function_exists( 'twttr_action_links' ) ) {
 	function twttr_action_links( $links, $file ) {
@@ -448,41 +483,36 @@ if ( ! function_exists( 'twttr_links' ) ) {
 		return $links;
 	}
 }
-/* end twttr_links ##*/
+/* end twttr_links */
 
-/* Registering and apllying styles and scripts */
-if ( ! function_exists( 'twttr_wp_head' ) ) {
-	function twttr_wp_head() {
-		wp_enqueue_style( 'twttr_stylesheet', plugins_url( 'css/style.css', __FILE__ ) );
-	}
-}
-
-/*## add banner on plugins page */
+/* add banner on plugins page */
 if ( ! function_exists ( 'twttr_plugin_banner' ) ) {
 	function twttr_plugin_banner() {
 		global $hook_suffix;	
 		if ( 'plugins.php' == $hook_suffix ) {  
 			global $twttr_plugin_info, $twttr_options;
+			if ( empty( $twttr_options ) )
+				$twttr_options = get_option( 'twttr_options' );
+
 			if ( isset( $twttr_options['first_install'] ) && strtotime( '-1 week' ) > $twttr_options['first_install'] )
 				bws_plugin_banner( $twttr_plugin_info, 'twttr', 'twitter', '137342f0aa4b561cf7f93c190d95c890', '76', '//ps.w.org/twitter-plugin/assets/icon-128x128.png' );
 			
-			bws_plugin_banner_to_settings( $twttr_plugin_info, 'twttr_options', 'twitter-plugin', 'admin.php?page=twitter.php' );
+			if ( ! is_network_admin() )
+				bws_plugin_banner_to_settings( $twttr_plugin_info, 'twttr_options', 'twitter-plugin', 'admin.php?page=twitter.php' );
 		}
 	}
 }
 
-/* add shortcode content  */
-if ( ! function_exists( 'twttr_shortcode_button_content' ) ) {
-	function twttr_shortcode_button_content( $content ) {
-		global $wp_version, $post; ?>
-		<div id="twttr" style="display:none;">
-			<fieldset>
-				<?php _e( 'Insert the shortcode to use the "Follow Me" button.', 'twitter-plugin' ); ?>
-			</fieldset>
-			<input class="bws_default_shortcode" type="hidden" name="default" value="[follow_me]" />
-			<div class="clear"></div>
-		</div>
-	<?php }
+/* add help tab  */
+if ( ! function_exists( 'twttr_add_tabs' ) ) {
+	function twttr_add_tabs() {
+		$screen = get_current_screen();
+		$args = array(
+			'id' 			=> 'twttr',
+			'section' 		=> '200538889'
+		);
+		bws_help_tab( $screen, $args );
+	}
 }
 
 /* Function for delete options */
@@ -526,9 +556,9 @@ add_action( 'admin_menu', 'twttr_add_pages' );
 /* Initialization ##*/
 add_action( 'plugins_loaded', 'twttr_plugins_loaded' );
 add_action( 'init', 'twttr_init' );
-/*## admin_init */
+/*admin_init */
 add_action( 'admin_init', 'twttr_admin_init' );
-/* Adding stylesheets ##*/
+/* Adding stylesheets */
 add_action( 'wp_enqueue_scripts', 'twttr_wp_head' );
 /* Adding plugin buttons */
 add_shortcode( 'follow_me', 'twttr_follow_me' );

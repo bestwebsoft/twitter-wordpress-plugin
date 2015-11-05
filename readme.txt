@@ -4,7 +4,7 @@ Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&
 Tags: add social button, add Twitter Button, advanced twitter, auto tweet, best twitter, best twitter like button, best twitter share button, best twitter plugin, button, buton, Button like, connect, custom twitter, custom twitter feeds, easy twitter, free, free twitter plugin, free twitter buttons, follow, follow button, follow me, follow us, live tweets, Like, like button, live twitter feeds, My Page button, Share, share button, share twitter, share buttons, social, social account, social button, social bookmark, social bookmarking, social media publishing, social network, social network auto publish, Social Plugins, social profiles, social share, tvet, tvett, tvit, tviter, tvitt, tweet, tweeter, tweetter, twet, tweter, twett, twit, twiter, twiter conect, twitt, twitter button display, twitter connect, twitter follow, twitter follow button, twitter fans, twitter favorites, twitter like button, twitter plugin, twitter share, twitter tool, twitter tools, Twitter Tweet, Twitter Tweet Button, twitter styling, twitter updates, twitter user tweets, twitter share button, twitter-like, twitter feed for wordpress, twitter feeds, twitter post, twitter posts, twitter profile, twitter social network, twitter super responsive, wp twitter feeds, wp twitter feeds plugin, twitter-followers, WordPress Twitter, WordPress Twitter Plugin
 Requires at least: 3.8
 Tested up to: 4.3.1
-Stable tag: 2.45
+Stable tag: 2.46
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Add a Twitter "Follow" and "Like" buttons to your WordPress website.
 
 Twitter Button plugin allows you to add the Follow and the Like buttons the easiest way. Want to be always in touch with your friends and readers? Cannot imagine your life without Twitter? It is all in several clicks!
 
-http://www.youtube.com/watch?v=jyI06kL_lQI
+http://www.youtube.com/watch?v=2qJ55xvGbDU
 
 <a href="https://www.youtube.com/watch?v=ls9754Mr8Xg" target="_blank">Twitter Button by BestWebSoft Video instruction on Installation</a>
 
@@ -40,6 +40,7 @@ There is also a premium version of the plugin <a href="http://bestwebsoft.com/pr
 
 = Translation =
 
+* Hungarian (hu_HU) (thanks to <a href="mailto:solarside09@gmail.com">Peter Aprily</a> www.aprily.com)
 * Russian (ru_RU)
 * Ukrainian (uk)
 
@@ -97,6 +98,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 5. Custom Twitter "Follow" button in the front-end.
 
 == Changelog ==
+
+= V2.46 - 05.11.2015 =
+* NEW : Hungarian language file.
 
 = V2.45 - 25.09.2015 =
 * NEW : A button for Twitter Button shortcode inserting to the content was added.
@@ -275,6 +279,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Ability to install Twitter Button icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.46 =
+Hungarian language file is added.
 
 = V2.45 =
 A button for Twitter Button shortcode inserting to the content was added. Textdomain was changed. We updated all functionality for wordpress 4.3.1.
