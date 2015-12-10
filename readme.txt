@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: add social button, add Twitter Button, advanced twitter, auto tweet, best twitter, best twitter like button, best twitter share button, best twitter plugin, button, buton, Button like, connect, custom twitter, custom twitter feeds, easy twitter, free, free twitter plugin, free twitter buttons, follow, follow button, follow me, follow us, live tweets, Like, like button, live twitter feeds, My Page button, Share, share button, share twitter, share buttons, social, social account, social button, social bookmark, social bookmarking, social media publishing, social network, social network auto publish, Social Plugins, social profiles, social share, tvet, tvett, tvit, tviter, tvitt, tweet, tweeter, tweetter, twet, tweter, twett, twit, twiter, twiter conect, twitt, twitter button display, twitter connect, twitter follow, twitter follow button, twitter fans, twitter favorites, twitter like button, twitter plugin, twitter share, twitter tool, twitter tools, Twitter Tweet, Twitter Tweet Button, twitter styling, twitter updates, twitter user tweets, twitter share button, twitter-like, twitter feed for wordpress, twitter feeds, twitter post, twitter posts, twitter profile, twitter social network, twitter super responsive, wp twitter feeds, wp twitter feeds plugin, twitter-followers, WordPress Twitter, WordPress Twitter Plugin
 Requires at least: 3.8
-Tested up to: 4.3.1
-Stable tag: 2.46
+Tested up to: 4.4
+Stable tag: 2.47
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 5. Custom Twitter "Follow" button in the front-end.
 
 == Changelog ==
+
+= V2.47 - 10.12.2015 =
+* Bugfix : The bug with plugin menu duplicating was fixed.
 
 = V2.46 - 05.11.2015 =
 * NEW : Hungarian language file.
@@ -279,6 +282,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Ability to install Twitter Button icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.47 =
+The bug with plugin menu duplicating was fixed.
 
 = V2.46 =
 Hungarian language file is added.

@@ -6,7 +6,7 @@ Description: Plugin to add a link to the page author to twitter.
 Author: BestWebSoft
 Text Domain: twitter-plugin
 Domain Path: /languages
-Version: 2.46
+Version: 2.47
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -31,7 +31,7 @@ License: GPLv2 or later
 /* Add BWS menu */
 if ( ! function_exists ( 'twttr_add_pages' ) ) {
 	function twttr_add_pages() {
-		bws_add_general_menu( plugin_basename( __FILE__ ) );
+		bws_general_menu();
 		$settings = add_submenu_page( 'bws_plugins', __( 'Twitter Button Settings', 'twitter-plugin' ), 'Twitter Button', 'manage_options', 'twitter.php', 'twttr_settings_page' );
 		add_action( 'load-' . $settings, 'twttr_add_tabs' );
 	}
@@ -221,7 +221,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 		} /* end GO PRO ##*/ ?>
 		<!-- general -->
 		<div class="wrap">
-			<h2><?php echo $title; ?></h2>
+			<h1><?php echo $title; ?></h1>
 			<h2 class="nav-tab-wrapper">
 				<a class="nav-tab<?php if ( ! isset( $_GET['action'] ) ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php"><?php _e( 'Settings', 'twitter-plugin' ); ?></a>
 				<a class="nav-tab<?php if ( isset( $_GET['action'] ) && 'extra' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php&amp;action=extra"><?php _e( 'Extra settings', 'twitter-plugin' ); ?></a>
