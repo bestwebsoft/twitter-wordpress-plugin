@@ -1,18 +1,18 @@
 ﻿=== Twitter Button by BestWebSoft ===
 Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
-Tags: add social button, add Twitter Button, advanced twitter, auto tweet, best twitter, best twitter like button, best twitter share button, best twitter plugin, button, buton, Button like, connect, custom twitter, custom twitter feeds, easy twitter, free, free twitter plugin, free twitter buttons, follow, follow button, follow me, follow us, live tweets, Like, like button, live twitter feeds, My Page button, Share, share button, share twitter, share buttons, social, social account, social button, social bookmark, social bookmarking, social media publishing, social network, social network auto publish, Social Plugins, social profiles, social share, tvet, tvett, tvit, tviter, tvitt, tweet, tweeter, tweetter, twet, tweter, twett, twit, twiter, twiter conect, twitt, twitter button display, twitter connect, twitter follow, twitter follow button, twitter fans, twitter favorites, twitter like button, twitter plugin, twitter share, twitter tool, twitter tools, Twitter Tweet, Twitter Tweet Button, twitter styling, twitter updates, twitter user tweets, twitter share button, twitter-like, twitter feed for wordpress, twitter feeds, twitter post, twitter posts, twitter profile, twitter social network, twitter super responsive, wp twitter feeds, wp twitter feeds plugin, twitter-followers, WordPress Twitter, WordPress Twitter Plugin
+Tags: add twitter like button, add like button, add follow button, add tweet button, add hashtag button, add mention button, add twitter follow button, add twitter tweet button, add twitter hashtag button, add twitter mention button, add twitter buttons, add twitter button, advanced twitter, auto tweet, best twitter, best twitter like button, best twitter share button, best twitter plugin, button, buton, Button like, connect, custom twitter, custom twitter feeds, easy twitter, free, free twitter plugin, free twitter buttons, follow, follow button, follow me, follow us, live tweets, Like, like button, live twitter feeds, My Page button, Share, share button, share twitter, share buttons, social, social account, social button, social bookmark, social bookmarking, social media publishing, social network, social network auto publish, Social Plugins, social profiles, social share, tvet, tvett, tvit, tviter, tvitt, tweet, tweeter, tweetter, twet, tweter, twett, twit, twiter, twiter conect, twitt, twitter button display, twitter connect, twitter follow, twitter follow button, twitter fans, twitter favorites, twitter like, twitter like button, twitter plugin, twitter share, twitter tool, twitter tools, Twitter Tweet, Twitter Tweet Button, twitter styling, twitter updates, twitter user tweets, twitter share button, twitter-like, twitter feed for wordpress, twitter feeds, twitter post, twitter posts, twitter profile, twitter social network, twitter super responsive, wp twitter feeds, wp twitter feeds plugin, twitter-followers, WordPress Twitter, WordPress Twitter Plugin
 Requires at least: 3.8
 Tested up to: 4.4
-Stable tag: 2.47
+Stable tag: 2.48
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Add a Twitter "Follow" and "Like" buttons to your WordPress website.
+Add a Twitter "Tweet", "Follow", "Hashtag" and "Mention" buttons to your WordPress website.
 
 == Description ==
 
-Twitter Button plugin allows you to add the Follow and the Like buttons the easiest way. Want to be always in touch with your friends and readers? Cannot imagine your life without Twitter? It is all in several clicks!
+Twitter Button plugin allows you to add the Twitter "Tweet", "Follow", "Hashtag" and "Mention" buttons on your site. Also, you can exclude certain post types or pages from adding the Twitter button. Do you want to be always in touch with your friends and readers? Cannot imagine your life without Twitter? Now it is all available in several clicks!
 
 http://www.youtube.com/watch?v=2qJ55xvGbDU
 
@@ -26,9 +26,9 @@ http://www.youtube.com/watch?v=2qJ55xvGbDU
 
 = Features =
 
-* Add a Twitter "Follow" button easily.
-* Add a Twitter "Like" button the easiest way.
-* This plugin allows you to choose the button position - Before, After, Before And After.
+* Add Twitter "Tweet", "Follow", "Hashtag", "Mention" buttons in the easiest way.
+* Choose the button position - Before, After, Before And After and Only shortcode.
+* Change buttons options.
 * Use a standard button with the number of followers or replace it with some custom image.
 
 = Recommended Plugins =
@@ -92,12 +92,18 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 == Screenshots ==
 
 1. Twitter Button Settings page.
-2. Pasting [follow_me] shortcode into the content.
-3. Twitter Button "Like" button in the front-end.
-4. Default Twitter "Follow" button in the front-end.
-5. Custom Twitter "Follow" button in the front-end.
+2. Twitter Button Settings page (Settings for "Tweet" and "Follow me" buttons).
+3. Twitter Button Settings page (Settings for "Hashtag" and "Mention" buttons).
+4. Pasting [twitter_buttons] shortcode into the content.
+5. Twitter buttons in the front-end.
+6. Custom Twitter "Follow" button in the front-end.
 
 == Changelog ==
+
+= V2.48 - 05.01.2016 =
+* NEW: "Hashtag", "Mention" Twitter buttons were added.
+* NEW: Options for twitter buttons were added: language, size, choosen URL, tweet text, via, tailoring, count.
+* Update: Shortcode [follow_me] was replaced by shortcode [twitter_buttons].
 
 = V2.47 - 10.12.2015 =
 * Bugfix : The bug with plugin menu duplicating was fixed.
@@ -282,6 +288,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Ability to install Twitter Button icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.48 =
+"Hashtag", "Mention" Twitter buttons were added. Options for twitter buttons were added: language, size, choosen URL, tweet text, via, tailoring, count. Shortcode [follow_me] was replaced by shortcode [twitter_buttons].
+
 
 = V2.47 =
 The bug with plugin menu duplicating was fixed.
