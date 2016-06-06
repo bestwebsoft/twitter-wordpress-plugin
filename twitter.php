@@ -6,7 +6,7 @@ Description: Plugin to add a link to the page author to twitter.
 Author: BestWebSoft
 Text Domain: twitter-plugin
 Domain Path: /languages
-Version: 2.48
+Version: 2.49
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -49,7 +49,7 @@ if ( ! function_exists( 'twttr_plugins_loaded' ) ) {
 if ( ! function_exists( 'twttr_init' ) ) {
 	function twttr_init() {
 		global $twttr_plugin_info;
-		
+
 		if ( empty( $twttr_plugin_info ) ) {
 			if ( ! function_exists( 'get_plugin_data' ) )
 				require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -83,6 +83,33 @@ if ( ! function_exists( 'twttr_admin_init' ) ) {
 	}
 }
 /* end twttr_admin_init */
+
+if( ! function_exists( 'twttr_plugin_activation' ) ) {
+	function twttr_plugin_activation( $networkwide ) {
+		global $wpdb;
+		/* Activation function for network */
+
+		if ( is_multisite() ) {
+			/* Check if it is a network activation - if so, run the activation function for each blog id */
+			if ( $networkwide ) {
+				$old_blog = $wpdb->blogid;
+
+				/* Get all blog ids */
+				$blogids = $wpdb->get_col( "SELECT `blog_id` FROM $wpdb->blogs" );
+				foreach ( $blogids as $blog_id ) {
+					switch_to_blog( $blog_id );
+					twttr_settings();
+				}
+				switch_to_blog( $old_blog );
+				return;
+			} else {
+				twttr_settings();
+			}
+		} else {
+			twttr_settings();
+		}
+	}
+}
 
 /* Register settings for plugin */
 if ( ! function_exists( 'twttr_settings' ) ) {
@@ -123,7 +150,8 @@ if ( ! function_exists( 'twttr_settings' ) ) {
 			'tweet_to_mention'			=> '',
 			'text_option_mention'		=> 'page_title',
 			'text_mention'				=> '',
-			'related_mention'			=> ''
+			'related_mention'			=> '',
+			'suggest_feature_banner'	=> 1
 		);
 		/* Install the option defaults */
 		/* Get options from the database */
@@ -139,17 +167,19 @@ if ( ! function_exists( 'twttr_settings' ) ) {
 			add_option( 'twttr_options', $twttr_options_default );
 		}
 		$twttr_options = get_option( 'twttr_options' );
-		
+
 		if ( ! isset( $twttr_options['plugin_option_version'] ) || $twttr_options['plugin_option_version'] != $twttr_plugin_info["Version"] ) {
 			if ( '0' == $twttr_options['position'] )
 				$twttr_options['position'] = 'after';
 			elseif ( '1' == $twttr_options['position'] )
 				$twttr_options['position'] = 'before';
 
-			if ( 0 == $twttr_options['disable'] )
-				$twttr_options['tweet_display'] = 1;
-			elseif ( 1 == $twttr_options['disable'] )
-				$twttr_options['tweet_display'] = 0;
+			if ( isset( $twttr_options['disable'] ) ) {
+				if( 0 == $twttr_options['disable'] )
+					$twttr_options['tweet_display'] = 1;
+				elseif ( 1 == $twttr_options['disable'] )
+					$twttr_options['tweet_display'] = 0;
+			}
 
 			$twttr_options_default['display_settings_notice'] = 0;
 			$twttr_options = array_merge( $twttr_options_default, $twttr_options );
@@ -170,7 +200,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 
 		if ( isset( $_REQUEST['twttr_form_submit'] ) && check_admin_referer( $plugin_basename, 'twttr_nonce_name' ) ) {
 			$twttr_options['url_twitter']				= stripslashes( esc_html( $_REQUEST['twttr_user'] ) );
-			$twttr_options['display_option' ]			= $_REQUEST['twttr_display_option'];
+			$twttr_options['display_option' ]			= isset( $_REQUEST['twttr_display_option'] ) ? $_REQUEST['twttr_display_option'] : 'standart' ;
 			$twttr_options['position']					= $_REQUEST['twttr_position'];
 			$twttr_options['tweet_display']				= isset( $_REQUEST["twttr_twitter_display"] ) ? 1 : 0;
 			if ( isset( $_FILES['upload_file']['tmp_name'] ) && $_FILES['upload_file']['tmp_name'] != "" )
@@ -235,7 +265,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 								/* Construction to rename downloading file */
 								$namefile	= 'twitter-follow' . $twttr_options['count_icon'] . '.' . $ext;
 								$uploadfile	= $twttr_cstm_mg_folder . '/' . $namefile;
-								
+
 								if ( move_uploaded_file( $_FILES['upload_file']['tmp_name'], $uploadfile ) ) {
 									if ( 'standart' == $twttr_options[ 'display_option' ] ) {
 										$twttr_img_link	= plugins_url( 'images/twitter-follow.jpg', __FILE__ );
@@ -279,12 +309,13 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 			<h2 class="nav-tab-wrapper">
 				<a class="nav-tab<?php if ( ! isset( $_GET['action'] ) ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php"><?php _e( 'Settings', 'twitter-plugin' ); ?></a>
 				<a class="nav-tab<?php if ( isset( $_GET['action'] ) && 'extra' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php&amp;action=extra"><?php _e( 'Extra settings', 'twitter-plugin' ); ?></a>
+				<a class="nav-tab<?php if ( isset( $_GET['action'] ) && 'custom_code' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php&amp;action=custom_code"><?php _e( 'Custom Code', 'twitter-plugin' ); ?></a>
 				<a class="nav-tab bws_go_pro_tab<?php if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=twitter.php&amp;action=go_pro"><?php _e( 'Go PRO', 'twitter-plugin' ); ?></a>
 			</h2>
 			<!-- end general -->
-			<div class="updated fade" <?php if ( empty( $message ) || "" != $error ) echo "style=\"display:none\""; ?>><p><strong><?php echo $message; ?></strong></p></div>
+			<div class="updated fade below-h2" <?php if ( empty( $message ) || "" != $error ) echo "style=\"display:none\""; ?>><p><strong><?php echo $message; ?></strong></p></div>
 			<?php bws_show_settings_notice(); ?>
-			<div class="error" <?php if ( "" == $error ) echo "style=\"display:none\""; ?>><p><strong><?php echo $error; ?></strong></p></div>
+			<div class="error below-h2" <?php if ( "" == $error ) echo "style=\"display:none\""; ?>><p><strong><?php echo $error; ?></strong></p></div>
 			<?php /*## check action */ if ( ! isset( $_GET['action'] ) ) {
 				if ( isset( $_REQUEST['bws_restore_default'] ) && check_admin_referer( $plugin_basename, 'bws_settings_nonce_name' ) ) {
 					bws_form_restore_default_confirm( $plugin_basename );
@@ -292,12 +323,12 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 					<br>
 					<div><?php $icon_shortcode = ( "twitter.php" == $_GET['page'] ) ? plugins_url( 'bws_menu/images/shortcode-icon.png', __FILE__ ) : plugins_url( 'social-buttons-pack/bws_menu/images/shortcode-icon.png' );
 					printf( 
-						__( "If you want to add twitter buttons to your page or post, please use %s button", 'twitter-plugin' ), 
-						'<span class="bws_code"><img style="vertical-align: sub;" src="' . $icon_shortcode . '" alt=""/></span>' ); ?> 
+						__( "If you want to add twitter buttons to your page or post, please use %s button", 'twitter-plugin' ),
+						'<span class="bws_code"><img style="vertical-align: sub;" src="' . $icon_shortcode . '" alt=""/></span>' ); ?>
 						<div class="bws_help_box bws_help_box_right dashicons dashicons-editor-help">
 							<div class="bws_hidden_help_text" style="min-width: 180px;">
-								<?php printf( 
-									__( "You can add Twitter buttons to your page or post by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s. Instead of asterisk, please add the necessary buttons separated by commas (Ex:", 'twitter-plugin' ), 
+								<?php printf(
+									__( "You can add Twitter buttons to your page or post by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s. Instead of asterisk, please add the necessary buttons separated by commas (Ex:", 'twitter-plugin' ),
 									'<code><img style="vertical-align: sub;" src="' . $icon_shortcode . '" alt="" /></code>',
 									'<code>[twitter_buttons display=*]</code>'
 								); ?>
@@ -390,7 +421,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 								</th>
 								<td>
 									<input name="twttr_tailoring" type="checkbox" value="1" <?php if ( true == $twttr_options['tailoring'] ) echo 'checked="checked"'; ?> />
-									<span class="bws_info"><?php echo __( 'For getting more information about this option, please,', 'twitter-plugin' ) . '&#032'; ?><a href="https://support.twitter.com/articles/20169421#" target="_blank"><?php _e( 'click here', 'twitter-plugin' ); ?></a></span>
+									<span class="bws_info"><?php echo __( 'For getting more information about this option, please', 'twitter-plugin' ) . '&#032'; ?><a href="https://support.twitter.com/articles/20169421#" target="_blank"><?php _e( 'click here', 'twitter-plugin' ); ?></a></span>
 								</td>
 							</tr>
 							<tr valign="top" class="twttr_twitter_option" <?php if ( 0 == $twttr_options['tweet_display'] ) echo 'style="display:none"'; ?>>
@@ -414,7 +445,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 								<td><fieldset>
 									<label><input name="twttr_text_option_twitter" type="radio" value="page_title" <?php if ( 'page_title' == $twttr_options['text_option_twitter'] ) echo 'checked="checked"'; ?> /><?php _e( 'the title of the page', 'twitter-plugin' ); ?></label><br />
 									<input id="twttr_text_option_twitter" name="twttr_text_option_twitter" type="radio" value="custom" <?php if ( 'custom' == $twttr_options['text_option_twitter'] ) echo 'checked="checked"'; ?> />
-									<input name="twttr_text_twitter" id="twttr_text_twitter" type="text" value="<?php echo $twttr_options['text_twitter'] ?>" maxlength="250" />
+									<input name="twttr_text_twitter" id="twttr_text_twitter" type="text" value="<?php echo $twttr_options['text_twitter']; ?>" maxlength="250" />
 								</fieldset></td>
 							</tr>
 							<tr valign="top" class="twttr_twitter_option" <?php if ( 0 == $twttr_options['tweet_display'] ) echo 'style="display:none"'; ?>>
@@ -422,7 +453,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 									<?php _e( 'Via', 'twitter-plugin' ); ?>
 								</th>
 								<td>
-									<input name="twttr_via_twitter" type="text" value="<?php echo $twttr_options['via_twitter'] ?>" maxlength="250" /><br />
+									<input name="twttr_via_twitter" type="text" value="<?php echo $twttr_options['via_twitter']; ?>" maxlength="250" /><br />
 									<span class="bws_info"><?php _e( 'Tweet been received from the Twitter username', 'twitter-plugin' ); ?></span>
 								</td>
 							</tr>
@@ -431,7 +462,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 									<?php _e( 'Recommend', 'twitter-plugin' ); ?>
 								</th>
 								<td>
-									<input name="twttr_related_twitter" type="text" value="<?php echo $twttr_options['related_twitter'] ?>" maxlength="250" /><br /><span class="bws_info"> <?php _e( 'Enter username of someone you recomend', 'twitter-plugin' ); ?></span>
+									<input name="twttr_related_twitter" type="text" value="<?php echo $twttr_options['related_twitter']; ?>" maxlength="250" /><br /><span class="bws_info"> <?php _e( 'Enter username of someone you recomend', 'twitter-plugin' ); ?></span>
 								</td>
 							</tr>
 							<tr valign="top" class="twttr_twitter_option" <?php if ( 0 == $twttr_options['tweet_display'] ) echo 'style="display:none"'; ?>>
@@ -439,7 +470,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 									<?php _e( 'Hashtag', 'twitter-plugin' ); ?>
 								</th>
 								<td>
-									<input name="twttr_hashtag_twitter" type="text" value="<?php echo $twttr_options['hashtag_twitter'] ?>" maxlength="250" />
+									<input name="twttr_hashtag_twitter" type="text" value="<?php echo $twttr_options['hashtag_twitter']; ?>" maxlength="250" />
 								</td>
 							</tr>
 							<tr valign="top" class="twttr_followme_option" <?php if ( 0 == $twttr_options['followme_display'] ) echo 'style="display:none"'; ?>>
@@ -452,10 +483,10 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 									<?php _e( 'Your username', 'twitter-plugin' ); ?>
 								</th>
 								<td>
-									<input name="twttr_user" type="text" value="<?php echo $twttr_options['url_twitter'] ?>" maxlength="250" /><br />
+									<input name="twttr_user" type="text" value="<?php echo $twttr_options['url_twitter']; ?>" maxlength="19" /><br />
 									<span class="bws_info"><?php _e( 'If you do not have Twitter account yet, you should create it using this link', 'twitter-plugin' ); ?> <a target="_blank" href="https://twitter.com/signup">https://twitter.com/signup</a> .</span>
 								</td>
-							</tr>							
+							</tr>
 							<tr valign="top" class="twttr_followme_option" <?php if ( 0 == $twttr_options['followme_display'] ) echo 'style="display:none"'; ?>>
 								<th scope="row">
 									<?php _e( '"Follow me" button image', 'twitter-plugin' ); ?>
@@ -511,7 +542,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 									<?php _e( 'Hashtag', 'twitter-plugin' ); ?>
 								</th>
 								<td>
-									<input name="twttr_hashtag" type="text" value="<?php echo $twttr_options['hashtag'] ?>" maxlength="250" />
+									<input name="twttr_hashtag" type="text" value="<?php echo $twttr_options['hashtag']; ?>" maxlength="250" />
 								</td>
 							</tr>
 							<tr valign="top" class="twttr_hashtag_option" <?php if ( 0 == $twttr_options['hashtag_display'] ) echo 'style="display:none"'; ?>>
@@ -521,7 +552,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 								<td><fieldset>
 									<label><input name="twttr_text_option_hashtag" type="radio" value="page_title" <?php if ( 'page_title' == $twttr_options['text_option_hashtag'] ) echo 'checked="checked"'; ?> /><?php _e( 'the title of the page', 'twitter-plugin' ); ?></label><br />
 									<input id="twttr_text_option_hashtag" name="twttr_text_option_hashtag" type="radio" value="custom" <?php if ( 'custom' == $twttr_options['text_option_hashtag'] ) echo 'checked="checked"'; ?> />
-									<input name="twttr_text_hashtag" id="twttr_text_hashtag" type="text" value="<?php echo $twttr_options['text_hashtag'] ?>" maxlength="250" />
+									<input name="twttr_text_hashtag" id="twttr_text_hashtag" type="text" value="<?php echo $twttr_options['text_hashtag']; ?>" maxlength="250" />
 								</fieldset></td>
 							</tr>
 							<tr valign="top" class="twttr_hashtag_option" <?php if ( 0 == $twttr_options['hashtag_display'] ) echo 'style="display:none"'; ?>>
@@ -539,7 +570,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 									<?php _e( 'Recommend', 'twitter-plugin' ); ?>
 								</th>
 								<td>
-									<input name="twttr_related_hashtag" type="text" value="<?php echo $twttr_options['related_hashtag'] ?>" maxlength="250" /><br /><span class="bws_info"> <?php _e( 'Enter username of someone you recomend', 'twitter-plugin' ); ?></span>
+									<input name="twttr_related_hashtag" type="text" value="<?php echo $twttr_options['related_hashtag']; ?>" maxlength="250" /><br /><span class="bws_info"> <?php _e( 'Enter username of someone you recomend', 'twitter-plugin' ); ?></span>
 								</td>
 							</tr>
 							<tr valign="top" class="twttr_mention_option" <?php if ( 0 == $twttr_options['mention_display'] ) echo 'style="display:none"'; ?>>
@@ -552,7 +583,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 									<?php _e( 'Tweet to', 'twitter-plugin' ); ?>
 								</th>
 								<td>
-									<input name="twttr_tweet_to_mention" type="text" value="<?php echo $twttr_options['tweet_to_mention'] ?>" maxlength="250" placeholder="<?php _e( 'support', 'twitter-plugin' ); ?>"/>
+									<input name="twttr_tweet_to_mention" type="text" value="<?php echo $twttr_options['tweet_to_mention']; ?>" maxlength="250" placeholder="support" />
 								</td>
 							</tr>
 							<tr valign="top" class="twttr_mention_option" <?php if ( 0 == $twttr_options['mention_display'] ) echo 'style="display:none"'; ?>>
@@ -562,7 +593,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 								<td><fieldset>
 									<label><input name="twttr_text_option_mention" type="radio" value="page_title" <?php if ( 'page_title' == $twttr_options['text_option_mention'] ) echo 'checked="checked"'; ?> /><?php _e( 'the title of the page', 'twitter-plugin' ); ?></label><br />
 									<input id="twttr_text_option_mention" name="twttr_text_option_mention" type="radio" value="custom" <?php if ( 'custom' == $twttr_options['text_option_mention'] ) echo 'checked="checked"'; ?> />
-									<input name="twttr_text_mention" id="twttr_text_mention" type="text" value="<?php echo $twttr_options['text_mention'] ?>" maxlength="250" />
+									<input name="twttr_text_mention" id="twttr_text_mention" type="text" value="<?php echo $twttr_options['text_mention']; ?>" maxlength="250" />
 								</fieldset></td>
 							</tr>
 							<tr valign="top" class="twttr_mention_option" <?php if ( 0 == $twttr_options['mention_display'] ) echo 'style="display:none"'; ?>>
@@ -570,7 +601,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 									<?php _e( 'Recommend', 'twitter-plugin' ); ?>
 								</th>
 								<td>
-									<input name="twttr_related_mention" type="text" value="<?php echo $twttr_options['related_mention'] ?>" maxlength="250" /><br /><span class="bws_info"> <?php _e( 'Enter username of someone you recomend', 'twitter-plugin' ); ?></span>
+									<input name="twttr_related_mention" type="text" value="<?php echo $twttr_options['related_mention']; ?>" maxlength="250" /><br /><span class="bws_info"> <?php _e( 'Enter username of someone you recomend', 'twitter-plugin' ); ?></span>
 								</td>
 							</tr>
 						</table>
@@ -583,19 +614,19 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 						<!-- general -->
 						<div id="twttr_preview">
 							<div class="bws_pro_version_bloc">
-								<div class="bws_pro_version_table_bloc">	
-									<div class="bws_table_bg"></div>										
+								<div class="bws_pro_version_table_bloc">
+									<div class="bws_table_bg"></div>
 									<div id="twttr_preview_content">
 										<h3><?php _e( 'Preview', 'twitter-plugin' ); ?></h3>
 										<img src='<?php echo plugins_url( 'images/preview.png', __FILE__ ); ?>' />
-									</div>		
+									</div>
 								</div>
 								<div class="bws_pro_version_tooltip">
 									<div class="bws_info">
 										<?php _e( 'Unlock premium options by upgrading to Pro version', 'twitter-plugin' ); ?>
 									</div>
 									<a class="bws_button" href="http://bestwebsoft.com/products/twitter/?k=a8417eabe3c9fb0c2c5bed79e76de43c&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Twitter Button Pro"><?php _e( 'Learn More', 'twitter-plugin' ); ?></a>
-									<div class="clear"></div>					
+									<div class="clear"></div>
 								</div>
 							</div>
 						</div>
@@ -647,7 +678,9 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 						<div class="clear"></div>
 					</div>
 				</div>
-			<?php } elseif ( 'go_pro' == $_GET['action'] ) { 
+			<?php } elseif( 'custom_code' == $_GET['action'] ) {
+				bws_custom_code_tab();
+			} elseif ( 'go_pro' == $_GET['action'] ) { 
 				bws_go_pro_tab( $twttr_plugin_info, $plugin_basename, 'twitter.php', 'twitter-pro.php', 'twitter-pro/twitter-pro.php', 'twitter', 'a8417eabe3c9fb0c2c5bed79e76de43c', '76', isset( $go_pro_result['pro_plugin_is_activated'] ) ); 
 			} 
 			bws_plugin_reviews_block( $twttr_plugin_info['Name'], 'twitter-plugin' ); ?>
@@ -673,7 +706,11 @@ if ( ! function_exists( 'twttr_twitter_buttons' ) ) {
 /* Positioning in the page */
 if ( ! function_exists( 'twttr_twit' ) ) {
 	function twttr_twit( $content ) {
-		global $post, $twttr_options;
+		global $post, $twttr_options, $wp_current_filter;
+
+		if ( ! empty( $wp_current_filter ) && in_array( 'get_the_excerpt', $wp_current_filter ) )
+			return $content;
+
 		if ( $twttr_options['position'] == 'shortcode' ) {
 			return $content;
 		} elseif ( 1 == $twttr_options['tweet_display'] || 1 == $twttr_options['followme_display'] || 1 == $twttr_options['hashtag_display'] || 1 == $twttr_options['mention_display'] ) {
@@ -694,7 +731,15 @@ if ( ! function_exists( 'twttr_twit' ) ) {
 /* Function for showing buttons */
 if ( ! function_exists( 'twttr_show_button' ) ) {
 	function twttr_show_button( $tweet, $follow, $hashtag, $mention ) {
-		global $post, $twttr_options;
+		if( is_feed() ) {
+			return;
+		}
+
+		global $post, $twttr_options, $twttr_add_api_script;
+
+		$upload_dir = wp_upload_dir();
+		$twttr_add_api_script = true;
+
 		if ( 1 == $tweet || 1 == $follow || 1 == $hashtag || 1 == $mention ) {
 			$lang = ( 1 == $twttr_options['lang_default'] ) ? '' : 'data-lang="'. $twttr_options['lang'] . '"';
 			$tailoring = ! empty( $twttr_options['tailoring'] ) ? 'data-dnt="true"' : '';
@@ -705,7 +750,7 @@ if ( ! function_exists( 'twttr_show_button' ) ) {
 				$title_post = ( 'page_title' == $twttr_options['text_option_twitter'] ) ? htmlspecialchars( urlencode( $post->post_title ) ) : $twttr_options['text_twitter'];
 				/*show tweet button*/
 				$tweet = '<div class="twttr_twitter">
-					<a href="http://twitter.com/share" class="twitter-share-button" data-via="'. $twttr_options['via_twitter'] . '" data-hashtags="' . $twttr_options['hashtag_twitter'] . '" ' . $lang . ' data-size="' . $twttr_options['size'] . '" data-text="' . $title_post . '" data-url="' . $permalink_post . '" ' . $tailoring . ' data-related="' . $twttr_options['related_twitter'] . '" target="_blank">Tweet</a>
+					<a href="http://twitter.com/share?text=' . $title_post . '" class="twitter-share-button" data-via="'. $twttr_options['via_twitter'] . '" data-hashtags="' . $twttr_options['hashtag_twitter'] . '" ' . $lang . ' data-size="' . $twttr_options['size'] . '" data-url="' . $permalink_post . '" ' . $tailoring . ' data-related="' . $twttr_options['related_twitter'] . '" target="_blank">' . __( 'Tweet', 'twitter-plugin' ) . '</a>
 				</div>';
 			} else {
 				$tweet = "";
@@ -716,16 +761,16 @@ if ( ! function_exists( 'twttr_show_button' ) ) {
 					$twttr_options['url_twitter'] = "twitter";				
 
 				/*show follow me button*/
-				if ( 'standart' == $twttr_options[ 'display_option' ] ) {
+				if ( 'standart' == $twttr_options[ 'display_option' ] || ! is_writable( $upload_dir['basedir'] ) ) {
 					$show_count = ( $twttr_options['followers_count_followme'] ) ? 'data-show-count="true"' : 'data-show-count="false"';
 					$show_name = ( $twttr_options['username_display'] ) ? 'data-show-screen-name="true"' : 'data-show-screen-name="false"';
 
 					$follow = '<div class="twttr_followme">
-						<a href="https://twitter.com/' . $twttr_options['url_twitter'] . '" class="twitter-follow-button" ' . $show_count . ' data-size="' . $twttr_options['size'] . '" ' . $lang . ' ' . $show_name . ' ' . $tailoring . ' target="_blank">Follow me</a>
+						<a href="https://twitter.com/' . $twttr_options['url_twitter'] . '" class="twitter-follow-button" ' . $show_count . ' data-size="' . $twttr_options['size'] . '" ' . $lang . ' ' . $show_name . ' ' . $tailoring . ' target="_blank">' . __( 'Follow me', 'twitter-plugin' ) . '</a>
 					</div>';
 				} else {
 					$follow = '<div class="twttr_followme">
-						<a href="http://twitter.com/' . $twttr_options['url_twitter'] . '" target="_blank" title="Follow me"><img src="' . $twttr_options['img_link'] . '" alt="Follow me" /></a>
+						<a href="http://twitter.com/' . $twttr_options['url_twitter'] . '" target="_blank" title="Follow me"><img src="' . $twttr_options['img_link'] . '" alt="' . __( 'Follow me', 'twitter-plugin' ) . '" /></a>
 					</div>';
 				}
 			} else {
@@ -733,10 +778,11 @@ if ( ! function_exists( 'twttr_show_button' ) ) {
 			}
 			if ( 1 == $hashtag ) {
 				/*option for hashtag button*/
+				$hashtag_tag = ( $twttr_options['hashtag'] == "" ) ? $twttr_options['hashtag'] = __( 'TwitterStories', 'twitter-pro' ) : urlencode( $twttr_options['hashtag'] );
 				if ( $twttr_options['hashtag'] == "" )
 					$twttr_options['hashtag'] = __( 'TwitterStories', 'twitter-plugin' );
 
-				$text_hashtag = ( 'page_title' == $twttr_options['text_option_hashtag'] ) ? htmlspecialchars( urlencode( $post->post_title ) ) : $twttr_options['text_hashtag'];
+				$text_hashtag = ( 'page_title' == $twttr_options['text_option_hashtag'] ) ? htmlspecialchars( urlencode( $post->post_title ) ) : urlencode( $twttr_options['text_hashtag'] );
 
 				if ( 'no_url' == $twttr_options['url_option_hashtag'] ) {
 					$url_hashtag = '';
@@ -748,11 +794,11 @@ if ( ! function_exists( 'twttr_show_button' ) ) {
 				/*show hashtag button*/
 				if ( $text_hashtag == "" ) {
 					$hashtag = '<div class="twttr_hashtag">
-						<a href="https://twitter.com/intent/tweet?button_hashtag=' . $twttr_options['hashtag'] . '" class="twitter-hashtag-button" data-size="' . $twttr_options['size'] . '" ' . $lang . ' data-related="' . $twttr_options['related_hashtag'] . '" data-url="' . $url_hashtag . '" ' . $tailoring . ' target="_blank">Tweet #' . $twttr_options['hashtag'] . '</a>
+						<a href="https://twitter.com/intent/tweet?button_hashtag=' . $hashtag_tag . '" class="twitter-hashtag-button" data-size="' . $twttr_options['size'] . '" ' . $lang . ' data-related="' . $twttr_options['related_hashtag'] . '" data-url="' . $url_hashtag . '" ' . $tailoring . ' target="_blank">' . __( 'Tweet', 'twitter-plugin' ) . ' #' . $twttr_options['hashtag'] . '</a>
 					</div>';
 				} else {
 					$hashtag = '<div class="twttr_hashtag">
-						<a href="https://twitter.com/intent/tweet?button_hashtag=' . $twttr_options['hashtag'] . '&text=' . $text_hashtag . '" class="twitter-hashtag-button" data-size="' . $twttr_options['size'] . '" ' . $lang . ' data-related="' . $twttr_options['related_hashtag'] . '" data-url="' . $url_hashtag . '" ' . $tailoring . ' target="_blank">Tweet #' . $twttr_options['hashtag'] . '</a>
+						<a href="https://twitter.com/intent/tweet?button_hashtag=' . $hashtag_tag . '&text=' . $text_hashtag . '" class="twitter-hashtag-button" data-size="' . $twttr_options['size'] . '" ' . $lang . ' data-related="' . $twttr_options['related_hashtag'] . '" data-url="' . $url_hashtag . '" ' . $tailoring . ' target="_blank">' . __( 'Tweet', 'twitter-plugin' ) . ' #' . $twttr_options['hashtag'] . '</a>
 					</div>';
 				}
 			} else {
@@ -766,15 +812,15 @@ if ( ! function_exists( 'twttr_show_button' ) ) {
 				if ( 'page_title' == $twttr_options['text_option_mention'] )
 					$text_mention = '';
 
-				$text_mention = ( 'page_title' == $twttr_options['text_option_mention'] ) ? htmlspecialchars( urlencode( $post->post_title ) ) : $twttr_options['text_mention'];
+				$text_mention = ( 'page_title' == $twttr_options['text_option_mention'] ) ? htmlspecialchars( urlencode( $post->post_title ) ) : urlencode( $twttr_options['text_mention'] );
 				/*show mention button*/
 				$mention = '<div class="twttr_mention">
-					<a href="https://twitter.com/intent/tweet?screen_name=' . $twttr_options['tweet_to_mention'] . '&text=' . $text_mention . '" class="twitter-mention-button" data-size="' . $twttr_options['size'] . '" ' . $lang . ' data-related="' . $twttr_options['related_mention'] . '" ' . $tailoring . ' target="_blank">Tweet to @'. $twttr_options['tweet_to_mention'] .'</a>
+					<a href="https://twitter.com/intent/tweet?screen_name=' . $twttr_options['tweet_to_mention'] . '&text=' . $text_mention . '" class="twitter-mention-button" data-size="' . $twttr_options['size'] . '" ' . $lang . ' data-related="' . $twttr_options['related_mention'] . '" ' . $tailoring . ' target="_blank">' . __( 'Tweet to', 'twitter-plugin' ) . ' @'. $twttr_options['tweet_to_mention'] .'</a>
 				</div>';
 			} else {
 				$mention = "";
 			}
-			return '<div class="twttr_buttons">' . $tweet . $follow . $hashtag . $mention . '<script>!function(d,s,id) {var js,fjs=d.getElementsByTagName(s)[0];if (!d.getElementById(id)) {js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>';
+			return '<div class="twttr_buttons">' . $tweet . $follow . $hashtag . $mention . '</div>';
 		}
 	}
 }
@@ -788,10 +834,26 @@ if ( ! function_exists( 'twttr_wp_head' ) ) {
 
 if ( ! function_exists( 'twttr_admin_enqueue_scripts' ) ) {
 	function twttr_admin_enqueue_scripts() {
-		if ( isset( $_GET['page'] ) && $_GET['page'] == "twitter.php" ) {
+		if ( isset( $_GET['page'] ) && ( "twitter.php" == $_GET['page'] || "social-buttons.php" == $_GET['page'] ) ) {
 			wp_enqueue_style( 'twttr_stylesheet', plugins_url( 'css/style.css', __FILE__ ) );
 			wp_enqueue_script( 'jquery' );
 			wp_enqueue_script( 'twttr_script', plugins_url( 'js/script.js' , __FILE__ ), array( 'jquery' ) );
+
+			if( "twitter.php" == $_GET['page'] && isset( $_GET['action'] ) && 'custom_code' == $_GET['action'] ) {
+				bws_plugins_include_codemirror();
+			}
+		}
+	}
+}
+
+if( ! function_exists( 'twttr_api_scripts' ) ) {
+	function twttr_api_scripts() {
+		global $twttr_add_api_script;
+		if( true == $twttr_add_api_script ) { ?>
+			<script>
+				!function(d,s,id) {var js,fjs=d.getElementsByTagName(s)[0];if (!d.getElementById(id)) {js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+			</script> 
+		<?php $twttr_add_api_script = false;
 		}
 	}
 }
@@ -840,7 +902,7 @@ if ( ! function_exists( 'twttr_shortcode_button_content' ) ) {
 /*## Functions creates other links on plugins page. */
 if ( ! function_exists( 'twttr_action_links' ) ) {
 	function twttr_action_links( $links, $file ) {
-		if ( ! is_network_admin() ) {
+		if ( ! is_network_admin() && ! is_plugin_active( 'twitter-pro/twitter-pro.php' ) && ! is_plugin_active( 'social-buttons-pack/social-buttons-pack.php' ) ) {
 			/* Static so we don't call plugin_basename on every plugin row */
 			static $this_plugin;
 			if ( ! $this_plugin ) $this_plugin = plugin_basename( __FILE__ );
@@ -857,8 +919,9 @@ if ( ! function_exists( 'twttr_links' ) ) {
 	function twttr_links( $links, $file ) {
 		$base = plugin_basename( __FILE__ );
 		if ( $file == $base ) {
-			if ( ! is_network_admin() )
+			if ( ! is_network_admin() ) {
 				$links[]	= '<a href="admin.php?page=twitter.php">' . __( 'Settings', 'twitter-plugin' ) . '</a>';
+			}
 			$links[]	= '<a href="http://wordpress.org/plugins/twitter-plugin/faq/" target="_blank">' . __( 'FAQ', 'twitter-plugin' ) . '</a>';
 			$links[]	= '<a href="http://support.bestwebsoft.com">' . __( 'Support', 'twitter-plugin' ) . '</a>';
 		}
@@ -870,9 +933,9 @@ if ( ! function_exists( 'twttr_links' ) ) {
 /* add banner on plugins page */
 if ( ! function_exists ( 'twttr_plugin_banner' ) ) {
 	function twttr_plugin_banner() {
-		global $hook_suffix;
+		global $hook_suffix, $twttr_plugin_info;
 		if ( 'plugins.php' == $hook_suffix ) {
-			global $twttr_plugin_info, $twttr_options;
+			global $twttr_options;
 			if ( empty( $twttr_options ) )
 				$twttr_options = get_option( 'twttr_options' );
 
@@ -882,6 +945,11 @@ if ( ! function_exists ( 'twttr_plugin_banner' ) ) {
 			if ( ! is_network_admin() )
 				bws_plugin_banner_to_settings( $twttr_plugin_info, 'twttr_options', 'twitter-plugin', 'admin.php?page=twitter.php' );
 		}
+
+		if( isset( $_GET['page'] ) && 'twitter.php' == $_GET['page'] ) {
+			bws_plugin_suggest_feature_banner( $twttr_plugin_info, 'twttr_options', 'twitter-plugin' );
+		}
+
 	}
 }
 
@@ -931,8 +999,14 @@ if ( ! function_exists( 'twttr_delete_options' ) ) {
 				delete_option( 'twttr_options' );
 			}
 		}
+
+		require_once( dirname( __FILE__ ) . '/bws_menu/bws_include.php' );
+		bws_include_init( plugin_basename( __FILE__ ) );
+		bws_delete_plugin( plugin_basename( __FILE__ ) );
 	}
 }
+
+register_activation_hook( __FILE__, 'twttr_plugin_activation' );
 
 /* Adding 'BWS Plugins' admin menu */
 add_action( 'admin_menu', 'twttr_add_pages' );
@@ -943,6 +1017,7 @@ add_action( 'init', 'twttr_init' );
 add_action( 'admin_init', 'twttr_admin_init' );
 /* Adding stylesheets */
 add_action( 'wp_enqueue_scripts', 'twttr_wp_head' );
+add_action( 'wp_footer', 'twttr_api_scripts' );
 add_action( 'admin_enqueue_scripts', 'twttr_admin_enqueue_scripts' );
 /* Adding plugin buttons */
 add_shortcode( 'follow_me', 'twttr_twitter_buttons' );

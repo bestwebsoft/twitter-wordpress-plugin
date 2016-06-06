@@ -1,10 +1,10 @@
 ﻿=== Twitter Button by BestWebSoft ===
 Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
-Tags: add twitter like button, add like button, add follow button, add tweet button, add hashtag button, add mention button, add twitter follow button, add twitter tweet button, add twitter hashtag button, add twitter mention button, add twitter buttons, add twitter button, advanced twitter, auto tweet, best twitter, best twitter like button, best twitter share button, best twitter plugin, button, buton, Button like, connect, custom twitter, custom twitter feeds, easy twitter, free, free twitter plugin, free twitter buttons, follow, follow button, follow me, follow us, live tweets, Like, like button, live twitter feeds, My Page button, Share, share button, share twitter, share buttons, social, social account, social button, social bookmark, social bookmarking, social media publishing, social network, social network auto publish, Social Plugins, social profiles, social share, tvet, tvett, tvit, tviter, tvitt, tweet, tweeter, tweetter, twet, tweter, twett, twit, twiter, twiter conect, twitt, twitter button display, twitter connect, twitter follow, twitter follow button, twitter fans, twitter favorites, twitter like, twitter like button, twitter plugin, twitter share, twitter tool, twitter tools, Twitter Tweet, Twitter Tweet Button, twitter styling, twitter updates, twitter user tweets, twitter share button, twitter-like, twitter feed for wordpress, twitter feeds, twitter post, twitter posts, twitter profile, twitter social network, twitter super responsive, wp twitter feeds, wp twitter feeds plugin, twitter-followers, WordPress Twitter, WordPress Twitter Plugin
+Tags: add social buttons, twitter buttons, add twitter buttons, share button, follow button, tweets, twitter share button, twitter follow button, twitter feeds, like button, twitter like button, social bookmark
 Requires at least: 3.8
-Tested up to: 4.4
-Stable tag: 2.48
+Tested up to: 4.5.2
+Stable tag: 2.49
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,8 @@ http://www.youtube.com/watch?v=2qJ55xvGbDU
 * Change buttons options.
 * Use a standard button with the number of followers or replace it with some custom image.
 
+If you have a feature, suggestion or idea you'd like to see in the plugin, we'd love to hear about it! <a href="http://support.bestwebsoft.com/hc/en-us/requests/new" target="_blank">Suggest a Feature</a>
+
 = Recommended Plugins =
 
 The author of the Twitter Button also recommends the following plugins:
@@ -46,6 +48,15 @@ There is also a premium version of the plugin <a href="http://bestwebsoft.com/pr
 
 If you create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files  <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
 
+= Technical support =
+
+Dear users, our plugins are available for free download. If you have any questions or recommendations regarding the functionality of our plugins (existing options, new options, current issues), please feel free to contact us. Please note that we accept requests in English only. All messages in other languages won't be accepted.
+
+If you notice any bugs in the plugin's work, you can notify us about it and we'll investigate and fix the issue then. Your request should contain URL of the website, issues description and WordPress admin panel credentials.
+
+Moreover we can customize the plugin according to your requirements. It's a paid service (as a rule it costs $40, but the price can vary depending on the amount of the necessary changes and their complexity). Please note that we could also include this or that feature (developed for you) in the next release and share with the other users then.
+We can fix some things for free for the users who provide translation of our plugin into their native language (this should be a new translation of a certain plugin, you can check available translations on the official plugin page).
+
 == Installation ==
 
 1. Upload the folder `twitter-plugin` to the directory `/wp-content/plugins/`.
@@ -60,20 +71,15 @@ http://www.youtube.com/watch?v=ls9754Mr8Xg
 
 = I cannot see the Twitter Button icon in the post after the plugin installation =
 
-In the WordPress admin panel go to "Plugins", find the "Twitter Button" plugin and click "Activate".
+In the WordPress admin panel go to "Plugins", find the "Twitter Button by BestWebSoft" plugin and click "Activate".
 
 = How can I deactivate the plugin =
 
-In the WordPress admin panel go to "Plugins", find the "Twitter Button" plugin and click "Deactivate".
-
-= After clicking the Twitter Button icon I see the Twitter Button Home page instead of the necessary account page =
-
-1. In the WordPress admin panel go to "Settings", find the "Twitter Button" plugin settings page and enter your Twitter login. Then click "Save Changes".
-2. If you do not have Twitter account yet you should create it using this link: https://twitter.com/signup. After account is created please follow the instructions above.
+In the WordPress admin panel go to "Plugins", find the "Twitter Button by BestWebSoft" plugin and click "Deactivate".
 
 = How to adjust the Twitter Button icon position on the page =
 
-In the WordPress admin panel go to "Settings", find the Twitter Button plugin settings page and select one of the listed positions: Top position or Bottom position. Then click "Save Changes".
+In the WordPress admin panel go to "BWS Plugins", find the Twitter Button plugin settings page and select one of the listed positions: Before the post, After the post or display the buttons only via shortcode. Then click "Save Changes".
 
 = After installation and settings adjustment on the plugin settings page it is not working still =
 
@@ -91,14 +97,18 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Screenshots ==
 
-1. Twitter Button Settings page.
-2. Twitter Button Settings page (Settings for "Tweet" and "Follow me" buttons).
-3. Twitter Button Settings page (Settings for "Hashtag" and "Mention" buttons).
-4. Pasting [twitter_buttons] shortcode into the content.
-5. Twitter buttons in the front-end.
-6. Custom Twitter "Follow" button in the front-end.
+1. Twitter buttons in the front-end.
+2. Custom Twitter "Follow" button in the front-end.
+3. Twitter Button Settings page.
+4. Twitter Button Settings page (Settings for "Tweet" and "Follow me" buttons).
+5. Twitter Button Settings page (Settings for "Hashtag" and "Mention" buttons).
+6. Pasting [twitter_buttons] shortcode into the content.
 
 == Changelog ==
+
+= V2.49 - 06.06.2016 =
+* Bugfix : The bug with excerpt was fixed
+* Update : We updated all functionality for wordpress 4.5.2
 
 = V2.48 - 05.01.2016 =
 * NEW: "Hashtag", "Mention" Twitter buttons were added.
@@ -288,6 +298,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Ability to install Twitter Button icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.49 =
+The bug with excerpt was fixed. We updated all functionality for wordpress 4.5.2.
 
 = V2.48 =
 "Hashtag", "Mention" Twitter buttons were added. Options for twitter buttons were added: language, size, choosen URL, tweet text, via, tailoring, count. Shortcode [follow_me] was replaced by shortcode [twitter_buttons].
