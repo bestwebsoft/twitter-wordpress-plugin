@@ -1,4 +1,4 @@
-<a href="http://bestwebsoft.com/products/twitter/" target=_blank>Twitter WordPress Plugin</a>
+<a href="http://bestwebsoft.com/products/twitter/" target=_blank>Twitter Button WordPress Plugin</a>
 ========================
 
 Twitter Button plugin allows you to add the Twitter "Tweet", "Follow", "Hashtag" and "Mention" buttons on your site. Also, you can exclude certain post types or pages from adding the Twitter button. Do you want to be always in touch with your friends and readers? Cannot imagine your life without Twitter? Now it is all available in several clicks!

@@ -4,7 +4,7 @@ Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&
 Tags: add social buttons, twitter buttons, add twitter buttons, share button, follow button, tweets, twitter share button, twitter follow button, twitter feeds, like button, twitter like button, social bookmark
 Requires at least: 3.8
 Tested up to: 4.5.2
-Stable tag: 2.49
+Stable tag: 2.50
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,7 +46,7 @@ There is also a premium version of the plugin <a href="http://bestwebsoft.com/pr
 * Russian (ru_RU)
 * Ukrainian (uk)
 
-If you create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files  <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
+Some of translations are incomplete. If you create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files  <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
 
 = Technical support =
 
@@ -106,9 +106,12 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V2.50 - 21.06.2016 =
+* Update : We added action for the settings page.
+
 = V2.49 - 06.06.2016 =
-* Bugfix : The bug with excerpt was fixed
-* Update : We updated all functionality for wordpress 4.5.2
+* Bugfix : The bug with excerpt was fixed.
+* Update : We updated all functionality for wordpress 4.5.2.
 
 = V2.48 - 05.01.2016 =
 * NEW: "Hashtag", "Mention" Twitter buttons were added.
@@ -299,12 +302,14 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Upgrade Notice ==
 
+= V2.50 =
+We added action for the settings page.
+
 = V2.49 =
 The bug with excerpt was fixed. We updated all functionality for wordpress 4.5.2.
 
 = V2.48 =
 "Hashtag", "Mention" Twitter buttons were added. Options for twitter buttons were added: language, size, choosen URL, tweet text, via, tailoring, count. Shortcode [follow_me] was replaced by shortcode [twitter_buttons].
-
 
 = V2.47 =
 The bug with plugin menu duplicating was fixed.
