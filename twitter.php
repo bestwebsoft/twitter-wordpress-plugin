@@ -1,12 +1,12 @@
 <?php
 /*##
 Plugin Name: Twitter Button by BestWebSoft
-Plugin URI: http://bestwebsoft.com/donate/
-Description: Plugin to add a link to the page author to twitter.
+Plugin URI: http://bestwebsoft.com/products/twitter/
+Description: Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPress posts, pages and widgets.
 Author: BestWebSoft
 Text Domain: twitter-plugin
 Domain Path: /languages
-Version: 2.50
+Version: 2.51
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -821,7 +821,7 @@ if ( ! function_exists( 'twttr_api_scripts' ) ) {
 	function twttr_api_scripts() {
 		global $twttr_add_api_script;
 		if ( true == $twttr_add_api_script ) { ?>
-			<script>
+			<script type="text/javascript">
 				!function(d,s,id) {var js,fjs=d.getElementsByTagName(s)[0];if (!d.getElementById(id)) {js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 			</script> 
 			<?php $twttr_add_api_script = false;

@@ -3,12 +3,12 @@ Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: add social buttons, twitter buttons, add twitter buttons, share button, follow button, tweets, twitter share button, twitter follow button, twitter feeds, like button, twitter like button, social bookmark
 Requires at least: 3.8
-Tested up to: 4.5.2
-Stable tag: 2.50
+Tested up to: 4.6
+Stable tag: 2.51
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Add a Twitter "Tweet", "Follow", "Hashtag" and "Mention" buttons to your WordPress website.
+Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPress posts, pages and widgets.
 
 == Description ==
 
@@ -46,7 +46,7 @@ There is also a premium version of the plugin <a href="http://bestwebsoft.com/pr
 * Russian (ru_RU)
 * Ukrainian (uk)
 
-Some of translations are incomplete. If you create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files  <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
+Some of translations are incomplete. If you create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com/hc/en-us/requests/new" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files  <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
 
 = Technical support =
 
@@ -61,7 +61,7 @@ We can fix some things for free for the users who provide translation of our plu
 
 1. Upload the folder `twitter-plugin` to the directory `/wp-content/plugins/`.
 2. Activate the plugin via the 'Plugins' menu in your WordPress admin panel.
-3. You can adjust the necessary settings using your WordPress admin panel in "BWS Plugins" -> "Twitter Button".
+3. You can adjust the necessary settings using your WordPress admin panel in "BWS Panel" -> "Twitter Button".
 
 <a href="https://docs.google.com/document/d/1IRWS_ih2ZFfWv0s4oU3LgjwWcBxtZ4UGlI7UmvPNMSQ/edit" target="_blank">View a Step-by-step Instruction on Twitter Installation</a>.
 
@@ -79,7 +79,7 @@ In the WordPress admin panel go to "Plugins", find the "Twitter Button by BestWe
 
 = How to adjust the Twitter Button icon position on the page =
 
-In the WordPress admin panel go to "BWS Plugins", find the Twitter Button plugin settings page and select one of the listed positions: Before the post, After the post or display the buttons only via shortcode. Then click "Save Changes".
+In the WordPress admin panel go to "BWS Panel", find the Twitter Button plugin settings page and select one of the listed positions: Before the post, After the post or display the buttons only via shortcode. Then click "Save Changes".
 
 = After installation and settings adjustment on the plugin settings page it is not working still =
 
@@ -106,12 +106,15 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.51 - 09.08.2016 =
+* Update : All functionality for WordPress 4.6 was updated.
+
 = V2.50 - 21.06.2016 =
 * Update : We added action for the settings page.
 
 = V2.49 - 06.06.2016 =
 * Bugfix : The bug with excerpt was fixed.
-* Update : We updated all functionality for wordpress 4.5.2.
+* Update : We updated all functionality for WordPress 4.5.2.
 
 = V2.48 - 05.01.2016 =
 * NEW: "Hashtag", "Mention" Twitter buttons were added.
@@ -127,7 +130,7 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 = V2.45 - 25.09.2015 =
 * NEW : A button for Twitter Button shortcode inserting to the content was added.
 * Update : Textdomain was changed.
-* Update : We updated all functionality for wordpress 4.3.1.
+* Update : We updated all functionality for WordPress 4.3.1.
 
 = V2.44 - 23.07.2015 =
 * Update : The Ukrainian and Russian languages file are updated.
@@ -137,18 +140,18 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Ability to restore settings to defaults.
 
 = V2.42 - 25.05.2015 =
-* Update : We updated all functionality for wordpress 4.2.2.
+* Update : We updated all functionality for WordPress 4.2.2.
 
 = V2.41 - 23.04.2015 =
 * NEW : Add ability to show button before and after post.
 
 = V2.40 - 06.04.2015 =
 * Update : BWS plugins section is updated.
-* Update : We updated all functionality for wordpress 4.1.1
+* Update : We updated all functionality for WordPress 4.1.1
 
 = V2.39 - 09.01.2015 =
 * Update : BWS plugins section is updated.
-* Update : We updated all functionality for wordpress 4.1.
+* Update : We updated all functionality for WordPress 4.1.
 
 = V2.38 - 10.10.2014 =
 * Bugfix : Bug with sharing posts that have special characters in the title was fixed.
@@ -158,12 +161,12 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 = V2.36 - 06.06.2014 =
 * Update : BWS plugins section is updated.
-* Update : We updated all functionality for wordpress 3.9.1.
+* Update : We updated all functionality for WordPress 3.9.1.
 * Update : The Ukrainian language is updated in the plugin.
 * Bugfix : Problem with custom images after updating plugin was fixed.
 
 = V2.35 - 11.04.2014 =
-* Update : We updated all functionality for wordpress 3.8.2.
+* Update : We updated all functionality for WordPress 3.8.2.
 
 = V2.34 - 04.03.2014 = 
 * Bugfix : Plugin optimization is done.
@@ -172,18 +175,18 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 = V2.33 - 06.02.2014 =
 * Update : Screenshots are updated.
 * Update : BWS plugins section is updated.
-* Update : We updated all functionality for wordpress 3.8.1.
+* Update : We updated all functionality for WordPress 3.8.1.
 
 = V2.32 - 26.12.2013 =
 * Update : BWS plugins section is updated.
-* Update : We updated all functionality for wordpress 3.8.
+* Update : We updated all functionality for WordPress 3.8.
 
 = V2.31 - 07.11.2013 =
 * Bugfix : Bug related with displaying "Follow Me" button is fixed.
 
 = V2.30 - 07.11.2013 =
-* NEW : Add checking installed wordpress version.
-* Update : We updated all functionality for wordpress 3.7.1.
+* NEW : Add checking installed WordPress version.
+* Update : We updated all functionality for WordPress 3.7.1.
 * Update : Activation of radio button or checkbox by clicking on its label.
 * Update : Screenshots are updated.
 
@@ -191,16 +194,16 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Bugfix : We fixed the bug of displaying button when post title has special characters.
 
 = V2.28 - 02.10.2013 =
-* Update : We updated all functionality for wordpress 3.6.1.
+* Update : We updated all functionality for WordPress 3.6.1.
 * Update : The Ukrainian language file is added to the plugin.
 
 = V2.27 - 04.09.2013 =
-* Update : We updated all functionality for wordpress 3.6.
+* Update : We updated all functionality for WordPress 3.6.
 * Update : Function for displaying BWS plugins section placed in a separate file and has own language files.
 
 = V2.26 - 18.07.2013 =
 * NEW : Added an ability to view and send system information by mail.
-* Update : We updated all functionality for wordpress 3.5.2.
+* Update : We updated all functionality for WordPress 3.5.2.
 
 = V2.25 - 29.05.2013 =
 * Update : BWS plugins section is updated.
@@ -226,14 +229,14 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 = V2.18 - 31.01.2013 =
 * Bugfix : Bugs in admin menu were fixed.
-* Update : We updated all functionality for wordpress 3.5.1.
+* Update : We updated all functionality for WordPress 3.5.1.
 
 = V2.17 - 25.01.2013 =
 * NEW : The Danish language file is added to the plugin.
 
 = V2.16 - 20.12.2012 =
 * NEW : Slovak and Italian language files are added to the plugin.
-* Update : We updated all functionality for wordpress 3.5.
+* Update : We updated all functionality for WordPress 3.5.
 
 = V2.15 - 24.07.2012 =
 * NEW : The Arabic language file is added to the plugin.
@@ -241,10 +244,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 = V2.14 - 10.07.2012 =
 * NEW : The Hebrew language file is added to the plugin.
-* Update : We updated all functionality for wordpress 3.4.1.
+* Update : We updated all functionality for WordPress 3.4.1.
 
 = V2.13 - 27.06.2012 =
-* Update : We updated all functionality for wordpress 3.4.
+* Update : We updated all functionality for WordPress 3.4.
 
 = V2.12 - 31.05.2012 =
 * Bugfix : The bug related to twitter positioning at frontend is fixed. 
@@ -302,11 +305,14 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Upgrade Notice ==
 
+= V1.51 =
+* The compatibility with new WordPress version updated.
+
 = V2.50 =
 We added action for the settings page.
 
 = V2.49 =
-The bug with excerpt was fixed. We updated all functionality for wordpress 4.5.2.
+The bug with excerpt was fixed. We updated all functionality for WordPress 4.5.2.
 
 = V2.48 =
 "Hashtag", "Mention" Twitter buttons were added. Options for twitter buttons were added: language, size, choosen URL, tweet text, via, tailoring, count. Shortcode [follow_me] was replaced by shortcode [twitter_buttons].
@@ -318,7 +324,7 @@ The bug with plugin menu duplicating was fixed.
 Hungarian language file is added.
 
 = V2.45 =
-A button for Twitter Button shortcode inserting to the content was added. Textdomain was changed. We updated all functionality for wordpress 4.3.1.
+A button for Twitter Button shortcode inserting to the content was added. Textdomain was changed. We updated all functionality for WordPress 4.3.1.
 
 = V2.44 =
 The Ukrainian and Russian languages file are updated. We fixed the settings page display.
@@ -327,16 +333,16 @@ The Ukrainian and Russian languages file are updated. We fixed the settings page
 Ability to restore settings to defaults.
 
 = V2.42 =
-We updated all functionality for wordpress 4.2.2.
+We updated all functionality for WordPress 4.2.2.
 
 = V2.41 =
 Add ability to show button before and after post.
 
 = V2.40 =
-BWS plugins section is updated. We updated all functionality for wordpress 4.1.1
+BWS plugins section is updated. We updated all functionality for WordPress 4.1.1
 
 = V2.39 =
-BWS plugins section is updated. We updated all functionality for wordpress 4.1.
+BWS plugins section is updated. We updated all functionality for WordPress 4.1.
 
 = V2.38 =
 Bug with sharing posts that have special characters in the title was fixed.
@@ -345,37 +351,37 @@ Bug with sharing posts that have special characters in the title was fixed.
 Security Exploit was fixed.
 
 = V2.36 =
-BWS plugins section is updated. We updated all functionality for wordpress 3.9.1. The Ukrainian language is updated in the plugin. Problem with custom images after updating plugin was fixed.
+BWS plugins section is updated. We updated all functionality for WordPress 3.9.1. The Ukrainian language is updated in the plugin. Problem with custom images after updating plugin was fixed.
 
 = V2.35 =
-We updated all functionality for wordpress 3.8.2.
+We updated all functionality for WordPress 3.8.2.
 
 = V2.34 =
 Plugin optimization is done. Plugin tabs is added.
 
 = V2.33 =
-Screenshots are updated. BWS plugins section is updated. We updated all functionality for wordpress 3.8.1.
+Screenshots are updated. BWS plugins section is updated. We updated all functionality for WordPress 3.8.1.
 
 = V2.32 =
-BWS plugins section is updated. We updated all functionality for wordpress 3.8.
+BWS plugins section is updated. We updated all functionality for WordPress 3.8.
 
 = V2.31 =
 Bug related with displaying "Follow Me" button is fixed.
 
 = V2.30 =
-Add checking installed wordpress version. We updated all functionality for wordpress 3.7.1. Activation of radio button or checkbox by clicking on its label. Screenshots are updated.
+Add checking installed WordPress version. We updated all functionality for WordPress 3.7.1. Activation of radio button or checkbox by clicking on its label. Screenshots are updated.
 
 = V2.29 =
 We fixed the bug of displaying button when post title has special characters.
 
 = V2.28 =
-We updated all functionality for wordpress 3.6.1. The Ukrainian language file is added to the plugin.
+We updated all functionality for WordPress 3.6.1. The Ukrainian language file is added to the plugin.
 
 = V2.27 =
-We updated all functionality for wordpress 3.6. Function for displaying BWS plugins section placed in a separate file and has own language files.
+We updated all functionality for WordPress 3.6. Function for displaying BWS plugins section placed in a separate file and has own language files.
 
 = V2.26 =
-Added an ability to view and send system information by mail. We updated all functionality for wordpress 3.5.2.
+Added an ability to view and send system information by mail. We updated all functionality for WordPress 3.5.2.
 
 = V2.25 =
 BWS plugins section is updated. The Danish language file is updated.
@@ -399,22 +405,22 @@ We added functionality for turning off the button "Twitter".
 Spanish language file was added to the plugin.
 
 = V2.18 =
-Bugs in admin menu were fixed. We updated all functionality for wordpress 3.5.1.
+Bugs in admin menu were fixed. We updated all functionality for WordPress 3.5.1.
 
 = V2.17 =
 The Danish language file is added to the plugin.
 
 = V2.16 =
-Slovak and Italian language files are added to the plugin. We updated all functionality for wordpress 3.5.
+Slovak and Italian language files are added to the plugin. We updated all functionality for WordPress 3.5.
 
 = V2.15 =
 The Arabic language file is added to the plugin. Cross Site Request Forgery bug was fixed.
 
 = V2.14 =
-The Hebrew language file is added to the plugin. We updated all functionality for wordpress 3.4.1.
+The Hebrew language file is added to the plugin. We updated all functionality for WordPress 3.4.1.
 
 = V2.13 =
-We updated all functionality for wordpress 3.4.
+We updated all functionality for WordPress 3.4.
 
 = V2.12 =
 The bug related to twitter positioning at frontend is fixed. 
