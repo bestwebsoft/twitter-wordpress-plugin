@@ -1,10 +1,10 @@
 ﻿=== Twitter Button by BestWebSoft ===
 Contributors: bestwebsoft
-Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
+Donate link: http://bestwebsoft.com/donate/
 Tags: add social buttons, twitter buttons, add twitter buttons, share button, follow button, tweets, twitter share button, twitter follow button, twitter feeds, like button, twitter like button, social bookmark
 Requires at least: 3.8
-Tested up to: 4.6
-Stable tag: 2.51
+Tested up to: 4.6.1
+Stable tag: 2.52
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,7 +22,7 @@ http://www.youtube.com/watch?v=2qJ55xvGbDU
 
 <a href="http://support.bestwebsoft.com" target="_blank">Twitter Button by BestWebSoft Support</a>
 
-<a href="http://bestwebsoft.com/products/twitter/?k=5d5eadeb5acd19904cbbcf3104f6ea13" target="_blank">Upgrade to Twitter Button Pro by BestWebSoft</a>
+<a href="http://bestwebsoft.com/products/wordpress/plugins/twitter/?k=5d5eadeb5acd19904cbbcf3104f6ea13" target="_blank">Upgrade to Twitter Button Pro by BestWebSoft</a>
 
 = Features =
 
@@ -38,7 +38,7 @@ If you have a feature, suggestion or idea you'd like to see in the plugin, we'd 
 The author of the Twitter Button also recommends the following plugins:
 
 * <a href="http://wordpress.org/plugins/updater/">Updater</a> - This plugin updates WordPress core and the plugins to the recent versions. You can also use the auto mode or manual mode for updating and set email notifications.
-There is also a premium version of the plugin <a href="http://bestwebsoft.com/products/updater/?k=4e3cbf90f06b1a8d47346da9a8ea106b">Updater Pro</a> with more useful features available. It can make backup of all your files and database before updating. Also it can forbid some plugins or WordPress Core update.
+There is also a premium version of the plugin <a href="http://bestwebsoft.com/products/wordpress/plugins/updater/?k=4e3cbf90f06b1a8d47346da9a8ea106b">Updater Pro</a> with more useful features available. It can make backup of all your files and database before updating. Also it can forbid some plugins or WordPress Core update.
 
 = Translation =
 
@@ -105,6 +105,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 6. Pasting [twitter_buttons] shortcode into the content.
 
 == Changelog ==
+
+= V1.52 - 11.10.2016 =
+* Update : Compatibility with Pagination plugin was added.
 
 = V1.51 - 09.08.2016 =
 * Update : All functionality for WordPress 4.6 was updated.
@@ -304,6 +307,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Ability to install Twitter Button icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V1.52 =
+* The compatibility with new Pagination version updated.
 
 = V1.51 =
 * The compatibility with new WordPress version updated.

@@ -1,12 +1,12 @@
 <?php
 /*##
 Plugin Name: Twitter Button by BestWebSoft
-Plugin URI: http://bestwebsoft.com/products/twitter/
+Plugin URI: http://bestwebsoft.com/products/wordpress/plugins/twitter/
 Description: Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPress posts, pages and widgets.
 Author: BestWebSoft
 Text Domain: twitter-plugin
 Domain Path: /languages
-Version: 2.51
+Version: 2.52
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -598,7 +598,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 									<div class="bws_info">
 										<?php _e( 'Unlock premium options by upgrading to Pro version', 'twitter-plugin' ); ?>
 									</div>
-									<a class="bws_button" href="http://bestwebsoft.com/products/twitter/?k=a8417eabe3c9fb0c2c5bed79e76de43c&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Twitter Button Pro"><?php _e( 'Learn More', 'twitter-plugin' ); ?></a>
+									<a class="bws_button" href="http://bestwebsoft.com/products/wordpress/plugins/twitter/?k=a8417eabe3c9fb0c2c5bed79e76de43c&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Twitter Button Pro"><?php _e( 'Learn More', 'twitter-plugin' ); ?></a>
 									<div class="clear"></div>
 								</div>
 							</div>
@@ -649,7 +649,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 						<div class="bws_info">
 							<?php _e( 'Unlock premium options by upgrading to Pro version', 'twitter-plugin' ); ?> 
 						</div>
-						<a class="bws_button" href="http://bestwebsoft.com/products/twitter/?k=a8417eabe3c9fb0c2c5bed79e76de43c&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Twitter Button Pro"><?php _e( 'Learn More', 'twitter-plugin' ); ?></a>
+						<a class="bws_button" href="http://bestwebsoft.com/products/wordpress/plugins/twitter/?k=a8417eabe3c9fb0c2c5bed79e76de43c&pn=76&v=<?php echo $twttr_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Twitter Button Pro"><?php _e( 'Learn More', 'twitter-plugin' ); ?></a>
 						<div class="clear"></div>
 					</div>
 				</div>
@@ -820,12 +820,19 @@ if ( ! function_exists( 'twttr_admin_enqueue_scripts' ) ) {
 if ( ! function_exists( 'twttr_api_scripts' ) ) {
 	function twttr_api_scripts() {
 		global $twttr_add_api_script;
-		if ( true == $twttr_add_api_script ) { ?>
+		if ( true == $twttr_add_api_script || defined( 'BWS_ENQUEUE_ALL_SCRIPTS' ) ) { ?>
 			<script type="text/javascript">
 				!function(d,s,id) {var js,fjs=d.getElementsByTagName(s)[0];if (!d.getElementById(id)) {js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 			</script> 
 			<?php $twttr_add_api_script = false;
 		}
+	}
+}
+
+if ( ! function_exists( 'twttr_pagination_callback' ) ) {
+	function twttr_pagination_callback( $content ) {
+		$content .= "if (typeof twttr !== 'undefined') { twttr.widgets.load(); }";
+		return $content;
 	}
 }
 
@@ -892,7 +899,7 @@ if ( ! function_exists( 'twttr_links' ) ) {
 		if ( $file == $base ) {
 			if ( ! is_network_admin() )
 				$links[]	= '<a href="admin.php?page=twitter.php">' . __( 'Settings', 'twitter-plugin' ) . '</a>';
-			$links[]	= '<a href="http://bestwebsoft.com/products/twitter/faq/" target="_blank">' . __( 'FAQ', 'twitter-plugin' ) . '</a>';
+			$links[]	= '<a href="http://bestwebsoft.com/products/wordpress/plugins/twitter/faq/" target="_blank">' . __( 'FAQ', 'twitter-plugin' ) . '</a>';
 			$links[]	= '<a href="http://support.bestwebsoft.com">' . __( 'Support', 'twitter-plugin' ) . '</a>';
 		}
 		return $links;
@@ -988,6 +995,7 @@ add_action( 'admin_init', 'twttr_admin_init' );
 /* Adding stylesheets */
 add_action( 'wp_enqueue_scripts', 'twttr_wp_head' );
 add_action( 'wp_footer', 'twttr_api_scripts' );
+add_filter( 'pgntn_callback', 'twttr_pagination_callback' );
 add_action( 'admin_enqueue_scripts', 'twttr_admin_enqueue_scripts' );
 /* Adding plugin buttons */
 add_shortcode( 'follow_me', 'twttr_twitter_buttons' );
