@@ -6,7 +6,7 @@ Description: Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPres
 Author: BestWebSoft
 Text Domain: twitter-plugin
 Domain Path: /languages
-Version: 2.52
+Version: 2.53
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -435,7 +435,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 										<?php _e( 'Recommend', 'twitter-plugin' ); ?>
 									</th>
 									<td>
-										<input name="twttr_related_twitter" type="text" value="<?php echo $twttr_options['related_twitter']; ?>" maxlength="250" /><br /><span class="bws_info"> <?php _e( 'Enter username of someone you recomend', 'twitter-plugin' ); ?></span>
+										<input name="twttr_related_twitter" type="text" value="<?php echo $twttr_options['related_twitter']; ?>" maxlength="250" /><br /><span class="bws_info"> <?php _e( 'Enter username of someone you recommend', 'twitter-plugin' ); ?></span>
 									</td>
 								</tr>
 								<tr valign="top" class="twttr_twitter_option" <?php if ( 0 == $twttr_options['tweet_display'] ) echo 'style="display:none"'; ?>>
@@ -543,7 +543,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 										<?php _e( 'Recommend', 'twitter-plugin' ); ?>
 									</th>
 									<td>
-										<input name="twttr_related_hashtag" type="text" value="<?php echo $twttr_options['related_hashtag']; ?>" maxlength="250" /><br /><span class="bws_info"> <?php _e( 'Enter username of someone you recomend', 'twitter-plugin' ); ?></span>
+										<input name="twttr_related_hashtag" type="text" value="<?php echo $twttr_options['related_hashtag']; ?>" maxlength="250" /><br /><span class="bws_info"> <?php _e( 'Enter username of someone you recommend', 'twitter-plugin' ); ?></span>
 									</td>
 								</tr>
 								<tr valign="top" class="twttr_mention_option" <?php if ( 0 == $twttr_options['mention_display'] ) echo 'style="display:none"'; ?>>
@@ -574,7 +574,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 										<?php _e( 'Recommend', 'twitter-plugin' ); ?>
 									</th>
 									<td>
-										<input name="twttr_related_mention" type="text" value="<?php echo $twttr_options['related_mention']; ?>" maxlength="250" /><br /><span class="bws_info"> <?php _e( 'Enter username of someone you recomend', 'twitter-plugin' ); ?></span>
+										<input name="twttr_related_mention" type="text" value="<?php echo $twttr_options['related_mention']; ?>" maxlength="250" /><br /><span class="bws_info"> <?php _e( 'Enter username of someone you recommend', 'twitter-plugin' ); ?></span>
 									</td>
 								</tr>
 							</table>
@@ -631,11 +631,6 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 							<tr valign="top">
 								<td colspan="2">
 									<img src="<?php echo plugins_url( 'images/pro_screen_1.png', __FILE__ ); ?>" alt="<?php _e( "Example of the site's pages tree", 'twitter-plugin' ); ?>" title="<?php _e( "Example of the site's pages tree", 'twitter-plugin' ); ?>" />
-								</td>
-							</tr>
-							<tr valign="top">
-								<td colspan="2">
-									<input disabled="disabled" type="submit" class="button-primary" value="<?php _e( 'Save Changes', 'twitter-plugin' ); ?>" />
 								</td>
 							</tr>
 							<tr valign="top">
@@ -899,7 +894,7 @@ if ( ! function_exists( 'twttr_links' ) ) {
 		if ( $file == $base ) {
 			if ( ! is_network_admin() )
 				$links[]	= '<a href="admin.php?page=twitter.php">' . __( 'Settings', 'twitter-plugin' ) . '</a>';
-			$links[]	= '<a href="http://bestwebsoft.com/products/wordpress/plugins/twitter/faq/" target="_blank">' . __( 'FAQ', 'twitter-plugin' ) . '</a>';
+			$links[]	= '<a href="http://support.bestwebsoft.com/hc/en-us/sections/200538889" target="_blank">' . __( 'FAQ', 'twitter-plugin' ) . '</a>';
 			$links[]	= '<a href="http://support.bestwebsoft.com">' . __( 'Support', 'twitter-plugin' ) . '</a>';
 		}
 		return $links;

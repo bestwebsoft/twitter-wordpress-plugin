@@ -245,7 +245,7 @@ if ( ! function_exists( 'bws_plugin_reviews_block' ) ) {
 			</div>
 			<div class="bws-plugin-reviews-donate">
 				<?php _e( 'Donations play an important role in supporting great projects', 'bestwebsoft' ); ?>:
-				<a href="https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=10&product_id=13">Donate</a>
+				<a href="http://bestwebsoft.com/donate/">Donate</a>
 			</div>
 		</div>
 	<?php }
@@ -377,7 +377,7 @@ if ( ! function_exists( 'bws_go_pro_tab_check' ) ) {
 
 										/* activate Pro */
 										if ( file_exists( WP_PLUGIN_DIR . '/' . $zip_name[0] ) ) {
-											if ( is_multisite() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) {
+											if ( is_multisite() && is_plugin_active_for_network( $plugin_basename ) ) {
 												/* if multisite and free plugin is network activated */
 												$active_plugins = get_site_option( 'active_sitewide_plugins' );
 												$active_plugins[ $bws_license_plugin ] = time();
@@ -402,7 +402,7 @@ if ( ! function_exists( 'bws_go_pro_tab_check' ) ) {
 						$bstwbsftwppdtplgns_options[ $bws_license_plugin ] = $bws_license_key;
 						/* activate Pro */
 						if ( ! is_plugin_active( $bws_license_plugin ) ) {
-							if ( is_multisite() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) {
+							if ( is_multisite() && is_plugin_active_for_network( $plugin_basename ) ) {
 								/* if multisite and free plugin is network activated */
 								$network_wide = true;
 							} else {

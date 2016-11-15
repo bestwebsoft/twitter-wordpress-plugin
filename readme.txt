@@ -4,58 +4,108 @@ Donate link: http://bestwebsoft.com/donate/
 Tags: add social buttons, twitter buttons, add twitter buttons, share button, follow button, tweets, twitter share button, twitter follow button, twitter feeds, like button, twitter like button, social bookmark
 Requires at least: 3.8
 Tested up to: 4.6.1
-Stable tag: 2.52
+Stable tag: 2.53
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPress posts, pages and widgets.
+Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPress posts and pages.
 
 == Description ==
 
-Twitter Button plugin allows you to add the Twitter "Tweet", "Follow", "Hashtag" and "Mention" buttons on your site. Also, you can exclude certain post types or pages from adding the Twitter button. Do you want to be always in touch with your friends and readers? Cannot imagine your life without Twitter? Now it is all available in several clicks!
+Twitter plugin makes it easy to add Follow, Tweet, Hashtag, and Mention buttons to Wordpress website posts, pages. This is a great way to increase social media shares.
+
+Customize the appearance, configure settings, and enable other advanced options to encourage website visitors to communicate with you via Twitter.
 
 http://www.youtube.com/watch?v=2qJ55xvGbDU
 
-<a href="https://www.youtube.com/watch?v=ls9754Mr8Xg" target="_blank">Twitter Button by BestWebSoft Video instruction on Installation</a>
+= Free Features =
 
-<a href="http://wordpress.org/plugins/twitter-plugin/faq/" target="_blank">Twitter Button by BestWebSoft FAQ</a>
+* Add Twitter buttons such as:
+	* Tweet
+	* Follow
+	* Hashtag
+	* Mention
+* Automatically add Twitter buttons to:
+	* Pages
+	* Posts
+* Add Twitter button via shortcode to:
+	* Pages
+	* Posts
+	* Widgets
+* Choose Twitter buttons position in the content:
+	* Before
+	* After
+	* Before and after
+	* Shortcode
+* Enable Opt-out of tailoring Twitter
+* Choose the language manually or set the automatic detection
+* Choose Twitter buttons size:
+	* Small
+	* Large
+* Set for Tweet, Hashtag, and Mention buttons:
+	* Tweet text
+		* Page title
+		* Custom
+	* Recommended username
+* Set custom hashtag for Tweet and Hashtag buttons
+* Set share URL for Tweet and Hashtag buttons
+	* Current page
+	* Home page
+* Set the username for Tweet via parameter
+* Show follow me button:
+	* Username
+	* Count
+* Set custom image for Follow me button
+* Add custom code via plugin settings page
+* Compatible with latest WordPress version
+* Incredibly simple settings for fast setup without modifying code
+* Detailed step-by-step documentation and videos
+* Multilingual and RTL ready
 
-<a href="http://support.bestwebsoft.com" target="_blank">Twitter Button by BestWebSoft Support</a>
+> **Pro Features**
+>
+> All features from Free version included plus:
+>
+> * Twitter button preview
+> * Display Twitter buttons for certain pages and/or post types
+> * Configure all subsites on the network
+> * Get answer to your support question within one business day ([Support Policy](http://bestwebsoft.com/support-policy/))
+>
+> [Upgrade to Pro Now](http://bestwebsoft.com/products/wordpress/plugins/twitter/?k=5d5eadeb5acd19904cbbcf3104f6ea13)
 
-<a href="http://bestwebsoft.com/products/wordpress/plugins/twitter/?k=5d5eadeb5acd19904cbbcf3104f6ea13" target="_blank">Upgrade to Twitter Button Pro by BestWebSoft</a>
+If you have a feature suggestion or idea you'd like to see in the plugin, we'd love to hear about it! [Suggest a Feature](http://support.bestwebsoft.com/hc/en-us/requests/new)
 
-= Features =
+= Documentation & Videos =
 
-* Add Twitter "Tweet", "Follow", "Hashtag", "Mention" buttons in the easiest way.
-* Choose the button position - Before, After, Before And After and Only shortcode.
-* Change buttons options.
-* Use a standard button with the number of followers or replace it with some custom image.
+* [[Doc] Installation](https://docs.google.com/document/d/1IRWS_ih2ZFfWv0s4oU3LgjwWcBxtZ4UGlI7UmvPNMSQ/)
+* [[Doc] Purchase, Installation & Configuration](https://docs.google.com/document/d/10-vIGgVw8SzZ8jU4e57mqn6VrasKtPFhS7vtgTIO3Dg/)
+* [[Video] Installation Instruction](https://www.youtube.com/watch?v=ls9754Mr8Xg)
 
-If you have a feature, suggestion or idea you'd like to see in the plugin, we'd love to hear about it! <a href="http://support.bestwebsoft.com/hc/en-us/requests/new" target="_blank">Suggest a Feature</a>
+= Help & Support =
 
-= Recommended Plugins =
-
-The author of the Twitter Button also recommends the following plugins:
-
-* <a href="http://wordpress.org/plugins/updater/">Updater</a> - This plugin updates WordPress core and the plugins to the recent versions. You can also use the auto mode or manual mode for updating and set email notifications.
-There is also a premium version of the plugin <a href="http://bestwebsoft.com/products/wordpress/plugins/updater/?k=4e3cbf90f06b1a8d47346da9a8ea106b">Updater Pro</a> with more useful features available. It can make backup of all your files and database before updating. Also it can forbid some plugins or WordPress Core update.
+Visit our Help Center if you have any questions, our friendly Support Team is happy to help — <http://support.bestwebsoft.com/>
 
 = Translation =
 
-* Hungarian (hu_HU) (thanks to <a href="mailto:solarside09@gmail.com">Peter Aprily</a> www.aprily.com)
+* Hungarian (hu_HU) (thanks to [Peter Aprily](mailto:solarside09@gmail.com) www.aprily.com)
 * Russian (ru_RU)
 * Ukrainian (uk)
 
-Some of translations are incomplete. If you create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com/hc/en-us/requests/new" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files  <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
+Some of these translations are not complete. We are constantly adding new features which should be translated. If you would like to create your own language pack or update the existing one, you can send [the text of PO and MO files](http://codex.wordpress.org/Translating_WordPress) to [BestWebSoft](http://support.bestwebsoft.com/hc/en-us/requests/new) and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO [files Poedit](http://www.poedit.net/download.php).
 
-= Technical support =
+= Recommended Plugins =
 
-Dear users, our plugins are available for free download. If you have any questions or recommendations regarding the functionality of our plugins (existing options, new options, current issues), please feel free to contact us. Please note that we accept requests in English only. All messages in other languages won't be accepted.
+* [Updater](http://bestwebsoft.com/products/wordpress/plugins/updater/?k=4e3cbf90f06b1a8d47346da9a8ea106b) - Automatically check and update WordPress core with all installed plugins to the latest versions. Manual mode, email notifications and backups of all your files and database before updating.
+* [Google +1](http://bestwebsoft.com/products/wordpress/plugins/google-plus-one/?k=e8425f26ec963119cc0e7e4b9eef7a9b) - Add Google +1 Share, Follow, Hangout buttons and profile badge to WordPress posts, pages and widgets.
+* [LinkedIn](http://bestwebsoft.com/products/wordpress/plugins/linkedin/?k=fe5130d56aa894f4227278e7b53859a4) - Add LinkedIn Share and Follow buttons to WordPress posts, pages and widgets. 5 plugins included – profile, insider, etc.
+* [Pinterest](http://bestwebsoft.com/products/wordpress/plugins/pinterest/?k=de0a862fe6c9aba43fc8d30202f312b2) - Add Pinterest Follow, Pin It buttons and profile widgets (Pin, Board, Profile) to WordPress posts, pages and widgets.
+* [Facebook Button](http://bestwebsoft.com/products/wordpress/plugins/facebook-like-button/?k=5da65dd74669c3eb5ddb6f27da1da65e) - Add Facebook Like, Share and Profile buttons to WordPress posts, pages and widgets.
 
-If you notice any bugs in the plugin's work, you can notify us about it and we'll investigate and fix the issue then. Your request should contain URL of the website, issues description and WordPress admin panel credentials.
+= Donate =
 
-Moreover we can customize the plugin according to your requirements. It's a paid service (as a rule it costs $40, but the price can vary depending on the amount of the necessary changes and their complexity). Please note that we could also include this or that feature (developed for you) in the next release and share with the other users then.
-We can fix some things for free for the users who provide translation of our plugin into their native language (this should be a new translation of a certain plugin, you can check available translations on the official plugin page).
+Donations play an important role in supporting open-source projects. We greatly appreciate any donation you can make to help us continue further development of free products.
+
+[Donate Now](http://bestwebsoft.com/donate/)
 
 == Installation ==
 
@@ -63,7 +113,7 @@ We can fix some things for free for the users who provide translation of our plu
 2. Activate the plugin via the 'Plugins' menu in your WordPress admin panel.
 3. You can adjust the necessary settings using your WordPress admin panel in "BWS Panel" -> "Twitter Button".
 
-<a href="https://docs.google.com/document/d/1IRWS_ih2ZFfWv0s4oU3LgjwWcBxtZ4UGlI7UmvPNMSQ/edit" target="_blank">View a Step-by-step Instruction on Twitter Installation</a>.
+[View a Step-by-step Instruction on Twitter Installation](https://docs.google.com/document/d/1IRWS_ih2ZFfWv0s4oU3LgjwWcBxtZ4UGlI7UmvPNMSQ/)
 
 http://www.youtube.com/watch?v=ls9754Mr8Xg
 
@@ -88,12 +138,12 @@ In the WordPress admin panel go to "BWS Panel", find the Twitter Button plugin s
 
 = I have some problems with the plugin's work. What Information should I provide to receive proper support? =
 
-Please make sure that the problem hasn't been discussed yet on our forum (<a href="http://support.bestwebsoft.com" target="_blank">http://support.bestwebsoft.com</a>). If no, please provide the following data along with your problem's description:
+Please make sure that the problem hasn't been discussed yet on our forum (<http://support.bestwebsoft.com>). If no, please provide the following data along with your problem's description:
 
 1. the link to the page where the problem occurs
 2. the name of the plugin and its version. If you are using a pro version - your order number.
 3. the version of your WordPress installation
-4. copy and paste into the message your system status report. Please read more here: <a href="https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit" target="_blank">Instuction on System Status</a>
+4. copy and paste into the message your system status report. Please read more here: [Instruction on System Status](https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit)
 
 == Screenshots ==
 
@@ -106,10 +156,14 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
-= V1.52 - 11.10.2016 =
+= V2.53 - 15.11.2016 =
+* Update : BWS plugins section is updated.
+* Pro : Tree of site pages was updated.
+
+= V2.52 - 11.10.2016 =
 * Update : Compatibility with Pagination plugin was added.
 
-= V1.51 - 09.08.2016 =
+= V2.51 - 09.08.2016 =
 * Update : All functionality for WordPress 4.6 was updated.
 
 = V2.50 - 21.06.2016 =
@@ -308,10 +362,13 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Upgrade Notice ==
 
-= V1.52 =
+= V2.53 =
+* Functionality improved.
+
+= V2.52 =
 * The compatibility with new Pagination version updated.
 
-= V1.51 =
+= V2.51 =
 * The compatibility with new WordPress version updated.
 
 = V2.50 =
