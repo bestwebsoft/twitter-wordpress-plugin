@@ -3,8 +3,6 @@
 
 Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPress posts and pages.
 
-<img src="http://bestwebsoft.com/wp-content/uploads/2014/09/twitter-button-banner-website.jpg" />
-
 <p>Twitter plugin makes it easy to add Follow, Tweet, Hashtag, and Mention buttons to Wordpress website posts, pages. This is a great way to increase social media shares.</p>
 
 <p>Customize the appearance, configure settings, and enable other advanced options to encourage website visitors to communicate with you via Twitter.</p>
