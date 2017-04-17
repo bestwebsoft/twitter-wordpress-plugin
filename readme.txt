@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add social buttons, twitter buttons, add twitter buttons, share button, follow button, tweets, twitter share button, twitter follow button, twitter feeds, like button, twitter like button, social bookmark
 Requires at least: 3.8
-Tested up to: 4.7.2
-Stable tag: 2.54
+Tested up to: 4.7.3
+Stable tag: 2.55
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -72,6 +72,7 @@ If you have a feature suggestion or idea you'd like to see in the plugin, we'd l
 
 * [[Doc] Installation](https://docs.google.com/document/d/1IRWS_ih2ZFfWv0s4oU3LgjwWcBxtZ4UGlI7UmvPNMSQ/)
 * [[Doc] Purchase, Installation & Configuration](https://docs.google.com/document/d/10-vIGgVw8SzZ8jU4e57mqn6VrasKtPFhS7vtgTIO3Dg/)
+* [[Doc] How to Use](https://docs.google.com/document/d/1Zy0GILpchmrvwxeMXxIpti12hTKR_wuobiIku0xKYAQ/)
 * [[Video] Installation Instruction](https://www.youtube.com/watch?v=ls9754Mr8Xg)
 
 = Help & Support =
@@ -94,12 +95,6 @@ Some of these translations are not complete. We are constantly adding new featur
 * [LinkedIn](https://bestwebsoft.com/products/wordpress/plugins/linkedin/?k=fe5130d56aa894f4227278e7b53859a4) - Add LinkedIn Share and Follow buttons to WordPress posts, pages and widgets. 5 plugins included – profile, insider, etc.
 * [Pinterest](https://bestwebsoft.com/products/wordpress/plugins/pinterest/?k=de0a862fe6c9aba43fc8d30202f312b2) - Add Pinterest Follow, Pin It buttons and profile widgets (Pin, Board, Profile) to WordPress posts, pages and widgets.
 * [Facebook Button](https://bestwebsoft.com/products/wordpress/plugins/facebook-like-button/?k=5da65dd74669c3eb5ddb6f27da1da65e) - Add Facebook Like, Share and Profile buttons to WordPress posts, pages and widgets.
-
-= Donate =
-
-Donations play an important role in supporting open-source projects. We greatly appreciate any donation you can make to help us continue further development of free products.
-
-[Donate Now](https://bestwebsoft.com/donate/)
 
 == Installation ==
 
@@ -147,6 +142,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 4. Pasting Twitter shortcode into the content.
 
 == Changelog ==
+
+= V2.55 - 17.04.2017 =
+* Bugfix : Multiple Cross-Site Scripting (XSS) vulnerability was fixed.
 
 = V2.54 - 03.03.2017 =
 * Update : The plugin settings page has been updated.
@@ -357,6 +355,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * Ability to install Twitter Button icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.55 =
+* Bugs fixed.
 
 = V2.54 =
 * Usability improved.

@@ -40,6 +40,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 				'options' 			 => $twttr_options,
 				'is_network_options' => is_network_admin(),
 				'tabs' 				 => $tabs,
+				'doc_link'			=> 'https://docs.google.com/document/d/1Zy0GILpchmrvwxeMXxIpti12hTKR_wuobiIku0xKYAQ/',
 				/*pls */
 				'wp_slug'			 => 'twitter-plugin',
 				'pro_page' 			 => 'admin.php?page=twitter-pro.php',

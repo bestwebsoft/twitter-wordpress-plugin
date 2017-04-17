@@ -93,6 +93,7 @@ Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPress posts and p
 <ul>
 <li><a href="https://docs.google.com/document/d/1IRWS_ih2ZFfWv0s4oU3LgjwWcBxtZ4UGlI7UmvPNMSQ/">[Doc] Installation</a></li>
 <li><a href="https://docs.google.com/document/d/10-vIGgVw8SzZ8jU4e57mqn6VrasKtPFhS7vtgTIO3Dg/">[Doc] Purchase, Installation &#38; Configuration</a></li>
+<li><a href="https://docs.google.com/document/d/1Zy0GILpchmrvwxeMXxIpti12hTKR_wuobiIku0xKYAQ/">[Doc] How to Use</a></li>
 <li><a href="https://www.youtube.com/watch?v=ls9754Mr8Xg">[Video] Installation Instruction</a></li>
 </ul>
 
@@ -120,9 +121,3 @@ Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPress posts and p
 <li><a href="https://bestwebsoft.com/products/wordpress/plugins/pinterest/?k=de0a862fe6c9aba43fc8d30202f312b2">Pinterest</a> - Add Pinterest Follow, Pin It buttons and profile widgets (Pin, Board, Profile) to WordPress posts, pages and widgets.</li>
 <li><a href="https://bestwebsoft.com/products/wordpress/plugins/facebook-like-button/?k=5da65dd74669c3eb5ddb6f27da1da65e">Facebook Button</a> - Add Facebook Like, Share and Profile buttons to WordPress posts, pages and widgets.</li>
 </ul>
-
-<h4>Donate</h4>
-
-<p>Donations play an important role in supporting open-source projects. We greatly appreciate any donation you can make to help us continue further development of free products.</p>
-
-<p><a href="https://bestwebsoft.com/donate/">Donate Now</a></p>
