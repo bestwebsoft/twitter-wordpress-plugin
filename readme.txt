@@ -2,9 +2,9 @@
 Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add social buttons, twitter buttons, add twitter buttons, share button, follow button, tweets, twitter share button, twitter follow button, twitter feeds, like button, twitter like button, social bookmark
-Requires at least: 3.8
-Tested up to: 4.7.3
-Stable tag: 2.55
+Requires at least: 3.9
+Tested up to: 4.8
+Stable tag: 2.56
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,7 +90,7 @@ Some of these translations are not complete. We are constantly adding new featur
 
 = Recommended Plugins =
 
-* [Updater](https://bestwebsoft.com/products/wordpress/plugins/updater/?k=4e3cbf90f06b1a8d47346da9a8ea106b) - Automatically check and update WordPress core with all installed plugins to the latest versions. Manual mode, email notifications and backups of all your files and database before updating.
+* [Updater](https://bestwebsoft.com/products/wordpress/plugins/updater/?k=4e3cbf90f06b1a8d47346da9a8ea106b) - Automatically check and update WordPress website core with all installed plugins and themes to the latest versions.
 * [Google +1](https://bestwebsoft.com/products/wordpress/plugins/google-plus-one/?k=e8425f26ec963119cc0e7e4b9eef7a9b) - Add Google +1 Share, Follow, Hangout buttons and profile badge to WordPress posts, pages and widgets.
 * [LinkedIn](https://bestwebsoft.com/products/wordpress/plugins/linkedin/?k=fe5130d56aa894f4227278e7b53859a4) - Add LinkedIn Share and Follow buttons to WordPress posts, pages and widgets. 5 plugins included – profile, insider, etc.
 * [Pinterest](https://bestwebsoft.com/products/wordpress/plugins/pinterest/?k=de0a862fe6c9aba43fc8d30202f312b2) - Add Pinterest Follow, Pin It buttons and profile widgets (Pin, Board, Profile) to WordPress posts, pages and widgets.
@@ -125,6 +125,10 @@ In the WordPress admin panel go to "BWS Panel", find the Twitter Button plugin s
 1. Please click "Save Changes". Make sure that you got the message "Settings Saved".
 2. After saving your settings you should refresh the web page, where the Twitter Button icon should be placed.
 
+= Can I control the order of the recommended accounts? =
+
+Only two accounts are displayed and by default the via user is shown first with the first related account shown afterwards. If the user is a follower of the via user the Share Box will instead show the first two related accounts the user isn’t a follower of. No accounts are displayed if the user follows all of the suggested accounts (via and related).
+
 = I have some problems with the plugin's work. What Information should I provide to receive proper support? =
 
 Please make sure that the problem hasn't been discussed yet on our forum (<https://support.bestwebsoft.com>). If no, please provide the following data along with your problem's description:
@@ -142,6 +146,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 4. Pasting Twitter shortcode into the content.
 
 == Changelog ==
+
+= V2.56 - 13.07.2017 =
+* NEW : Ability to add several hashtags and recommended authors has been added for Hashtag button.
+* Update : "Follow" button appearance has been updated.
 
 = V2.55 - 17.04.2017 =
 * Bugfix : Multiple Cross-Site Scripting (XSS) vulnerability was fixed.
@@ -219,7 +227,7 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 = V2.35 - 11.04.2014 =
 * Update : We updated all functionality for WordPress 3.8.2.
 
-= V2.34 - 04.03.2014 = 
+= V2.34 - 04.03.2014 =
 * Bugfix : Plugin optimization is done.
 * Update : Plugin tabs is added.
 
@@ -301,33 +309,33 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * Update : We updated all functionality for WordPress 3.4.
 
 = V2.12 - 31.05.2012 =
-* Bugfix : The bug related to twitter positioning at frontend is fixed. 
+* Bugfix : The bug related to twitter positioning at frontend is fixed.
 
 = V2.11 - 12.03.2012 =
-* Changed : BWS plugins section. 
+* Changed : BWS plugins section.
 
 = V2.10 - 24.02.2012 =
 * Change : Code that is used to connect styles and scripts is added to the plugin for correct SSL verification.
 
 = V2.09 - 07.02.2012 =
-* NEW : Translation for the title tag of twitter links is added.  
+* NEW : Translation for the title tag of twitter links is added.
 
 = V2.08 - 02.01.2012 =
 * Changed : BWS plugins section.
 
 = V2.07 - 27.12.2011 =
-* NEW : Language files are added to the plugin.  
+* NEW : Language files are added to the plugin.
 * NEW : Style for twitter button block is added.
 
 = V2.06 - 13.12.2011 =
 * Bugfix : The bug with sections options at admin page and bug of positioning in the frontend are fixed.
 
 = V2.05 - 18.10.2011 =
-* Bugfix : BWS Plugin's menu section was fixed and right now it is consisted of 3 parts: activated, installed and recommended plugins. 
-* Bugfix : The bug of positioning in admin menu is fixed. 
+* Bugfix : BWS Plugin's menu section was fixed and right now it is consisted of 3 parts: activated, installed and recommended plugins.
+* Bugfix : The bug of positioning in admin menu is fixed.
 
 = V2.04 - 14.07.2011 =
-* Changed : BWS Plugin's menu section was fixed and right now it is consisted of 2 parts: installed and recommended plugins. 
+* Changed : BWS Plugin's menu section was fixed and right now it is consisted of 2 parts: installed and recommended plugins.
 * Bugfix : Icons displaying is fixed.
 
 = V2.03 =
@@ -355,6 +363,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * Ability to install Twitter Button icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.56 =
+* Functionality expanded.
+* Appearance improved.
 
 = V2.55 =
 * Bugs fixed.
@@ -486,31 +498,31 @@ The Hebrew language file is added to the plugin. We updated all functionality fo
 We updated all functionality for WordPress 3.4.
 
 = V2.12 =
-The bug related to twitter positioning at frontend is fixed. 
+The bug related to twitter positioning at frontend is fixed.
 
 = V2.11 =
-BWS plugins section has been changed. 
+BWS plugins section has been changed.
 
 = V2.10 =
 Code that is used to connect styles and scripts is added to the plugin for correct SSL verification.
 
 = V2.09 =
-Translation for the title tag of twitter links is added.  
+Translation for the title tag of twitter links is added.
 
 = V2.08 =
 BWS plugins section was changed.
 
-= V2.07 = 
+= V2.07 =
 Language files are added to the plugin.  Style for twitter button block is added.
 
 = V2.06 =
-The bug with options sections in admin page and bug of positioning in the frontend is fixed. Please upgrade the plugin immediately. Thank you 
+The bug with options sections in admin page and bug of positioning in the frontend is fixed. Please upgrade the plugin immediately. Thank you
 
 = V2.05 =
 BWS Plugin's menu section was fixed and right now it is consisted of 3 parts: activated, installed and recommended plugins. The bug of position in the admin menu is fixed.
 
 = V2.04 =
-BWS Plugin's menu section was fixed and right now it is consisted of 2 parts: installed and recommended plugins. Icons displaying is fixed. 
+BWS Plugin's menu section was fixed and right now it is consisted of 2 parts: installed and recommended plugins. Icons displaying is fixed.
 
 = V2.03 =
 The bug of the array_merge function is fixed in this version. Please upgrade the plugin immediately. Thank you

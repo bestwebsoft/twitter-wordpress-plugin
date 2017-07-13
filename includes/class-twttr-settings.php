@@ -65,34 +65,86 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 		 */
 		public function save_options() {
 			$this->options['url_twitter']				= stripslashes( esc_html( $_REQUEST['twttr_url_twitter'] ) );
-			$this->options['position']					= isset( $_REQUEST['twttr_position'] ) ? $_REQUEST['twttr_position'] : array();
+
+			$this->options['position']					= array();
+
+			if ( isset( $_REQUEST['twttr_position'] ) && is_array( $_REQUEST['twttr_position'] ) ) {
+				foreach ( $_REQUEST['twttr_position'] as $value) {
+					if ( in_array( $value, array( 'before', 'after' ) ) )
+						$this->options['position'][] = $value;
+				}
+			}
+
 			$this->options['tweet_display']				= isset( $_REQUEST['twttr_tweet_display'] ) ? 1 : 0;
-			$this->options['size']						= $_REQUEST['twttr_size'];
+			$this->options['size']						= stripslashes( esc_html( $_REQUEST['twttr_size'] ) );
 			$this->options['lang_default']				= isset( $_REQUEST['twttr_lang_default'] ) ? 1 : 0;
-			$this->options['lang'] 						= $_REQUEST['twttr_lang'];
+			$this->options['lang'] 						= stripslashes( esc_html( $_REQUEST['twttr_lang'] ) );
 			$this->options['tailoring']					= isset( $_REQUEST['twttr_tailoring'] ) ? 1 : 0;
-			$this->options['url_of_twitter']			= $_REQUEST['twttr_url_of_twitter'];
-			$this->options['text_option_twitter']		= $_REQUEST['twttr_text_option_twitter'];
+			$this->options['url_of_twitter']			= stripslashes( esc_html( $_REQUEST['twttr_url_of_twitter'] ) );
+			$this->options['text_option_twitter']		= stripslashes( esc_html( $_REQUEST['twttr_text_option_twitter'] ) );
 			$this->options['text_twitter']				= stripslashes( esc_html( $_REQUEST['twttr_text_twitter'] ) );
+
 			$this->options['via_twitter']				= stripslashes( esc_html( $_REQUEST['twttr_via_twitter'] ) );
-			$this->options['related_twitter']			= stripslashes( esc_html( $_REQUEST['twttr_related_twitter'] ) );
-			$this->options['hashtag_twitter']			= stripslashes( esc_html( $_REQUEST['twttr_hashtag_twitter'] ) );
+
 			$this->options['followme_display']			= isset( $_REQUEST['twttr_followme_display'] ) ? 1 : 0;
 			$this->options['username_display']			= isset( $_REQUEST['twttr_username_display'] ) ? 1 : 0;
 			$this->options['followers_count_followme']	= isset( $_REQUEST['twttr_followers_count_followme'] ) ? 1 : 0;
 			if ( isset( $_REQUEST['twttr_display_option'] ) )
-				$this->options['display_option' ] 			= $_REQUEST['twttr_display_option'];
+				$this->options['display_option' ] 			= stripslashes( esc_html( $_REQUEST['twttr_display_option'] ) );
 			$this->options['hashtag_display']			= isset( $_REQUEST['twttr_hashtag_display'] ) ? 1 : 0;
-			$this->options['hashtag']					= stripslashes( esc_html( $_REQUEST['twttr_hashtag'] ) );
-			$this->options['text_option_hashtag']		= $_REQUEST['twttr_text_option_hashtag'];
+			$this->options['text_option_hashtag']		= stripslashes( esc_html( $_REQUEST['twttr_text_option_hashtag'] ) );
 			$this->options['text_hashtag']				= stripslashes( esc_html( $_REQUEST['twttr_text_hashtag'] ) );
-			$this->options['url_option_hashtag']		= $_REQUEST['twttr_url_option_hashtag'];
-			$this->options['related_hashtag']			= stripslashes( esc_html( $_REQUEST['twttr_related_hashtag'] ) );
+			$this->options['url_option_hashtag']		= stripslashes( esc_html( $_REQUEST['twttr_url_option_hashtag'] ) );
 			$this->options['mention_display']			= isset( $_REQUEST['twttr_mention_display'] ) ? 1 : 0;
+			
 			$this->options['tweet_to_mention']			= stripslashes( esc_html( $_REQUEST['twttr_tweet_to_mention'] ) );
-			$this->options['text_option_mention']		= $_REQUEST['twttr_text_option_mention'];
+			/* '\w' can not be used due to php 5.2.4 have bugs with cirillic symbols in preg_ functions */
+			$this->options['tweet_to_mention']			= preg_replace( '~[^\d_a-z]~', '', $this->options['tweet_to_mention'] );
+
+			$this->options['text_option_mention']		= stripslashes( esc_html( $_REQUEST['twttr_text_option_mention'] ) );
 			$this->options['text_mention']				= stripslashes( esc_html( $_REQUEST['twttr_text_mention'] ) );
-			$this->options['related_mention']			= stripslashes( esc_html( $_REQUEST['twttr_related_mention'] ) );
+
+			if ( 'custom' !=  $this->options['display_option'] ) {
+				$img_name =
+					'large' == $this->options['size'] ?
+					'twitter-follow' :
+					'twitter-follow-small';
+
+				$this->options['img_link'] = plugins_url( 'images/' . $img_name . '.png', dirname( __FILE__ ) );
+			}
+
+			/* "reccomended users" fields */
+			$related = array(
+				'related_twitter',
+				'related_hashtag',
+				'related_mention'
+			);
+
+			/* fields with values which can be listed with "," separator */
+			$multipleValues = array_merge(
+				array( 'hashtag_twitter', 'hashtag' ),
+				$related
+			);
+
+			foreach ( $multipleValues as $field ) {
+				$value = stripslashes( esc_html( $_REQUEST[ 'twttr_' . $field ] ) );
+				$value = preg_replace( '~\s+~', '', $value ); /* delete from fields all space symbols */
+
+				$exploded_values = explode( ',', $value ); /* create an array of values */
+
+				/* delete all punctuation symbols form values */
+				foreach ( $exploded_values as $key => $value )
+					$exploded_values[ $key ] = preg_replace( '~[[:punct:]]~u', '', $value );
+
+				$exploded_values = array_filter( $exploded_values ); /* delete all empty elements */
+
+				if ( ! empty( $exploded_values ) ) {
+					if ( in_array( $field, $related ) ) /* 'related' fields could have 2 values max */
+						$exploded_values = array_slice( $exploded_values, 0, 2); /* return only 2 first elements */
+
+					$this->options[ $field ] = implode( ', ', $exploded_values );
+				}
+			}
 
 			if ( isset( $_FILES['twttr_upload_file']['tmp_name'] ) && $_FILES['twttr_upload_file']['tmp_name'] != "" )
 				$this->options['count_icon'] = $this->options['count_icon'] + 1;
@@ -121,7 +173,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 					if ( is_uploaded_file( $_FILES['twttr_upload_file']['tmp_name'] ) ) {
 						$filename	= $_FILES['twttr_upload_file']['tmp_name'];
 						$ext		= substr( $_FILES['twttr_upload_file']['name'], 1 + strrpos( $_FILES['twttr_upload_file']['name'], '.' ) );
-						
+
 						if ( filesize ( $filename ) > $max_image_size ) {
 							$error = __( "Error: File size > 32K", 'twitter-plugin' );
 						} elseif ( ! in_array( strtolower( $ext ), $valid_types ) ) {
@@ -136,11 +188,8 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 								$uploadfile		= $twttr_cstm_mg_folder . '/' . $namefile;
 
 								if ( move_uploaded_file( $_FILES['twttr_upload_file']['tmp_name'], $uploadfile ) ) {
-									if ( 'standart' == $this->options[ 'display_option' ] ) {
-										$this->options['img_link']	= plugins_url( 'images/twitter-follow.jpg', dirname( __FILE__ ) );
-									} else if ( 'custom' == $this->options['display_option'] ) {
+									if ( 'custom' == $this->options['display_option'] )
 										$this->options['img_link']	= $this->upload_dir['baseurl'] . '/twitter-logo/twitter-follow' . $this->options['count_icon'] . '.' . $ext;
-									}
 								} else {
 									$error = __( "Error: Failed to move file", 'twitter-plugin' );
 								}
@@ -165,13 +214,13 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 		/**
 		 *
 		 */
-		public function tab_settings() { 
+		public function tab_settings() {
 			global $twttr_lang_codes, $wp_version;
 			if ( ! $this->upload_dir )
 				$this->upload_dir = wp_upload_dir(); ?>
-			<h3 class="bws_tab_label"><?php _e( 'Twitter button Settings', 'twitter-plugin' ); ?></h3>
+			<h3 class="bws_tab_label"><?php _e( 'Twitter Button Settings', 'twitter-plugin' ); ?></h3>
 			<?php $this->help_phrase(); ?>
-			<hr>			
+			<hr>
 			<div class="bws_tab_sub_label twttr_general"><?php _e( 'General', 'twitter-plugin' ); ?></div>
 			<table class="form-table twttr_settings_form">
 				<tr>
@@ -202,12 +251,12 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 					<td>
 						<fieldset>
 							<label>
-								<input type="checkbox" name="twttr_position[]" value="before" <?php if ( in_array( 'before', $this->options['position'] ) ) echo 'checked="checked"'; ?> /> 
+								<input type="checkbox" name="twttr_position[]" value="before" <?php if ( in_array( 'before', $this->options['position'] ) ) echo 'checked="checked"'; ?> />
 								<?php _e( 'Before content', 'twitter-plugin' ); ?></option>
 							</label>
 							<br>
 							<label>
-								<input type="checkbox" name="twttr_position[]" value="after" <?php if ( in_array( 'after', $this->options['position'] ) ) echo 'checked="checked"'; ?> /> 
+								<input type="checkbox" name="twttr_position[]" value="after" <?php if ( in_array( 'after', $this->options['position'] ) ) echo 'checked="checked"'; ?> />
 								<?php _e( 'After content', 'twitter-plugin' ); ?></option>
 							</label>
 						</fieldset>
@@ -220,6 +269,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 						<br />
 						<select name="twttr_lang" id="twttr_lang_choose" <?php if ( 1 == $this->options['lang_default'] ) echo 'style="display:none"'; ?> >
 							<option <?php selected( 'en', $this->options['lang'] ); ?> value="en">English</option>
+							<option <?php selected( 'en-gb', $this->options['lang'] ); ?> value="en-gb">English UK</option>
 							<option <?php selected( 'fr', $this->options['lang'] ); ?> value="fr">French - français</option>
 							<option <?php selected( 'es', $this->options['lang'] ); ?> value="es">Spanish - Español</option>
 							<option <?php selected( 'de', $this->options['lang'] ); ?> value="de">German - Deutsch</option>
@@ -250,7 +300,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 						</select>
 						<div class="bws_info"><?php _e( 'Select the default language for Twitter button(-s).', 'twitter-plugin' ); ?></div>
 					</td>
-				</tr>										
+				</tr>
 				<tr>
 					<th><?php _e( 'Twitter Tailoring', 'twitter-plugin' ); ?></th>
 					<td>
@@ -297,14 +347,14 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 					<th><?php _e( 'Recommend', 'twitter-plugin' ); ?></th>
 					<td>
 						<input name="twttr_related_twitter" type="text" value="<?php echo $this->options['related_twitter'] ?>" maxlength="250" />
-						<div class="bws_info"> <?php _e( 'Enter recommended username for Tweet.', 'twitter-plugin' ); ?></div>
+						<div class="bws_info"> <?php _e( 'Enter usernames of someone you recommend (maximum 2 allowed). For example: bestwebsoft, wordpress.', 'twitter-plugin' ); ?></div>
 					</td>
 				</tr>
 				<tr>
 					<th><?php _e( 'Hashtag', 'twitter-plugin' ); ?></th>
 					<td>
-						<input name="twttr_hashtag_twitter" type="text" value="<?php echo $this->options['hashtag_twitter'] ?>" maxlength="250" />
-						<div class="bws_info"> <?php _e( 'Enter custom hashtag for Tweet.', 'twitter-plugin' ); ?></div>
+						<input name="twttr_hashtag_twitter" type="text" value="<?php echo $this->options['hashtag_twitter'] ?>" maxlength="512" />
+						<div class="bws_info"> <?php _e( 'Enter one or multiple hashtags for your tweet. For example: bestwebsoft, wordpress, etc.', 'twitter-plugin' ); ?></div>
 					</td>
 				</tr>
 			</table>
@@ -316,7 +366,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 						<input name="twttr_url_twitter" type="text" value="<?php echo $this->options['url_twitter'] ?>" maxlength="19" />
 						<div class="bws_info"><?php printf( __( 'Enter your Twitter account username or %s create a new one %s.', 'twitter-plugin' ), '<a target="_blank" href="https://twitter.com/signup">', '</a>' ); ?></div>
 					</td>
-				</tr>										
+				</tr>
 				<tr>
 					<th><?php _e( 'Follow Button Image', 'twitter-plugin' ); ?></th>
 					<td>
@@ -364,8 +414,8 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 					<tr>
 						<th><?php _e( 'Hashtag', 'twitter-plugin' ); ?></th>
 						<td>
-							<input name="twttr_hashtag" type="text" value="<?php echo $this->options['hashtag'] ?>" maxlength="250" />
-							<div class="bws_info"><?php _e( 'Enter hashtag for your tweet.', 'twitter-plugin' ); ?> <?php printf( __( 'For example, %s.', 'twitter-plugin' ), 'bestwebsoft' ); ?></div>
+							<input name="twttr_hashtag" type="text" value="<?php echo $this->options['hashtag'] ?>" maxlength="512" />
+							<div class="bws_info"><?php _e( 'Enter one or multiple hashtags for your tweet. For example: bestwebsoft, wordpress, etc.', 'twitter-plugin' ); ?></div>
 						</td>
 					</tr>
 					<tr>
@@ -376,7 +426,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 								<br />
 								<label><input name="twttr_url_option_hashtag" type="radio" value="page_url" <?php checked( 'page_url', $this->options['url_option_hashtag'] ); ?> /> <?php _e( 'Current page', 'twitter-plugin' ); ?></label>
 								<br />
-								<label><input name="twttr_url_option_hashtag" type="radio" value="home_url" <?php checked( 'home_url', $this->options['url_option_hashtag'] ); ?> /> <?php _e( 'Home page', 'twitter-plugin' ); ?></label>									
+								<label><input name="twttr_url_option_hashtag" type="radio" value="home_url" <?php checked( 'home_url', $this->options['url_option_hashtag'] ); ?> /> <?php _e( 'Home page', 'twitter-plugin' ); ?></label>
 							</fieldset>
 						</td>
 					</tr>
@@ -395,8 +445,8 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 					<tr>
 						<th><?php _e( 'Recommend', 'twitter-plugin' ); ?></th>
 						<td>
-							<input name="twttr_related_hashtag" type="text" value="<?php echo $this->options['related_hashtag'] ?>" maxlength="250" />
-							<div class="bws_info"> <?php _e( 'Enter username of someone you recommend.', 'twitter-plugin' ); ?></div>
+							<input name="twttr_related_hashtag" type="text" value="<?php echo $this->options['related_hashtag'] ?>" maxlength="512" />
+							<div class="bws_info"> <?php _e( 'Enter usernames of someone you recommend (maximum 2 allowed). For example: bestwebsoft, wordpress.', 'twitter-plugin' ); ?></div>
 						</td>
 					</tr>
 				</table>
@@ -427,10 +477,10 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 						<th><?php _e( 'Recommend', 'twitter-plugin' ); ?></th>
 						<td>
 							<input name="twttr_related_mention" type="text" value="<?php echo $this->options['related_mention'] ?>" maxlength="250" />
-							<div class="bws_info"><?php _e( 'Enter username of someone you recommend.', 'twitter-plugin' ); ?></div>
+							<div class="bws_info"><?php _e( 'Enter usernames of someone you recommend (maximum 2 allowed). For example: bestwebsoft, wordpress.', 'twitter-plugin' ); ?></div>
 						</td>
 					</tr>
-				</tr>					
+				</tr>
 			</table>
 		<?php }
 
@@ -455,7 +505,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 				</h3>
 				<div class="inside">
 					<?php _e( "Add Twitter button(-s) to your posts, pages, custom post types or widgets by using the following shortcode:", 'twitter-plugin' ); ?>
-					<?php bws_shortcode_output( '[twitter_buttons display=tweet,follow,hashtag,mention]' ); ?>						
+					<?php bws_shortcode_output( '[twitter_buttons display=tweet,follow,hashtag,mention]' ); ?>
 				</div>
 			</div>
 		<?php /*pls */ }
@@ -468,7 +518,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 						<button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'twitter-plugin' ); ?>"></button>
 						<?php _e( 'Twitter Buttons Preview', 'twitter-plugin' ); ?>
 					</h3>
-					<div class="inside">								
+					<div class="inside">
 						<img src='<?php echo plugins_url( 'images/preview.png', dirname( __FILE__ ) ); ?>' />
 					</div>
 					<?php $this->bws_pro_block_links(); ?>
