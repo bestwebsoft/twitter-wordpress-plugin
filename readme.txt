@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add social buttons, twitter buttons, add twitter buttons, share button, follow button, tweets, twitter share button, twitter follow button, twitter feeds, like button, twitter like button, social bookmark
 Requires at least: 3.9
-Tested up to: 4.8
-Stable tag: 2.56
+Tested up to: 4.9.1
+Stable tag: 2.57
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -81,7 +81,7 @@ Visit our Help Center if you have any questions, our friendly Support Team is ha
 
 = Translation =
 
-* Czech (cs_CZ) (thanks to [Michal Kučera](mailto:mailus@n0lim.it) www.n0lim.it)
+* Czech (cs_CZ) (thanks to [Michal Kučera](mailto:kucerami@gmail.com) www.n0lim.it)
 * Hungarian (hu_HU) (thanks to [Peter Aprily](mailto:solarside09@gmail.com) www.aprily.com)
 * Russian (ru_RU)
 * Ukrainian (uk)
@@ -146,6 +146,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 4. Pasting Twitter shortcode into the content.
 
 == Changelog ==
+
+= V2.57 - 28.12.2017 =
+* Bugfix : Options removal from the database when working on a multisite network has been fixed.
+* Update : Czech language file has been updated.
 
 = V2.56 - 13.07.2017 =
 * NEW : Ability to add several hashtags and recommended authors has been added for Hashtag button.
@@ -363,6 +367,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * Ability to install Twitter Button icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.57 =
+* Bugs fixed.
+* Languages updated.
 
 = V2.56 =
 * Functionality expanded.

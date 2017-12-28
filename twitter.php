@@ -6,7 +6,7 @@ Description: Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPres
 Author: BestWebSoft
 Text Domain: twitter-plugin
 Domain Path: /languages
-Version: 2.56
+Version: 2.57
 Author URI: https://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -29,8 +29,8 @@ License: GPLv2 or later
 */
 
 /* Add BWS menu */
-if ( ! function_exists ( 'twttr_add_pages' ) ) {
-	function twttr_add_pages() {
+if ( ! function_exists ( 'twttr_admin_menu' ) ) {
+	function twttr_admin_menu() {
 		global $submenu, $wp_version, $twttr_plugin_info;
 
 		$settings = add_menu_page( __( 'Twitter Button Settings', 'twitter-plugin' ), 'Twitter Button', 'manage_options', 'twitter.php', 'twttr_settings_page', 'dashicons-twitter' );
@@ -47,7 +47,7 @@ if ( ! function_exists ( 'twttr_add_pages' ) ) {
 		add_action( 'load-' . $settings, 'twttr_add_tabs' );
 	}
 }
-/* end twttr_add_pages ##*/
+/* end twttr_admin_menu ##*/
 
 if ( ! function_exists( 'twttr_plugins_loaded' ) ) {
 	function twttr_plugins_loaded() {
@@ -111,7 +111,7 @@ if ( ! function_exists( 'twttr_settings' ) ) {
 			$options_default = twttr_get_options_default();
 			/**
 			* @since 2.54
-			* @todo remove after 27.08.2017
+			* @todo remove after 11.02.2018
 			*/
 			if ( ! is_array( $twttr_options['position'] ) ) {
 				switch ( $twttr_options['position'] ) {
@@ -127,6 +127,8 @@ if ( ! function_exists( 'twttr_settings' ) ) {
 				}
 			}
 			/* end @todo */
+
+			twttr_plugin_activate();
 
 			$twttr_options = array_merge( $options_default, $twttr_options );
 			$twttr_options['plugin_option_version'] = $twttr_plugin_info["Version"];
@@ -180,12 +182,27 @@ if ( ! function_exists( 'twttr_get_options_default' ) ) {
 	}
 }
 
-/* Add Setting page */
+/**
+ * Function for activation
+ */
+if ( ! function_exists( 'twttr_plugin_activate' ) ) {
+	function twttr_plugin_activate() {
+		/* registering uninstall hook */
+		if ( is_multisite() ) {
+			switch_to_blog( 1 );
+			register_uninstall_hook( __FILE__, 'twttr_delete_options' );
+			restore_current_blog();
+		} else {
+			register_uninstall_hook( __FILE__, 'twttr_delete_options' );
+		}
+	}
+}
+
+/*## Add Setting page */
 if ( ! function_exists( 'twttr_settings_page' ) ) {
 	function twttr_settings_page() {
 		require_once( dirname( __FILE__ ) . '/includes/class-twttr-settings.php' );
 		$page = new Twttr_Settings_Tabs( plugin_basename( __FILE__ ) ); ?>
-		<!-- general -->
 		<div class="wrap">
 			<h1><?php _e( 'Twitter Button Settings', 'twitter-plugin' ); ?></h1>
 			<noscript><div class="error below-h2"><p><strong><?php _e( "Please enable JavaScript in Your browser.", 'twitter-plugin' ); ?></strong></p></div></noscript>
@@ -194,7 +211,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 	<?php }
 }
 
-/* Function to creates shortcode [twitter_buttons] */
+/* Function to creates shortcode [twitter_buttons] ##*/
 if ( ! function_exists( 'twttr_twitter_buttons' ) ) {
 	function twttr_twitter_buttons( $atts = array( 'display' => 'follow' ) ) {
 		$atts = shortcode_atts( array( 'display' => 'follow' ), $atts, 'twitter_buttons' );
@@ -521,7 +538,9 @@ if ( ! function_exists( 'twttr_delete_options' ) ) {
 	}
 }
 
-add_action( 'admin_menu', 'twttr_add_pages' );
+/* Plugin uninstall function */
+register_activation_hook( __FILE__, 'twttr_plugin_activate' );
+add_action( 'admin_menu', 'twttr_admin_menu' );
 /* Initialization ##*/
 add_action( 'plugins_loaded', 'twttr_plugins_loaded' );
 add_action( 'init', 'twttr_init' );
@@ -544,6 +563,4 @@ add_filter( 'plugin_action_links', 'twttr_action_links', 10, 2 );
 add_filter( 'plugin_row_meta', 'twttr_links', 10, 2 );
 /* Adding banner */
 add_action( 'admin_notices', 'twttr_plugin_banner' );
-/* Plugin uninstall function */
-register_uninstall_hook( __FILE__, 'twttr_delete_options' );
 /* end ##*/
