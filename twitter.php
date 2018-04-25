@@ -6,7 +6,7 @@ Description: Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPres
 Author: BestWebSoft
 Text Domain: twitter-plugin
 Domain Path: /languages
-Version: 2.57
+Version: 2.58
 Author URI: https://bestwebsoft.com/
 License: GPLv2 or later
 */

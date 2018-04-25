@@ -501,7 +501,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 		public function display_metabox() { ?>
 			<div class="postbox">
 				<h3 class="hndle">
-					<?php _e( 'Twitter Buttons Shortchode', 'twitter-plugin' ); ?>
+					<?php _e( 'Twitter Buttons Shortcode', 'twitter-plugin' ); ?>
 				</h3>
 				<div class="inside">
 					<?php _e( "Add Twitter button(-s) to your posts, pages, custom post types or widgets by using the following shortcode:", 'twitter-plugin' ); ?>

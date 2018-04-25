@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add social buttons, twitter buttons, add twitter buttons, share button, follow button, tweets, twitter share button, twitter follow button, twitter feeds, like button, twitter like button, social bookmark
 Requires at least: 3.9
-Tested up to: 4.9.1
-Stable tag: 2.57
+Tested up to: 4.9.5
+Stable tag: 2.58
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,7 +100,7 @@ Some of these translations are not complete. We are constantly adding new featur
 
 1. Upload the folder `twitter-plugin` to the directory `/wp-content/plugins/`.
 2. Activate the plugin via the 'Plugins' menu in your WordPress admin panel.
-3. You can adjust the necessary settings using your WordPress admin panel in "BWS Panel" -> "Twitter Button".
+3. You can adjust the necessary settings in your WordPress admin panel – ”Twitter Button”.
 
 [View a Step-by-step Instruction on Twitter Installation](https://docs.google.com/document/d/1IRWS_ih2ZFfWv0s4oU3LgjwWcBxtZ4UGlI7UmvPNMSQ/)
 
@@ -118,7 +118,7 @@ In the WordPress admin panel go to "Plugins", find the "Twitter Button by BestWe
 
 = How to adjust the Twitter Button icon position on the page =
 
-In the WordPress admin panel go to "BWS Panel", find the Twitter Button plugin settings page and select one of the listed positions: Before the post, After the post or display the buttons only via shortcode. Then click "Save Changes".
+In WordPress admin panel, please go to "Twitter Button" settings page and select one of the listed positions: Before the post, After the post or display the buttons only via shortcode. Then click "Save Changes".
 
 = After installation and settings adjustment on the plugin settings page it is not working still =
 
@@ -146,6 +146,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 4. Pasting Twitter shortcode into the content.
 
 == Changelog ==
+
+= V2.58 - 25.04.2018 =
+* Update : Czech language file has been updated.
 
 = V2.57 - 28.12.2017 =
 * Bugfix : Options removal from the database when working on a multisite network has been fixed.
@@ -367,6 +370,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * Ability to install Twitter Button icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.58 =
+* Languages updated.
 
 = V2.57 =
 * Bugs fixed.
