@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add social buttons, twitter buttons, add twitter buttons, share button, follow button, tweets, twitter share button, twitter follow button, twitter feeds, like button, twitter like button, social bookmark
 Requires at least: 3.9
-Tested up to: 4.9.5
-Stable tag: 2.58
+Tested up to: 4.9.8
+Stable tag: 2.59
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -146,6 +146,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 4. Pasting Twitter shortcode into the content.
 
 == Changelog ==
+
+= V2.59 - 18.10.2018 =
+* Update : All functionality for wordpress 4.9.8 was updated.
+* Bugfix : The code refactoring was performed.
 
 = V2.58 - 25.04.2018 =
 * Update : Czech language file has been updated.
@@ -370,6 +374,11 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * Ability to install Twitter Button icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.59 =
+* Bugs fixed.
+* Plugin optimization completed
+* The compatibility with new WordPress version updated.
 
 = V2.58 =
 * Languages updated.

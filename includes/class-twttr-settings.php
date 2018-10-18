@@ -65,16 +65,14 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 		 */
 		public function save_options() {
 			$this->options['url_twitter']				= stripslashes( esc_html( $_REQUEST['twttr_url_twitter'] ) );
-
 			$this->options['position']					= array();
-
 			if ( isset( $_REQUEST['twttr_position'] ) && is_array( $_REQUEST['twttr_position'] ) ) {
-				foreach ( $_REQUEST['twttr_position'] as $value) {
-					if ( in_array( $value, array( 'before', 'after' ) ) )
-						$this->options['position'][] = $value;
+				foreach ( $_REQUEST['twttr_position'] as $value ) {
+					if ( in_array( $value, array( 'before', 'after' ) ) ) {
+					    $this->options['position'][] = $value;
+					}
 				}
 			}
-
 			$this->options['tweet_display']				= isset( $_REQUEST['twttr_tweet_display'] ) ? 1 : 0;
 			$this->options['size']						= stripslashes( esc_html( $_REQUEST['twttr_size'] ) );
 			$this->options['lang_default']				= isset( $_REQUEST['twttr_lang_default'] ) ? 1 : 0;
@@ -83,33 +81,28 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 			$this->options['url_of_twitter']			= stripslashes( esc_html( $_REQUEST['twttr_url_of_twitter'] ) );
 			$this->options['text_option_twitter']		= stripslashes( esc_html( $_REQUEST['twttr_text_option_twitter'] ) );
 			$this->options['text_twitter']				= stripslashes( esc_html( $_REQUEST['twttr_text_twitter'] ) );
-
 			$this->options['via_twitter']				= stripslashes( esc_html( $_REQUEST['twttr_via_twitter'] ) );
-
 			$this->options['followme_display']			= isset( $_REQUEST['twttr_followme_display'] ) ? 1 : 0;
 			$this->options['username_display']			= isset( $_REQUEST['twttr_username_display'] ) ? 1 : 0;
 			$this->options['followers_count_followme']	= isset( $_REQUEST['twttr_followers_count_followme'] ) ? 1 : 0;
-			if ( isset( $_REQUEST['twttr_display_option'] ) )
-				$this->options['display_option' ] 			= stripslashes( esc_html( $_REQUEST['twttr_display_option'] ) );
+			if ( isset( $_REQUEST['twttr_display_option'] ) ) {
+			    $this->options['display_option']        = stripslashes( esc_html( $_REQUEST['twttr_display_option'] ) );
+			}
 			$this->options['hashtag_display']			= isset( $_REQUEST['twttr_hashtag_display'] ) ? 1 : 0;
 			$this->options['text_option_hashtag']		= stripslashes( esc_html( $_REQUEST['twttr_text_option_hashtag'] ) );
 			$this->options['text_hashtag']				= stripslashes( esc_html( $_REQUEST['twttr_text_hashtag'] ) );
 			$this->options['url_option_hashtag']		= stripslashes( esc_html( $_REQUEST['twttr_url_option_hashtag'] ) );
 			$this->options['mention_display']			= isset( $_REQUEST['twttr_mention_display'] ) ? 1 : 0;
-			
 			$this->options['tweet_to_mention']			= stripslashes( esc_html( $_REQUEST['twttr_tweet_to_mention'] ) );
 			/* '\w' can not be used due to php 5.2.4 have bugs with cirillic symbols in preg_ functions */
 			$this->options['tweet_to_mention']			= preg_replace( '~[^\d_a-zA-Z]~', '', $this->options['tweet_to_mention'] );
-
 			$this->options['text_option_mention']		= stripslashes( esc_html( $_REQUEST['twttr_text_option_mention'] ) );
 			$this->options['text_mention']				= stripslashes( esc_html( $_REQUEST['twttr_text_mention'] ) );
-
-			if ( 'custom' !=  $this->options['display_option'] ) {
+			if ( 'custom' != $this->options['display_option'] ) {
 				$img_name =
 					'large' == $this->options['size'] ?
 					'twitter-follow' :
 					'twitter-follow-small';
-
 				$this->options['img_link'] = plugins_url( 'images/' . $img_name . '.png', dirname( __FILE__ ) );
 			}
 
@@ -129,34 +122,32 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 			foreach ( $multipleValues as $field ) {
 				$value = stripslashes( esc_html( $_REQUEST[ 'twttr_' . $field ] ) );
 				$value = preg_replace( '~\s+~', '', $value ); /* delete from fields all space symbols */
-
 				$exploded_values = explode( ',', $value ); /* create an array of values */
 
 				/* delete all punctuation symbols form values */
-				foreach ( $exploded_values as $key => $value )
-					$exploded_values[ $key ] = preg_replace( '~[[:punct:]]~u', '', $value );
-
+				foreach ( $exploded_values as $key => $value ) {
+				    $exploded_values[$key] = preg_replace( '~[[:punct:]]~u', '', $value );
+				}
 				$exploded_values = array_filter( $exploded_values ); /* delete all empty elements */
-
 				if ( ! empty( $exploded_values ) ) {
-					if ( in_array( $field, $related ) ) /* 'related' fields could have 2 values max */
-						$exploded_values = array_slice( $exploded_values, 0, 2); /* return only 2 first elements */
-
+					if ( in_array( $field, $related ) ) { /* 'related' fields could have 2 values max */
+					    $exploded_values = array_slice( $exploded_values, 0, 2 ); /* return only 2 first elements */
+					}
 					$this->options[ $field ] = implode( ', ', $exploded_values );
 				}
 			}
-
-			if ( isset( $_FILES['twttr_upload_file']['tmp_name'] ) && $_FILES['twttr_upload_file']['tmp_name'] != "" )
-				$this->options['count_icon'] = $this->options['count_icon'] + 1;
-
-			if ( 2 < $this->options['count_icon'] )
-				$this->options['count_icon'] = 1;
+			if ( isset( $_FILES['twttr_upload_file']['tmp_name'] ) && $_FILES['twttr_upload_file']['tmp_name'] != "" ) {
+			    $this->options['count_icon'] = $this->options['count_icon'] + 1;
+			}
+			if ( 2 < $this->options['count_icon'] ) {
+			    $this->options['count_icon'] = 1;
+			}
 
 			/* Form options */
 			if ( isset( $_FILES['twttr_upload_file']['tmp_name'] ) && "" != $_FILES['twttr_upload_file']['tmp_name'] ) {
-				if ( ! $this->upload_dir )
-					$this->upload_dir = wp_upload_dir();
-
+				if ( ! $this->upload_dir ) {
+				    $this->upload_dir = wp_upload_dir();
+				}
 				if ( ! $this->upload_dir["error"] ) {
 					$twttr_cstm_mg_folder = $this->upload_dir['basedir'] . '/twitter-logo';
 					if ( ! is_dir( $twttr_cstm_mg_folder ) ) {
@@ -173,23 +164,21 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 					if ( is_uploaded_file( $_FILES['twttr_upload_file']['tmp_name'] ) ) {
 						$filename	= $_FILES['twttr_upload_file']['tmp_name'];
 						$ext		= substr( $_FILES['twttr_upload_file']['name'], 1 + strrpos( $_FILES['twttr_upload_file']['name'], '.' ) );
-
 						if ( filesize ( $filename ) > $max_image_size ) {
 							$error = __( "Error: File size > 32K", 'twitter-plugin' );
 						} elseif ( ! in_array( strtolower( $ext ), $valid_types ) ) {
 							$error = __( "Error: Invalid file type", 'twitter-plugin' );
 						} else {
-
 							$size = GetImageSize( $filename );
 							if ( ( $size ) && ( $size[0] <= $max_image_width ) && ( $size[1] <= $max_image_height ) ) {
 								/* If file satisfies requirements, we will move them from temp to your plugin folder and rename to 'twitter_ico' */
 								/* Construction to rename downloading file */
 								$namefile		= 'twitter-follow' . $this->options['count_icon'] . '.' . $ext;
 								$uploadfile		= $twttr_cstm_mg_folder . '/' . $namefile;
-
 								if ( move_uploaded_file( $_FILES['twttr_upload_file']['tmp_name'], $uploadfile ) ) {
-									if ( 'custom' == $this->options['display_option'] )
-										$this->options['img_link']	= $this->upload_dir['baseurl'] . '/twitter-logo/twitter-follow' . $this->options['count_icon'] . '.' . $ext;
+									if ( 'custom' == $this->options['display_option'] ) {
+									    $this->options['img_link'] = $this->upload_dir['baseurl'] . '/twitter-logo/twitter-follow' . $this->options['count_icon'] . '.' . $ext;
+									}
 								} else {
 									$error = __( "Error: Failed to move file", 'twitter-plugin' );
 								}
@@ -202,12 +191,9 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 					}
 				}
 			}
-
 			$this->options = apply_filters( 'twttr_before_save_options', $this->options );
 			update_option( 'twttr_options', $this->options );
-
 			$message = __( 'Settings saved', 'twitter-plugin' );
-
 			return compact( 'message', 'notice', 'error' );
 		}
 
@@ -216,8 +202,9 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 		 */
 		public function tab_settings() {
 			global $twttr_lang_codes, $wp_version;
-			if ( ! $this->upload_dir )
-				$this->upload_dir = wp_upload_dir(); ?>
+			if ( ! $this->upload_dir ) {
+			    $this->upload_dir = wp_upload_dir();
+			} ?>
 			<h3 class="bws_tab_label"><?php _e( 'Twitter Button Settings', 'twitter-plugin' ); ?></h3>
 			<?php $this->help_phrase(); ?>
 			<hr>

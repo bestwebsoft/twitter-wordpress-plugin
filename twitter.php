@@ -6,13 +6,13 @@ Description: Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPres
 Author: BestWebSoft
 Text Domain: twitter-plugin
 Domain Path: /languages
-Version: 2.58
+Version: 2.59
 Author URI: https://bestwebsoft.com/
 License: GPLv2 or later
 */
 
 /*
-	@ Copyright 2017 BestWebSoft ( https://support.bestwebsoft.com )
+	@ Copyright 2018 BestWebSoft ( https://support.bestwebsoft.com )
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License, version 2, as
@@ -33,17 +33,38 @@ if ( ! function_exists ( 'twttr_admin_menu' ) ) {
 	function twttr_admin_menu() {
 		global $submenu, $wp_version, $twttr_plugin_info;
 
-		$settings = add_menu_page( __( 'Twitter Button Settings', 'twitter-plugin' ), 'Twitter Button', 'manage_options', 'twitter.php', 'twttr_settings_page', 'dashicons-twitter' );
-		add_submenu_page( 'twitter.php', __( 'Twitter Button Settings', 'twitter-plugin' ), __( 'Settings', 'twitter-plugin' ), 'manage_options', 'twitter.php', 'twttr_settings_page' );
+		$settings = add_menu_page(
+		        __( 'Twitter Button Settings', 'twitter-plugin' ),
+                'Twitter Button',
+                'manage_options',
+                'twitter.php',
+                'twttr_settings_page',
+                'dashicons-twitter'
+        );
+		add_submenu_page(
+		        'twitter.php',
+                __( 'Twitter Button Settings', 'twitter-plugin' ),
+                __( 'Settings', 'twitter-plugin' ),
+                'manage_options',
+                'twitter.php',
+                'twttr_settings_page'
+        );
 
-		add_submenu_page( 'twitter.php', 'BWS Panel', 'BWS Panel', 'manage_options', 'twttr-bws-panel', 'bws_add_menu_render' );
+		add_submenu_page(
+		        'twitter.php',
+                'BWS Panel',
+                'BWS Panel',
+                'manage_options',
+                'twttr-bws-panel',
+                'bws_add_menu_render'
+        );
 		/*pls */
-		if ( isset( $submenu['twitter.php'] ) )
+		if ( isset( $submenu['twitter.php'] ) ) {
 			$submenu['twitter.php'][] = array(
 				'<span style="color:#d86463"> ' . __( 'Upgrade to Pro', 'twitter-plugin' ) . '</span>',
 				'manage_options',
 				'https://bestwebsoft.com/products/wordpress/plugins/twitter/?k=a8417eabe3c9fb0c2c5bed79e76de43c&pn=76&v=' . $twttr_plugin_info["Version"] . '&wp_v=' . $wp_version );
-		/* pls*/
+		}/* pls*/
 		add_action( 'load-' . $settings, 'twttr_add_tabs' );
 	}
 }
@@ -62,8 +83,9 @@ if ( ! function_exists( 'twttr_init' ) ) {
 		global $twttr_plugin_info;
 
 		if ( empty( $twttr_plugin_info ) ) {
-			if ( ! function_exists( 'get_plugin_data' ) )
-				require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			if ( ! function_exists( 'get_plugin_data' ) ) {
+			    require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			}
 			$twttr_plugin_info = get_plugin_data( __FILE__ );
 		}
 
@@ -74,8 +96,9 @@ if ( ! function_exists( 'twttr_init' ) ) {
 		bws_wp_min_version_check( plugin_basename( __FILE__ ), $twttr_plugin_info, '3.9' ); /* check compatible with current WP version ##*/
 
 		/* Get/Register and check settings for plugin */
-		if ( ! is_admin() || ( isset( $_GET['page'] ) && ( "twitter.php" == $_GET['page'] || "social-buttons.php" == $_GET['page'] ) ) )
-			twttr_settings();
+		if ( ! is_admin() || ( isset( $_GET['page'] ) && ( "twitter.php" == $_GET['page'] || "social-buttons.php" == $_GET['page'] ) ) ) {
+		    twttr_settings();
+		}
 	}
 }
 
@@ -86,8 +109,9 @@ if ( ! function_exists( 'twttr_admin_init' ) ) {
 		global $bws_plugin_info, $twttr_plugin_info, $bws_shortcode_list;
 
 		/*## Function for bws menu */
-		if ( empty( $bws_plugin_info ) )
+		if ( empty( $bws_plugin_info ) ) {
 			$bws_plugin_info = array( 'id' => '76', 'version' => $twttr_plugin_info["Version"] );
+		}
 
 		/* add Twitter to global $bws_shortcode_list ##*/
 		$bws_shortcode_list['twttr'] = array( 'name' => 'Twitter Button', 'js_function' => 'twttr_shortcode_init' );
@@ -109,24 +133,6 @@ if ( ! function_exists( 'twttr_settings' ) ) {
 
 		if ( ! isset( $twttr_options['plugin_option_version'] ) || $twttr_options['plugin_option_version'] != $twttr_plugin_info["Version"] ) {
 			$options_default = twttr_get_options_default();
-			/**
-			* @since 2.54
-			* @todo remove after 11.02.2018
-			*/
-			if ( ! is_array( $twttr_options['position'] ) ) {
-				switch ( $twttr_options['position'] ) {
-					case 'shortcode':
-						$twttr_options['position'] = array();
-						break;
-					case 'after_and_before':
-						$twttr_options['position'] = array( 'before', 'after' );
-						break;
-					default:
-						$twttr_options['position'] = array( $twttr_options['position'] );
-						break;
-				}
-			}
-			/* end @todo */
 
 			twttr_plugin_activate();
 
@@ -230,19 +236,21 @@ if ( ! function_exists( 'twttr_twit' ) ) {
 	function twttr_twit( $content ) {
 		global $post, $twttr_options, $wp_current_filter;
 
-		if ( ! empty( $wp_current_filter ) && in_array( 'get_the_excerpt', $wp_current_filter ) )
+		if ( ! empty( $wp_current_filter ) && in_array( 'get_the_excerpt', $wp_current_filter ) ) {
 			return $content;
-
+		}
 		if ( ! empty( $twttr_options['position'] ) &&
 			( 1 == $twttr_options['tweet_display'] || 1 == $twttr_options['followme_display'] || 1 == $twttr_options['hashtag_display'] || 1 == $twttr_options['mention_display'] ) ) {
 
 			$buttons = twttr_show_button( $twttr_options['tweet_display'], $twttr_options['followme_display'], $twttr_options['hashtag_display'], $twttr_options['mention_display'] );
 			$buttons = apply_filters( 'twttr_button_in_the_content', $buttons );
 
-			if ( in_array( 'before', $twttr_options['position'] ) )
+			if ( in_array( 'before', $twttr_options['position'] ) ) {
 				$content = $buttons . $content;
-			if ( in_array( 'after', $twttr_options['position'] ) )
+			}
+			if ( in_array( 'after', $twttr_options['position'] ) ) {
 				$content = $content . $buttons;
+			}
 		}
 		return $content;
 	}
@@ -253,9 +261,9 @@ if ( ! function_exists( 'twttr_show_button' ) ) {
 	function twttr_show_button( $tweet, $follow, $hashtag, $mention ) {
 		global $post, $twttr_options, $twttr_add_api_script;
 
-		if ( is_feed() )
+		if ( is_feed() ) {
 			return;
-
+		}
 		if ( 1 == $tweet || 1 == $follow || 1 == $hashtag || 1 == $mention ) {
 
 			$twttr_add_api_script = true;
@@ -276,8 +284,9 @@ if ( ! function_exists( 'twttr_show_button' ) ) {
 			}
 			if ( 1 == $follow ) {
 				/*option for follow me button*/
-				if ( $twttr_options['url_twitter'] == "" )
+				if ( $twttr_options['url_twitter'] == "" ) {
 					$twttr_options['url_twitter'] = "twitter";
+				}
 
 				/*show follow me button*/
 				$upload_dir = wp_upload_dir();
@@ -334,9 +343,9 @@ if ( ! function_exists( 'twttr_show_button' ) ) {
 				if ( empty( $twttr_options['tweet_to_mention'] ) ) {
 					$twttr_options['tweet_to_mention'] = "support";
 				}
-				if ( 'page_title' == $twttr_options['text_option_mention'] )
+				if ( 'page_title' == $twttr_options['text_option_mention'] ) {
 					$text_mention = '';
-
+				}
 				$text_mention = ( 'page_title' == $twttr_options['text_option_mention'] ) ? htmlspecialchars( urlencode( $post->post_title ) ) : urlencode( $twttr_options['text_mention'] );
 				/*show mention button*/
 				$mention = '<div class="twttr_mention">
@@ -403,7 +412,7 @@ if ( ! function_exists( 'twttr_shortcode_button_content' ) ) {
 			<input class="bws_default_shortcode" type="hidden" name="default" value="[twitter_buttons]" />
 			<script type="text/javascript">
 				function twttr_shortcode_init() {
-					(function($) {
+					( function( $ ) {
 						<?php if ( $wp_version < '3.9' ) { ?>
 							var current_object = '#TB_ajaxContent';
 						<?php } else { ?>
@@ -435,7 +444,9 @@ if ( ! function_exists( 'twttr_action_links' ) ) {
 		if ( ! is_network_admin() ) {
 			/* Static so we don't call plugin_basename on every plugin row */
 			static $this_plugin;
-			if ( ! $this_plugin ) $this_plugin = plugin_basename( __FILE__ );
+			if ( ! $this_plugin ) {
+			    $this_plugin = plugin_basename( __FILE__ );
+			}
 			if ( $file == $this_plugin ) {
 				$settings_link = '<a href="admin.php?page=twitter.php">' . __( 'Settings', 'twitter-plugin' ) . '</a>';
 				array_unshift( $links, $settings_link );
@@ -449,8 +460,9 @@ if ( ! function_exists( 'twttr_links' ) ) {
 	function twttr_links( $links, $file ) {
 		$base = plugin_basename( __FILE__ );
 		if ( $file == $base ) {
-			if ( ! is_network_admin() )
-				$links[]	= '<a href="admin.php?page=twitter.php">' . __( 'Settings', 'twitter-plugin' ) . '</a>';
+			if ( ! is_network_admin() ) {
+				$links[] = '<a href="admin.php?page=twitter.php">' . __( 'Settings', 'twitter-plugin' ) . '</a>';
+			}
 			$links[]	= '<a href="https://support.bestwebsoft.com/hc/en-us/sections/200538889" target="_blank">' . __( 'FAQ', 'twitter-plugin' ) . '</a>';
 			$links[]	= '<a href="https://support.bestwebsoft.com">' . __( 'Support', 'twitter-plugin' ) . '</a>';
 		}
@@ -466,19 +478,22 @@ if ( ! function_exists ( 'twttr_plugin_banner' ) ) {
 		if ( 'plugins.php' == $hook_suffix ) {
 			/*pls show banner go pro */
 			global $twttr_options;
-			if ( empty( $twttr_options ) )
+			if ( empty( $twttr_options ) ) {
 				$twttr_options = get_option( 'twttr_options' );
-
-			if ( isset( $twttr_options['first_install'] ) && strtotime( '-1 week' ) > $twttr_options['first_install'] )
+			}
+			if ( isset( $twttr_options['first_install'] ) && strtotime( '-1 week' ) > $twttr_options['first_install'] ) {
 				bws_plugin_banner( $twttr_plugin_info, 'twttr', 'twitter', '137342f0aa4b561cf7f93c190d95c890', '76', 'twitter-plugin' );
+			}
 
 			/* show banner go settings pls*/
-			if ( ! is_network_admin() )
+			if ( ! is_network_admin() ) {
 				bws_plugin_banner_to_settings( $twttr_plugin_info, 'twttr_options', 'twitter-plugin', 'admin.php?page=twitter.php' );
+			}
 		}
 
-		if ( isset( $_GET['page'] ) && 'twitter.php' == $_GET['page'] )
+		if ( isset( $_GET['page'] ) && 'twitter.php' == $_GET['page'] ) {
 			bws_plugin_suggest_feature_banner( $twttr_plugin_info, 'twttr_options', 'twitter-plugin' );
+		}
 	}
 }
 
@@ -497,8 +512,9 @@ if ( ! function_exists( 'twttr_add_tabs' ) ) {
 /* Function for delete options */
 if ( ! function_exists( 'twttr_delete_options' ) ) {
 	function twttr_delete_options() {
-		if ( ! function_exists( 'get_plugins' ) )
+		if ( ! function_exists( 'get_plugins' ) ) {
 			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		}
 		$all_plugins = get_plugins();
 
 		if ( ! array_key_exists( 'twitter-pro/twitter-pro.php', $all_plugins ) &&
