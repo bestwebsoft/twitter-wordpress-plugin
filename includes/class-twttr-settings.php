@@ -196,7 +196,6 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 			$message = __( 'Settings saved', 'twitter-plugin' );
 			return compact( 'message', 'notice', 'error' );
 		}
-
 		/**
 		 *
 		 */
@@ -206,7 +205,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 			    $this->upload_dir = wp_upload_dir();
 			} ?>
 			<h3 class="bws_tab_label"><?php _e( 'Twitter Button Settings', 'twitter-plugin' ); ?></h3>
-			<?php $this->help_phrase(); ?>
+            <?php $this->help_phrase(); ?>
 			<hr>
 			<div class="bws_tab_sub_label twttr_general"><?php _e( 'General', 'twitter-plugin' ); ?></div>
 			<table class="form-table twttr_settings_form">
@@ -251,7 +250,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 				</tr>
 				<tr>
 					<th><?php _e( "Language", 'twitter-plugin' ); ?></th>
-					<td>
+                    <td>
 						<label><input id="twttr_lang_default" name="twttr_lang_default" type="checkbox" value="1" <?php checked( 1, $this->options['lang_default'] ); ?> /> <?php _e( 'Automatic', 'twitter-plugin' ); ?></label>
 						<br />
 						<select name="twttr_lang" id="twttr_lang_choose" <?php if ( 1 == $this->options['lang_default'] ) echo 'style="display:none"'; ?> >

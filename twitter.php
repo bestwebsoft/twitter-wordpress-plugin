@@ -6,7 +6,7 @@ Description: Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPres
 Author: BestWebSoft
 Text Domain: twitter-plugin
 Domain Path: /languages
-Version: 2.59
+Version: 2.60
 Author URI: https://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -29,8 +29,8 @@ License: GPLv2 or later
 */
 
 /* Add BWS menu */
-if ( ! function_exists ( 'twttr_admin_menu' ) ) {
-	function twttr_admin_menu() {
+if ( ! function_exists ( 'twttr_add_admin_menu' ) ) {
+	function twttr_add_admin_menu() {
 		global $submenu, $wp_version, $twttr_plugin_info;
 
 		$settings = add_menu_page(
@@ -113,7 +113,7 @@ if ( ! function_exists( 'twttr_admin_init' ) ) {
 			$bws_plugin_info = array( 'id' => '76', 'version' => $twttr_plugin_info["Version"] );
 		}
 
-		/* add Twitter to global $bws_shortcode_list ##*/
+		/* add Twitter to global $bws_shortcode_list */
 		$bws_shortcode_list['twttr'] = array( 'name' => 'Twitter Button', 'js_function' => 'twttr_shortcode_init' );
 	}
 }
@@ -217,7 +217,7 @@ if ( ! function_exists( 'twttr_settings_page' ) ) {
 	<?php }
 }
 
-/* Function to creates shortcode [twitter_buttons] ##*/
+/* Function to creates shortcode [twitter_buttons] */
 if ( ! function_exists( 'twttr_twitter_buttons' ) ) {
 	function twttr_twitter_buttons( $atts = array( 'display' => 'follow' ) ) {
 		$atts = shortcode_atts( array( 'display' => 'follow' ), $atts, 'twitter_buttons' );
@@ -256,12 +256,14 @@ if ( ! function_exists( 'twttr_twit' ) ) {
 	}
 }
 
+
 /* Function for showing buttons */
 if ( ! function_exists( 'twttr_show_button' ) ) {
 	function twttr_show_button( $tweet, $follow, $hashtag, $mention ) {
 		global $post, $twttr_options, $twttr_add_api_script;
 
 		if ( is_feed() ) {
+
 			return;
 		}
 		if ( 1 == $tweet || 1 == $follow || 1 == $hashtag || 1 == $mention ) {
@@ -383,7 +385,15 @@ if ( ! function_exists( 'twttr_api_scripts' ) ) {
 		global $twttr_add_api_script;
 		if ( true == $twttr_add_api_script || defined( 'BWS_ENQUEUE_ALL_SCRIPTS' ) ) { ?>
 			<script type="text/javascript">
-				!function(d,s,id) {var js,fjs=d.getElementsByTagName(s)[0];if (!d.getElementById(id)) {js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+				!function(d,s,id) {
+					var js,fjs=d.getElementsByTagName(s)[0];
+					if (!d.getElementById(id)) {
+						js=d.createElement(s);
+						js.id=id;
+						js.src="https://platform.twitter.com/widgets.js";
+						fjs.parentNode.insertBefore(js,fjs);
+					}
+				}(document,"script","twitter-wjs");
 			</script>
 			<?php $twttr_add_api_script = false;
 		}
@@ -549,14 +559,13 @@ if ( ! function_exists( 'twttr_delete_options' ) ) {
 		}
 
 		require_once( dirname( __FILE__ ) . '/bws_menu/bws_include.php' );
-		bws_include_init( plugin_basename( __FILE__ ) );
-		bws_delete_plugin( plugin_basename( __FILE__ ) );
-	}
+        bws_include_init( plugin_basename( __FILE__ ) );
+        bws_delete_plugin( plugin_basename( __FILE__ ) );
+    }
 }
-
 /* Plugin uninstall function */
 register_activation_hook( __FILE__, 'twttr_plugin_activate' );
-add_action( 'admin_menu', 'twttr_admin_menu' );
+add_action( 'admin_menu', 'twttr_add_admin_menu' );
 /* Initialization ##*/
 add_action( 'plugins_loaded', 'twttr_plugins_loaded' );
 add_action( 'init', 'twttr_init' );
