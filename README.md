@@ -1,7 +1,7 @@
 <a href="https://bestwebsoft.com/products/wordpress/plugins/twitter/" target=_blank>Twitter Button WordPress Plugin</a>
 ========================
 
-<p>Twitter plugin makes it easy to add Follow, Tweet, Hashtag, and Mention buttons to WordPress website posts, pages. This is a great way to increase social media shares.</p>
+<p>Twitter plugin makes it easy to add Twitter Timeline, Follow, Tweet, Hashtag, and Mention buttons to WordPress website posts, pages. This is a great way to increase social media shares.</p>
 <p>Customize the appearance, configure settings, and enable other advanced options to encourage website visitors to communicate with you via Twitter.</p>
 <p><span class="embed-youtube" style="text-align:center; display: block;"></span></p>
 <h4>Free Features</h4>
@@ -66,7 +66,8 @@
 <p><strong>Pro Features</strong></p>
 <p>All features from Free version included plus:</p>
 <ul>
-<li>Twitter button preview</li>
+<li>Add Twitter Timeline [NEW]</li>
+<li>Twitter buttons preview</li>
 <li>Display Twitter buttons for certain pages and/or post types</li>
 <li>Configure all subsites on the network</li>
 <li>Get answer to your support question within one business day (<a href="https://bestwebsoft.com/support-policy/" rel="nofollow">Support Policy</a>)</li>

@@ -1,18 +1,18 @@
 <?php
-/*##
+/*
 Plugin Name: Twitter Button by BestWebSoft
 Plugin URI: https://bestwebsoft.com/products/wordpress/plugins/twitter/
 Description: Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPress posts, pages and widgets.
 Author: BestWebSoft
 Text Domain: twitter-plugin
 Domain Path: /languages
-Version: 2.60
+Version: 2.61
 Author URI: https://bestwebsoft.com/
 License: GPLv2 or later
 */
 
 /*
-	@ Copyright 2018 BestWebSoft ( https://support.bestwebsoft.com )
+	@ Copyright 2019 BestWebSoft ( https://support.bestwebsoft.com )
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License, version 2, as
@@ -68,7 +68,7 @@ if ( ! function_exists ( 'twttr_add_admin_menu' ) ) {
 		add_action( 'load-' . $settings, 'twttr_add_tabs' );
 	}
 }
-/* end twttr_admin_menu ##*/
+/* end twttr_admin_menu */
 
 if ( ! function_exists( 'twttr_plugins_loaded' ) ) {
 	function twttr_plugins_loaded() {
@@ -89,11 +89,11 @@ if ( ! function_exists( 'twttr_init' ) ) {
 			$twttr_plugin_info = get_plugin_data( __FILE__ );
 		}
 
-		/*## add general functions */
+		/* add general functions */
 		require_once( dirname( __FILE__ ) . '/bws_menu/bws_include.php' );
 		bws_include_init( plugin_basename( __FILE__ ) );
 
-		bws_wp_min_version_check( plugin_basename( __FILE__ ), $twttr_plugin_info, '3.9' ); /* check compatible with current WP version ##*/
+		bws_wp_min_version_check( plugin_basename( __FILE__ ), $twttr_plugin_info, '3.9' ); /* check compatible with current WP version */
 
 		/* Get/Register and check settings for plugin */
 		if ( ! is_admin() || ( isset( $_GET['page'] ) && ( "twitter.php" == $_GET['page'] || "social-buttons.php" == $_GET['page'] ) ) ) {
@@ -108,7 +108,7 @@ if ( ! function_exists( 'twttr_admin_init' ) ) {
 		/* Add variable for bws_menu */
 		global $bws_plugin_info, $twttr_plugin_info, $bws_shortcode_list;
 
-		/*## Function for bws menu */
+		/* Function for bws menu */
 		if ( empty( $bws_plugin_info ) ) {
 			$bws_plugin_info = array( 'id' => '76', 'version' => $twttr_plugin_info["Version"] );
 		}
@@ -204,7 +204,7 @@ if ( ! function_exists( 'twttr_plugin_activate' ) ) {
 	}
 }
 
-/*## Add Setting page */
+/* Add Setting page */
 if ( ! function_exists( 'twttr_settings_page' ) ) {
 	function twttr_settings_page() {
 		require_once( dirname( __FILE__ ) . '/includes/class-twttr-settings.php' );
@@ -448,7 +448,7 @@ if ( ! function_exists( 'twttr_shortcode_button_content' ) ) {
 	<?php }
 }
 
-/*## Functions creates other links on plugins page. */
+/* Functions creates other links on plugins page. */
 if ( ! function_exists( 'twttr_action_links' ) ) {
 	function twttr_action_links( $links, $file ) {
 		if ( ! is_network_admin() ) {
@@ -566,7 +566,7 @@ if ( ! function_exists( 'twttr_delete_options' ) ) {
 /* Plugin uninstall function */
 register_activation_hook( __FILE__, 'twttr_plugin_activate' );
 add_action( 'admin_menu', 'twttr_add_admin_menu' );
-/* Initialization ##*/
+/* Initialization */
 add_action( 'plugins_loaded', 'twttr_plugins_loaded' );
 add_action( 'init', 'twttr_init' );
 /*admin_init */
@@ -583,9 +583,9 @@ add_filter( 'widget_text', 'do_shortcode' );
 add_filter( 'the_content', "twttr_twit" );
 /* custom filter for bws button in tinyMCE */
 add_filter( 'bws_shortcode_button_content', 'twttr_shortcode_button_content' );
-/*## Additional links on the plugin page */
+/* Additional links on the plugin page */
 add_filter( 'plugin_action_links', 'twttr_action_links', 10, 2 );
 add_filter( 'plugin_row_meta', 'twttr_links', 10, 2 );
 /* Adding banner */
 add_action( 'admin_notices', 'twttr_plugin_banner' );
-/* end ##*/
+/* end */

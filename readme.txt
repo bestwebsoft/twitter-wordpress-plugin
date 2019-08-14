@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add social buttons, twitter buttons, add twitter buttons, share button, follow button, tweets, twitter share button, twitter follow button, twitter feeds, like button, twitter like button, social bookmark
 Requires at least: 3.9
-Tested up to: 5.0.2
-Stable tag: 2.60
+Tested up to: 5.2.2
+Stable tag: 2.61
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPress posts and p
 
 == Description ==
 
-Twitter plugin makes it easy to add Follow, Tweet, Hashtag, and Mention buttons to Wordpress website posts, pages. This is a great way to increase social media shares.
+Twitter plugin makes it easy to add Twitter Timeline, Follow, Tweet, Hashtag, and Mention buttons to Wordpress website posts, pages. This is a great way to increase social media shares.
 
 Customize the appearance, configure settings, and enable other advanced options to encourage website visitors to communicate with you via Twitter.
 
@@ -59,7 +59,8 @@ http://www.youtube.com/watch?v=2qJ55xvGbDU
 >
 > All features from Free version included plus:
 >
-> * Twitter button preview
+> * Add Twitter Timeline [NEW]
+> * Twitter buttons preview
 > * Display Twitter buttons for certain pages and/or post types
 > * Configure all subsites on the network
 > * Get answer to your support question within one business day ([Support Policy](https://bestwebsoft.com/support-policy/))
@@ -146,6 +147,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 4. Pasting Twitter shortcode into the content.
 
 == Changelog ==
+
+= V2.61 - 14.08.2019 =
+* PRO : Ability to add Twitter Timeline has been added.
+* Update : BWS menu has been updated.
 
 = V2.60 - 03.01.2019 =
 * Update : All functionality was updated for WordPress 5.0.2.
@@ -379,7 +384,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 
 == Upgrade Notice ==
 
-= V2.60 = 
+= V2.61 =
+* New features added.
+
+= V2.60 =
 * The compatibility with new WordPress version updated.
 * Bugs fixed.
 

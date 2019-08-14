@@ -52,9 +52,10 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 
 			add_action( get_parent_class( $this ) . '_additional_misc_options', array( $this, 'additional_misc_options' ) );
 			add_action( get_parent_class( $this ) . '_display_metabox', array( $this, 'display_metabox' ) );
-			/*pls *//*## display preview */
+			/*pls *//* display preview */
 			add_action( get_parent_class( $this ) . '_display_second_postbox', array( $this, 'display_second_postbox' ) );
-			/* pls*//* ##*/
+			add_action( get_parent_class( $this ) . '_display_second_postbox', array( $this, 'display_third_postbox' ) );
+			/* pls*//* */
 		}
 
 		/**
@@ -296,6 +297,99 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 				</tr>
 				<?php do_action( 'twttr_settings_page_action', $this->options ); ?>
 			</table>
+
+            <?php if ( ! $this->hide_pro_tabs ) { ?>
+			<div class="bws_pro_version_bloc">
+                <button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'twitter-plugin' ); ?>"></button>
+                <div class="bws_table_bg"></div>
+                    <div class="bws_tab_sub_label twttr_timelines_enabled"><?php _e( 'Twitter Timeline', 'twitter-plugin' ); ?></div>
+                    <div class="bws_pro_version_table_bloc">
+                    <table class="form-table twttr_settings_form twttr_timelines_enabled bws_pro_version" id="twttr_timelines">
+                        <tr>
+                            <th><?php _e( 'Twitter URL', 'twitter-plugin' ); ?></th>
+                            <td>
+                                <input name="twttr_twitter_url" type="text" value="https://twitter.com/bestwebsoft" maxlength="250" />
+                                <div class="bws_info"><?php _e( 'Enter Twitter account URL to display the timeline', 'twitter-plugin' ); ?>.</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Number Of Tweets', 'twitter-plugin' ); ?></th>
+                            <td>
+                                <input name="twttr_timeline_tweet_limit" type="number" value="0" min="0" max="20" step="1" />
+                                <div class="bws_info"><?php _e( 'Enter the number of Tweets which will be displayed on the timeline. Enter "0" to display maximum number', 'twitter-plugin' ); ?></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Theme', 'twitter-plugin' ); ?></th>
+                            <td>
+                                <select name="twttr_timeline_theme">
+                                    <option value="light" selected><?php _e( 'Light', 'twitter-plugin' ); ?></option>
+                                    <option value="dark" ><?php _e( 'Dark', 'twitter-plugin' ); ?></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Language', 'twitter-plugin' ); ?></th>
+                            <td>
+                                <select id="twttr_timeline_language" name="twttr_timeline_language">
+                                        <option value="en" selected>English</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Height', 'twitter-plugin' ); ?></th>
+                            <td>
+                                <input class="small-text" name="twttr_timeline_height" type="number" value="600" min="200"  step="1" />
+                                <span class="bws_info"><?php _e( 'Set a fixed height of the timeline block. The height parameter doesn\'t work when a "Number Of Tweets" is set to 0.', 'twitter-plugin' ); ?></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Width', 'twitter-plugin' ); ?></th>
+                            <td>
+                                <input class="small-text" name="twttr_timeline_width" type="number" value="300" min="0"  step="1" />
+                                <span class="bws_info"><?php _e( 'Set the maximum width of the timeline block. Set 0 to automatically determine the width', 'twitter-plugin' ); ?></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Design Elements', 'twitter-plugin' ); ?></th>
+                            <td>
+                                <fieldset>
+                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="noheader" checked="checked"/> <?php _e( 'Hide the timeline header', 'twitter-plugin' ); ?></label>
+                                    <br />
+                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="nofooter"/> <?php _e( 'Hide the timeline footer', 'twitter-plugin' ); ?></label>
+                                    <br />
+                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="noborders"/> <?php _e( 'Hide the timeline borders', 'twitter-plugin' ); ?></label>
+                                    <br />
+                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="transparent"/> <?php _e( 'Remove the timeline background color', 'twitter-plugin' ); ?></label>
+                                    <br />
+                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="noscrollbar"/> <?php _e( 'Hide the timeline scrollbar', 'twitter-plugin' ); ?></label>
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Border color', 'twitter-plugin' ); ?></th>
+                            <td>
+                                <div>
+                                    <input type="text" maxlength="7" name="twttr_timeline_border_color" value="#f1f1f1" id="twttr_timeline_border_color" class="twttr_timeline_border_color twttr_color" />
+                                    <span class="bws_info"><?php _e( 'Set the color of borders inside of the timeline block.', 'twitter-plugin' ); ?></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Link color', 'twitter-plugin' ); ?></th>
+                            <td>
+                                <div>
+                                    <input type="text" maxlength="7" name="twttr_timeline_link_color" value="#2b7bb9" id="twttr_timeline_link_color" class="twttr_timeline_link_color twttr_color" />
+                                    <span class="bws_info"><?php _e( 'Set the color of links, including hashtags and @mentions, inside each Tweet.', 'twitter-plugin' ); ?></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+			    <?php $this->bws_pro_block_links(); ?>
+            </div>
+		    <?php } ?>
+
 			<div class="bws_tab_sub_label twttr_tweet_enabled"><?php _e( 'Tweet Button', 'twitter-plugin' ); ?></div>
 			<table class="form-table twttr_settings_form twttr_tweet_enabled">
 				<tr>
@@ -490,9 +584,20 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 					<?php _e( 'Twitter Buttons Shortcode', 'twitter-plugin' ); ?>
 				</h3>
 				<div class="inside">
-					<?php _e( "Add Twitter button(-s) to your posts, pages, custom post types or widgets by using the following shortcode:", 'twitter-plugin' ); ?>
-					<?php bws_shortcode_output( '[twitter_buttons display=tweet,follow,hashtag,mention]' ); ?>
+					<?php _e( 'Add Twitter button(-s) to your posts, pages, custom post types or widgets by using the following shortcode:', 'twitter-plugin' );
+					bws_shortcode_output( '[twitter_buttons display=tweet,follow,hashtag,mention]' ); ?>
 				</div>
+                <?php if ( ! $this->hide_pro_tabs ) { ?>
+                    <div class="bws_pro_version_bloc">
+					    <div class="bws_table_bg"></div>
+                        <button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'twitter-plugin' ); ?>"></button>
+                        <div class="inside">
+                            <?php _e( 'Add Twitter timeline to your posts, pages, custom post types or widgets by using the following shortcode:', 'twitter-plugin' );
+                            bws_shortcode_output( '[twitter_timeline]' ); ?>
+                        </div>
+	                    <?php $this->bws_pro_block_links(); ?>
+                    </div>
+                <?php } ?>
 			</div>
 		<?php /*pls */ }
 
@@ -509,6 +614,22 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 					</div>
 					<?php $this->bws_pro_block_links(); ?>
 				</div>
+			<?php }
+		}
+
+		public function display_third_postbox() {
+			if ( ! $this->hide_pro_tabs ) { ?>
+                <div class="postbox bws_pro_version_bloc">
+                    <div class="bws_table_bg"></div>
+                    <h3 class="hndle">
+                        <button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'twitter-plugin' ); ?>"></button>
+						<?php _e( 'Twitter Timeline Preview', 'twitter-plugin' ); ?>
+                    </h3>
+                    <div id="twttr_timeline_preview_wrap" class="inside">
+                        <img src='<?php echo plugins_url( 'images/preview-timeline.png', dirname( __FILE__ ) ); ?>' />
+                    </div>
+					<?php $this->bws_pro_block_links(); ?>
+                </div>
 			<?php }
 		}
 
