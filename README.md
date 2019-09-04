@@ -66,7 +66,7 @@
 <p><strong>Pro Features</strong></p>
 <p>All features from Free version included plus:</p>
 <ul>
-<li>Add Twitter Timeline [NEW]</li>
+<li>Add Twitter Timeline</li>
 <li>Twitter buttons preview</li>
 <li>Display Twitter buttons for certain pages and/or post types</li>
 <li>Configure all subsites on the network</li>
