@@ -55,7 +55,7 @@
 					element.parent().siblings( ".twttr_custom_input" ).hide();
 				}
 			}
-		}			
+		}
 
 		twttr_tweet_display();
 		$( 'input[name="twttr_tweet_display"]' ).click( function() {

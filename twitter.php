@@ -1,18 +1,18 @@
 <?php
 /*
-Plugin Name: Twitter Button by BestWebSoft
+Plugin Name: BestWebSoft's Twitter
 Plugin URI: https://bestwebsoft.com/products/wordpress/plugins/twitter/
 Description: Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPress posts, pages and widgets.
 Author: BestWebSoft
 Text Domain: twitter-plugin
 Domain Path: /languages
-Version: 2.62
+Version: 2.63
 Author URI: https://bestwebsoft.com/
 License: GPLv2 or later
 */
 
 /*
-	@ Copyright 2019 BestWebSoft ( https://support.bestwebsoft.com )
+	@ Copyright 2020 BestWebSoft ( https://support.bestwebsoft.com )
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License, version 2, as
@@ -34,16 +34,16 @@ if ( ! function_exists ( 'twttr_add_admin_menu' ) ) {
 		global $submenu, $wp_version, $twttr_plugin_info;
 
 		$settings = add_menu_page(
-		        __( 'Twitter Button Settings', 'twitter-plugin' ),
-                'Twitter Button',
+		        __( 'Twitter Settings', 'twitter-plugin' ),
+                'Twitter',
                 'manage_options',
                 'twitter.php',
                 'twttr_settings_page',
-                'dashicons-twitter'
+                'none'
         );
 		add_submenu_page(
 		        'twitter.php',
-                __( 'Twitter Button Settings', 'twitter-plugin' ),
+                __( 'Twitter Settings', 'twitter-plugin' ),
                 __( 'Settings', 'twitter-plugin' ),
                 'manage_options',
                 'twitter.php',
@@ -84,16 +84,16 @@ if ( ! function_exists( 'twttr_init' ) ) {
 
 		if ( empty( $twttr_plugin_info ) ) {
 			if ( ! function_exists( 'get_plugin_data' ) ) {
-			    require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			    require_once(ABSPATH . 'wp-admin/includes/plugin.php');
 			}
 			$twttr_plugin_info = get_plugin_data( __FILE__ );
 		}
 
 		/* add general functions */
-		require_once( dirname( __FILE__ ) . '/bws_menu/bws_include.php' );
+		require_once(dirname(__FILE__) . '/bws_menu/bws_include.php');
 		bws_include_init( plugin_basename( __FILE__ ) );
 
-		bws_wp_min_version_check( plugin_basename( __FILE__ ), $twttr_plugin_info, '3.9' ); /* check compatible with current WP version */
+		bws_wp_min_version_check( plugin_basename( __FILE__ ), $twttr_plugin_info, '4.5' ); /* check compatible with current WP version */
 
 		/* Get/Register and check settings for plugin */
 		if ( ! is_admin() || ( isset( $_GET['page'] ) && ( "twitter.php" == $_GET['page'] || "social-buttons.php" == $_GET['page'] ) ) ) {
@@ -106,7 +106,7 @@ if ( ! function_exists( 'twttr_init' ) ) {
 if ( ! function_exists( 'twttr_admin_init' ) ) {
 	function twttr_admin_init() {
 		/* Add variable for bws_menu */
-		global $bws_plugin_info, $twttr_plugin_info, $bws_shortcode_list;
+		global $bws_plugin_info, $twttr_plugin_info, $bws_shortcode_list, $pagenow, $twttr_options;
 
 		/* Function for bws menu */
 		if ( empty( $bws_plugin_info ) ) {
@@ -114,7 +114,16 @@ if ( ! function_exists( 'twttr_admin_init' ) ) {
 		}
 
 		/* add Twitter to global $bws_shortcode_list */
-		$bws_shortcode_list['twttr'] = array( 'name' => 'Twitter Button', 'js_function' => 'twttr_shortcode_init' );
+		$bws_shortcode_list['twttr'] = array( 'name' => 'Twitter', 'js_function' => 'twttr_shortcode_init' );
+
+		/*pls show banner go pro */	
+		if ( 'plugins.php' == $pagenow ) {
+			/* Install the option defaults */
+			if ( function_exists( 'bws_plugin_banner_go_pro' ) ) {
+				twttr_settings();
+			bws_plugin_banner_go_pro( $twttr_options, $twttr_plugin_info, 'twttr', 'twitter', '137342f0aa4b561cf7f93c190d95c890', '76', 'twitter-plugin' );
+			}
+		}
 	}
 }
 /* end twttr_admin_init */
@@ -152,7 +161,7 @@ if ( ! function_exists( 'twttr_get_options_default' ) ) {
 			'plugin_option_version' 	=> $twttr_plugin_info["Version"],
 			'display_settings_notice'	=> 1,
 			'suggest_feature_banner'	=> 1,
-			'url_twitter' 				=> 'admin',
+			'url_twitter' 				=> 'twitter',
 			'display_option'			=> 'standart',
 			'count_icon' 				=> 1,
 			'img_link' 					=> plugins_url( 'images/twitter-follow.png', __FILE__ ),
@@ -207,10 +216,12 @@ if ( ! function_exists( 'twttr_plugin_activate' ) ) {
 /* Add Setting page */
 if ( ! function_exists( 'twttr_settings_page' ) ) {
 	function twttr_settings_page() {
-		require_once( dirname( __FILE__ ) . '/includes/class-twttr-settings.php' );
+		if ( ! class_exists( 'Bws_Settings_Tabs' ) )
+			require_once(dirname(__FILE__) . '/bws_menu/class-bws-settings.php');
+		require_once(dirname(__FILE__) . '/includes/class-twttr-settings.php');
 		$page = new Twttr_Settings_Tabs( plugin_basename( __FILE__ ) ); ?>
 		<div class="wrap">
-			<h1><?php _e( 'Twitter Button Settings', 'twitter-plugin' ); ?></h1>
+			<h1><?php _e( 'Twitter Settings', 'twitter-plugin' ); ?></h1>
 			<noscript><div class="error below-h2"><p><strong><?php _e( "Please enable JavaScript in Your browser.", 'twitter-plugin' ); ?></strong></p></div></noscript>
 			<?php $page->display_content(); ?>
 		</div>
@@ -370,6 +381,7 @@ if ( ! function_exists( 'twttr_wp_head' ) ) {
 
 if ( ! function_exists( 'twttr_admin_enqueue_scripts' ) ) {
 	function twttr_admin_enqueue_scripts() {
+	    wp_enqueue_style( 'twttr_icon', plugins_url( 'css/icon.css', __FILE__ ) );
 		if ( isset( $_GET['page'] ) && ( "twitter.php" == $_GET['page'] || "social-buttons.php" == $_GET['page'] ) ) {
 			wp_enqueue_style( 'twttr_stylesheet', plugins_url( 'css/style.css', __FILE__ ) );
 			wp_enqueue_script( 'twttr_script', plugins_url( 'js/script.js' , __FILE__ ), array( 'jquery' ) );
@@ -383,19 +395,20 @@ if ( ! function_exists( 'twttr_admin_enqueue_scripts' ) ) {
 if ( ! function_exists( 'twttr_api_scripts' ) ) {
 	function twttr_api_scripts() {
 		global $twttr_add_api_script;
-		if ( true == $twttr_add_api_script || defined( 'BWS_ENQUEUE_ALL_SCRIPTS' ) ) { ?>
-			<script type="text/javascript">
-				!function(d,s,id) {
+		if ( true == $twttr_add_api_script || defined( 'BWS_ENQUEUE_ALL_SCRIPTS' ) ) { 
+			$script_api = "!function(d,s,id) {
 					var js,fjs=d.getElementsByTagName(s)[0];
 					if (!d.getElementById(id)) {
 						js=d.createElement(s);
 						js.id=id;
-						js.src="https://platform.twitter.com/widgets.js";
+						js.src=\"https://platform.twitter.com/widgets.js\";
 						fjs.parentNode.insertBefore(js,fjs);
 					}
-				}(document,"script","twitter-wjs");
-			</script>
-			<?php $twttr_add_api_script = false;
+				}(document,\"script\",\"twitter-wjs\")";
+			wp_register_script( 'twttr_api_scripts_init', '' );
+			wp_enqueue_script( 'twttr_api_scripts_init' );
+			wp_add_inline_script( 'twttr_api_scripts_init', sprintf( $script_api ) );
+			$twttr_add_api_script = false;
 		}
 	}
 }
@@ -410,7 +423,7 @@ if ( ! function_exists( 'twttr_pagination_callback' ) ) {
 /* add shortcode content */
 if ( ! function_exists( 'twttr_shortcode_button_content' ) ) {
 	function twttr_shortcode_button_content( $content ) {
-		global $wp_version, $post; ?>
+		global $post; ?>
 		<div id="twttr" style="display:none;">
 			<fieldset>
 				<?php _e( 'Please select twitter buttons which will be displayed', 'twitter-plugin' ); ?><br />
@@ -420,14 +433,9 @@ if ( ! function_exists( 'twttr_shortcode_button_content' ) ) {
 				<label><input type="checkbox" value="1" id="twttr_mention" name="twttr_mention"><?php _e( 'Mention', 'twitter-plugin' ); ?></label><br />
 			</fieldset>
 			<input class="bws_default_shortcode" type="hidden" name="default" value="[twitter_buttons]" />
-			<script type="text/javascript">
-				function twttr_shortcode_init() {
+			<?php $script = "function twttr_shortcode_init() {
 					( function( $ ) {
-						<?php if ( $wp_version < '3.9' ) { ?>
-							var current_object = '#TB_ajaxContent';
-						<?php } else { ?>
-							var current_object = '.mce-reset';
-						<?php } ?>
+						var current_object = '.mce-reset';
 						$( current_object + ' #twttr_tweet,' + current_object + ' #twttr_followme,' + current_object + ' #twttr_hashtag,' + current_object + ' #twttr_mention' ).on( 'change', function() {
 							var tweet = ( $( current_object + ' #twttr_tweet' ).is( ':checked' ) ) ? 'tweet,' : '';
 							var follow_me = ( $( current_object + ' #twttr_followme' ).is( ':checked' ) ) ? 'follow,' : '';
@@ -441,8 +449,10 @@ if ( ! function_exists( 'twttr_shortcode_button_content' ) ) {
 							$( current_object + ' #bws_shortcode_display' ).text( shortcode );
 						} );
 					} ) ( jQuery );
-				}
-			</script>
+				}";
+			wp_register_script( 'twttr_bws_shortcode_button', '' );
+			wp_enqueue_script( 'twttr_bws_shortcode_button' );
+			wp_add_inline_script( 'twttr_bws_shortcode_button', sprintf( $script ) );?>
 			<div class="clear"></div>
 		</div>
 	<?php }
@@ -484,17 +494,9 @@ if ( ! function_exists( 'twttr_links' ) ) {
 /* add banner on plugins page */
 if ( ! function_exists ( 'twttr_plugin_banner' ) ) {
 	function twttr_plugin_banner() {
-		global $hook_suffix, $twttr_plugin_info;
+		global $hook_suffix, $twttr_plugin_info, $twttr_options;
 		if ( 'plugins.php' == $hook_suffix ) {
-			/*pls show banner go pro */
-			global $twttr_options;
-			if ( empty( $twttr_options ) ) {
-				$twttr_options = get_option( 'twttr_options' );
-			}
-			if ( isset( $twttr_options['first_install'] ) && strtotime( '-1 week' ) > $twttr_options['first_install'] ) {
-				bws_plugin_banner( $twttr_plugin_info, 'twttr', 'twitter', '137342f0aa4b561cf7f93c190d95c890', '76', 'twitter-plugin' );
-			}
-
+			
 			/* show banner go settings pls*/
 			if ( ! is_network_admin() ) {
 				bws_plugin_banner_to_settings( $twttr_plugin_info, 'twttr_options', 'twitter-plugin', 'admin.php?page=twitter.php' );
@@ -523,7 +525,7 @@ if ( ! function_exists( 'twttr_add_tabs' ) ) {
 if ( ! function_exists( 'twttr_delete_options' ) ) {
 	function twttr_delete_options() {
 		if ( ! function_exists( 'get_plugins' ) ) {
-			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			require_once(ABSPATH . 'wp-admin/includes/plugin.php');
 		}
 		$all_plugins = get_plugins();
 
@@ -558,7 +560,7 @@ if ( ! function_exists( 'twttr_delete_options' ) ) {
 			}
 		}
 
-		require_once( dirname( __FILE__ ) . '/bws_menu/bws_include.php' );
+		require_once(dirname(__FILE__) . '/bws_menu/bws_include.php');
         bws_include_init( plugin_basename( __FILE__ ) );
         bws_delete_plugin( plugin_basename( __FILE__ ) );
     }

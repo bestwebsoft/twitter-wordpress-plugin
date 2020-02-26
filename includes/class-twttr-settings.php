@@ -4,10 +4,11 @@
  * @since 2.54
  */
 
-require_once( dirname( dirname( __FILE__ ) ) . '/bws_menu/class-bws-settings.php' );
-
 if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 	class Twttr_Settings_Tabs extends Bws_Settings_Tabs {
+
+	    private $lang_codes;
+
 		/**
 		 * Constructor.
 		 *
@@ -56,6 +57,96 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 			add_action( get_parent_class( $this ) . '_display_second_postbox', array( $this, 'display_second_postbox' ) );
 			add_action( get_parent_class( $this ) . '_display_second_postbox', array( $this, 'display_third_postbox' ) );
 			/* pls*//* */
+
+            $this->lang_codes = array(
+                "af_ZA" => 'Afrikaans',
+                "ar_AR" => 'العربية',
+                "az_AZ" => 'Azərbaycan dili',
+                "be_BY" => 'Беларуская',
+                "bg_BG" => 'Български',
+                "bn_IN" => 'বাংলা',
+                "bs_BA" => 'Bosanski',
+                "ca_ES" => 'Català',
+                "cs_CZ" => 'Čeština',
+                "cy_GB" => 'Cymraeg',
+                "da_DK" => 'Dansk',
+                "de_DE" => 'Deutsch',
+                "el_GR" => 'Ελληνικά',
+                "en_US" => 'English',
+                "en_PI" => 'English (Pirate)',
+                "eo_EO" => 'Esperanto',
+                "es_CO" => 'Español (Colombia)',
+                "es_ES" => 'Español (España)',
+                "es_LA" => 'Español',
+                "et_EE" => 'Eesti',
+                "eu_ES" => 'Euskara',
+                "fa_IR" => 'فارسی',
+                "fb_LT" => 'Leet Speak',
+                "fi_FI" => 'Suomi',
+                "fo_FO" => 'Føroyskt',
+                "fr_CA" => 'Français (Canada)',
+                "fr_FR" => 'Français (France)',
+                "fy_NL" => 'Frysk',
+                "ga_IE" => 'Gaeilge',
+                "gl_ES" => 'Galego',
+                "gn_PY" => "Avañe'ẽ",
+                "gu_IN" => 'ગુજરાતી',
+                "he_IL" => 'עברית',
+                "hi_IN" => 'हिन्दी',
+                "hr_HR" => 'Hrvatski',
+                "hu_HU" => 'Magyar',
+                "hy_AM" => 'Հայերեն',
+                "id_ID" => 'Bahasa Indonesia',
+                "is_IS" => 'Íslenska',
+                "it_IT" => 'Italiano',
+                "ja_JP" => '日本語',
+                "jv_ID" => 'Basa Jawa',
+                "ka_GE" => 'ქართული',
+                "kk_KZ" => 'Қазақша',
+                "km_KH" => 'ភាសាខ្មែរ',
+                "kn_IN" => 'ಕನ್ನಡ',
+                "ko_KR" => '한국어',
+                "ku_TR" => 'Kurdî',
+                "la_VA" => 'lingua latina',
+                "lt_LT" => 'Lietuvių',
+                "lv_LV" => 'Latviešu',
+                "mk_MK" => 'Македонски',
+                "ml_IN" => 'മലയാളം',
+                "mn_MN" => 'Монгол',
+                "mr_IN" => 'मराठी',
+                "ms_MY" => 'Bahasa Melayu',
+                "nb_NO" => 'Norsk (bokmål)',
+                "ne_NP" => 'नेपाली',
+                "nl_BE" => 'Nederlands (België)',
+                "nl_NL" => 'Nederlands',
+                "nn_NO" => 'Norsk (nynorsk)',
+                "pa_IN" => 'ਪੰਜਾਬੀ',
+                "pl_PL" => 'Polski',
+                "ps_AF" => 'پښتو',
+                "pt_BR" => 'Português (Brasil)',
+                "pt_PT" => 'Português (Portugal)',
+                "ro_RO" => 'Română',
+                "ru_RU" => 'Русский',
+                "sk_SK" => 'Slovenčina',
+                "sl_SI" => 'Slovenščina',
+                "sq_AL" => 'Shqip',
+                "sr_RS" => 'Српски',
+                "sv_SE" => 'Svenska',
+                "sw_KE" => 'Kiswahili',
+                "ta_IN" => 'தமிழ்',
+                "te_IN" => 'తెలుగు',
+                "tg_TJ" => 'тоҷикӣ',
+                "th_TH" => 'ภาษาไทย',
+                "tl_PH" => 'Filipino',
+                "tr_TR" => 'Türkçe',
+                "uk_UA" => 'Українська',
+                "ur_PK" => 'اردو',
+                "uz_UZ" => "O'zbek",
+                "vi_VN" => 'Tiếng Việt',
+                "zh_CN" => '中文(简体)',
+                "zh_HK" => '中文(香港)',
+                "zh_TW" => '中文(台灣)',
+            );
 		}
 
 		/**
@@ -65,7 +156,9 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 		 * @return array    The action results
 		 */
 		public function save_options() {
-			$this->options['url_twitter']				= stripslashes( esc_html( $_REQUEST['twttr_url_twitter'] ) );
+			$message = $notice = $error = '';
+
+			$this->options['url_twitter']				= stripslashes( sanitize_text_field( $_REQUEST['twttr_url_twitter'] ) );
 			$this->options['position']					= array();
 			if ( isset( $_REQUEST['twttr_position'] ) && is_array( $_REQUEST['twttr_position'] ) ) {
 				foreach ( $_REQUEST['twttr_position'] as $value ) {
@@ -75,30 +168,30 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 				}
 			}
 			$this->options['tweet_display']				= isset( $_REQUEST['twttr_tweet_display'] ) ? 1 : 0;
-			$this->options['size']						= stripslashes( esc_html( $_REQUEST['twttr_size'] ) );
+			$this->options['size']						= ( isset( $_REQUEST['twttr_size'] ) && in_array( $_REQUEST['twttr_size'], array( 'deafult', 'large') ) ? $_REQUEST['twttr_size'] : 'default' );
 			$this->options['lang_default']				= isset( $_REQUEST['twttr_lang_default'] ) ? 1 : 0;
-			$this->options['lang'] 						= stripslashes( esc_html( $_REQUEST['twttr_lang'] ) );
+            $this->options['lang']                      = ( isset( $_REQUEST['twttr_lang'] ) && array_key_exists( $_REQUEST['twttr_lang'], $this->lang_codes) ) ? $_REQUEST['twttr_lang'] : $this->options['lang'];
 			$this->options['tailoring']					= isset( $_REQUEST['twttr_tailoring'] ) ? 1 : 0;
-			$this->options['url_of_twitter']			= stripslashes( esc_html( $_REQUEST['twttr_url_of_twitter'] ) );
-			$this->options['text_option_twitter']		= stripslashes( esc_html( $_REQUEST['twttr_text_option_twitter'] ) );
-			$this->options['text_twitter']				= stripslashes( esc_html( $_REQUEST['twttr_text_twitter'] ) );
-			$this->options['via_twitter']				= stripslashes( esc_html( $_REQUEST['twttr_via_twitter'] ) );
+			$this->options['url_of_twitter']			= ( isset( $_REQUEST['twttr_url_of_twitter'] ) && in_array( $_REQUEST['twttr_url_of_twitter'], array( 'page_url', 'home_url') ) ? $_REQUEST['twttr_url_of_twitter'] : 'page_title' );
+			$this->options['text_option_twitter']		= ( isset( $_REQUEST['twttr_text_option_twitter'] ) && in_array( $_REQUEST['twttr_text_option_twitter'], array( 'page_title', 'custom') ) ? $_REQUEST['twttr_text_option_twitter'] : 'page_title' );
+			$this->options['text_twitter']				= isset( $_REQUEST['twttr_text_twitter'] ) ? stripslashes( sanitize_text_field( $_REQUEST['twttr_text_twitter'] ) ) : $this->options['text_twitter'];
+			$this->options['via_twitter']				= isset( $_REQUEST['twttr_via_twitter'] ) ? stripslashes( sanitize_text_field( $_REQUEST['twttr_via_twitter'] ) ) : $this->options['via_twitter'];
 			$this->options['followme_display']			= isset( $_REQUEST['twttr_followme_display'] ) ? 1 : 0;
 			$this->options['username_display']			= isset( $_REQUEST['twttr_username_display'] ) ? 1 : 0;
 			$this->options['followers_count_followme']	= isset( $_REQUEST['twttr_followers_count_followme'] ) ? 1 : 0;
 			if ( isset( $_REQUEST['twttr_display_option'] ) ) {
-			    $this->options['display_option']        = stripslashes( esc_html( $_REQUEST['twttr_display_option'] ) );
+			    $this->options['display_option']        = ( isset( $_REQUEST['twttr_display_option'] ) && in_array( $_REQUEST['twttr_display_option'], array( 'standart', 'custom') ) ? $_REQUEST['twttr_display_option'] : 'standart' );
 			}
 			$this->options['hashtag_display']			= isset( $_REQUEST['twttr_hashtag_display'] ) ? 1 : 0;
-			$this->options['text_option_hashtag']		= stripslashes( esc_html( $_REQUEST['twttr_text_option_hashtag'] ) );
-			$this->options['text_hashtag']				= stripslashes( esc_html( $_REQUEST['twttr_text_hashtag'] ) );
-			$this->options['url_option_hashtag']		= stripslashes( esc_html( $_REQUEST['twttr_url_option_hashtag'] ) );
+			$this->options['text_option_hashtag']		= ( isset( $_REQUEST['twttr_text_option_hashtag'] ) && in_array( $_REQUEST['twttr_text_option_hashtag'], array( 'page_title', 'custom') ) ? $_REQUEST['twttr_text_option_hashtag'] : 'page_title' );
+			$this->options['text_hashtag']				= isset( $_REQUEST['twttr_text_hashtag'] ) ? stripslashes( sanitize_text_field( $_REQUEST['twttr_text_hashtag'] ) ) : $this->options['text_hashtag'];
+			$this->options['url_option_hashtag']		= ( isset( $_REQUEST['twttr_url_option_hashtag'] ) && in_array( $_REQUEST['twttr_url_option_hashtag'], array( 'no_url', 'page_url', 'home_url' ) ) ? $_REQUEST['twttr_url_option_hashtag'] : 'no_url' );
 			$this->options['mention_display']			= isset( $_REQUEST['twttr_mention_display'] ) ? 1 : 0;
-			$this->options['tweet_to_mention']			= stripslashes( esc_html( $_REQUEST['twttr_tweet_to_mention'] ) );
+			$this->options['tweet_to_mention']			= isset( $_REQUEST['twttr_tweet_to_mention'] ) ?  stripslashes( sanitize_text_field( $_REQUEST['twttr_tweet_to_mention'] ) ) : $this->options['tweet_to_mention'];
 			/* '\w' can not be used due to php 5.2.4 have bugs with cirillic symbols in preg_ functions */
 			$this->options['tweet_to_mention']			= preg_replace( '~[^\d_a-zA-Z]~', '', $this->options['tweet_to_mention'] );
-			$this->options['text_option_mention']		= stripslashes( esc_html( $_REQUEST['twttr_text_option_mention'] ) );
-			$this->options['text_mention']				= stripslashes( esc_html( $_REQUEST['twttr_text_mention'] ) );
+			$this->options['text_option_mention']		= ( isset( $_REQUEST['twttr_text_option_mention'] ) && in_array( $_REQUEST['twttr_text_option_mention'], array( 'page_title', 'custom') ) ? $_REQUEST['twttr_text_option_mention'] : 'page_title' );
+			$this->options['text_mention']				= isset( $_REQUEST['twttr_text_mention'] ) ? stripslashes( sanitize_text_field( $_REQUEST['twttr_text_mention'] ) ) : $this->options['text_mention'];
 			if ( 'custom' != $this->options['display_option'] ) {
 				$img_name =
 					'large' == $this->options['size'] ?
@@ -121,8 +214,8 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 			);
 
 			foreach ( $multipleValues as $field ) {
-				$value = stripslashes( esc_html( $_REQUEST[ 'twttr_' . $field ] ) );
-				$value = preg_replace( '~\s+~', '', $value ); /* delete from fields all space symbols */
+				$value = stripslashes( sanitize_text_field( $_REQUEST[ 'twttr_' . $field ] ) );
+				$value = preg_replace( '~\s+~', '%', $value ); /* delete from fields all space symbols */
 				$exploded_values = explode( ',', $value ); /* create an array of values */
 
 				/* delete all punctuation symbols form values */
@@ -134,7 +227,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 					if ( in_array( $field, $related ) ) { /* 'related' fields could have 2 values max */
 					    $exploded_values = array_slice( $exploded_values, 0, 2 ); /* return only 2 first elements */
 					}
-					$this->options[ $field ] = implode( ', ', $exploded_values );
+					$this->options[ $field ] = implode( ',', $exploded_values );
 				}
 			}
 			if ( isset( $_FILES['twttr_upload_file']['tmp_name'] ) && $_FILES['twttr_upload_file']['tmp_name'] != "" ) {
@@ -201,11 +294,10 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 		 *
 		 */
 		public function tab_settings() {
-			global $twttr_lang_codes, $wp_version;
 			if ( ! $this->upload_dir ) {
 			    $this->upload_dir = wp_upload_dir();
 			} ?>
-			<h3 class="bws_tab_label"><?php _e( 'Twitter Button Settings', 'twitter-plugin' ); ?></h3>
+			<h3 class="bws_tab_label"><?php _e( 'Twitter Settings', 'twitter-plugin' ); ?></h3>
             <?php $this->help_phrase(); ?>
 			<hr>
 			<div class="bws_tab_sub_label twttr_general"><?php _e( 'General', 'twitter-plugin' ); ?></div>
@@ -239,12 +331,12 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 						<fieldset>
 							<label>
 								<input type="checkbox" name="twttr_position[]" value="before" <?php if ( in_array( 'before', $this->options['position'] ) ) echo 'checked="checked"'; ?> />
-								<?php _e( 'Before content', 'twitter-plugin' ); ?></option>
+								<?php _e( 'Before content', 'twitter-plugin' ); ?>
 							</label>
 							<br>
 							<label>
 								<input type="checkbox" name="twttr_position[]" value="after" <?php if ( in_array( 'after', $this->options['position'] ) ) echo 'checked="checked"'; ?> />
-								<?php _e( 'After content', 'twitter-plugin' ); ?></option>
+								<?php _e( 'After content', 'twitter-plugin' ); ?>
 							</label>
 						</fieldset>
 					</td>
@@ -254,36 +346,10 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
                     <td>
 						<label><input id="twttr_lang_default" name="twttr_lang_default" type="checkbox" value="1" <?php checked( 1, $this->options['lang_default'] ); ?> /> <?php _e( 'Automatic', 'twitter-plugin' ); ?></label>
 						<br />
-						<select name="twttr_lang" id="twttr_lang_choose" <?php if ( 1 == $this->options['lang_default'] ) echo 'style="display:none"'; ?> >
-							<option <?php selected( 'en', $this->options['lang'] ); ?> value="en">English</option>
-							<option <?php selected( 'en-gb', $this->options['lang'] ); ?> value="en-gb">English UK</option>
-							<option <?php selected( 'fr', $this->options['lang'] ); ?> value="fr">French - français</option>
-							<option <?php selected( 'es', $this->options['lang'] ); ?> value="es">Spanish - Español</option>
-							<option <?php selected( 'de', $this->options['lang'] ); ?> value="de">German - Deutsch</option>
-							<option <?php selected( 'it', $this->options['lang'] ); ?> value="it">Italian - Italiano</option>
-							<option <?php selected( 'ru', $this->options['lang'] ); ?> value="ru">Russian - Русский</option>
-							<option <?php selected( 'ar', $this->options['lang'] ); ?> value="ar">Arabic - العربية</option>
-							<option <?php selected( 'ja', $this->options['lang'] ); ?> value="ja">Japanese - 日本語</option>
-							<option <?php selected( 'id', $this->options['lang'] ); ?> value="id">Indonesian - Bahasa Indonesia</option>
-							<option <?php selected( 'pt', $this->options['lang'] ); ?> value="pt">Portuguese - Português</option>
-							<option <?php selected( 'ko', $this->options['lang'] ); ?> value="ko">Korean - 한국어</option>
-							<option <?php selected( 'tr', $this->options['lang'] ); ?> value="tr">Turkish - Türkçe</option>
-							<option <?php selected( 'nl', $this->options['lang'] ); ?> value="nl">Dutch - Nederlands</option>
-							<option <?php selected( 'fil', $this->options['lang'] ); ?> value="fil">Filipino - Filipino</option>
-							<option <?php selected( 'msa', $this->options['lang'] ); ?> value="msa">Malay - Bahasa Melayu</option>
-							<option <?php selected( 'zh-tw', $this->options['lang'] ); ?> value="zh-tw">Traditional Chinese - 繁體中文</option>
-							<option <?php selected( 'zh-cn', $this->options['lang'] ); ?> value="zh-cn">"Simplified Chinese - 简体中文</option>
-							<option <?php selected( 'hi', $this->options['lang'] ); ?> value="hi">Hindi - हिन्दी</option>
-							<option <?php selected( 'no', $this->options['lang'] ); ?> value="no">Norwegian - Norsk</option>
-							<option <?php selected( 'sv', $this->options['lang'] ); ?> value="sv">Swedish - Svenska</option>
-							<option <?php selected( 'fi', $this->options['lang'] ); ?> value="fi">Finnish - Suomi</option>
-							<option <?php selected( 'da', $this->options['lang'] ); ?> value="da">Danish - Dansk</option>
-							<option <?php selected( 'pl', $this->options['lang'] ); ?> value="pl">Polish - Polski</option>
-							<option <?php selected( 'hu', $this->options['lang'] ); ?> value="hu">Hungarian - Magyar</option>
-							<option <?php selected( 'fa', $this->options['lang'] ); ?> value="fa">Farsi - فارسی</option>
-							<option <?php selected( 'he', $this->options['lang'] ); ?> value="he">Hebrew - עִבְרִית</option>
-							<option <?php selected( 'ur', $this->options['lang'] ); ?> value="ur">Urdu - اردو</option>
-							<option <?php selected( 'th', $this->options['lang'] ); ?> value="th">Thai - ภาษาไทย</option>
+                        <select name="twttr_lang" id="twttr_lang_choose" <?php if ( 1 == $this->options['lang_default'] ) echo 'style="display:none"'; ?> >
+                            <?php foreach ( $this->lang_codes as $key => $val ) { ?>
+                               <option value="<?php echo $key; ?>" <?php selected( $key, $this->options['lang'] ); ?>><?php echo $val; ?></option>
+                            <?php } ?>
 						</select>
 						<div class="bws_info"><?php _e( 'Select the default language for Twitter button(-s).', 'twitter-plugin' ); ?></div>
 					</td>
@@ -308,21 +374,21 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
                         <tr>
                             <th><?php _e( 'Twitter URL', 'twitter-plugin' ); ?></th>
                             <td>
-                                <input name="twttr_twitter_url" type="text" value="https://twitter.com/bestwebsoft" maxlength="250" />
+                                <input name="twttr_twitter_url" type="text" value="https://twitter.com/bestwebsoft" maxlength="250" disabled="disabled" />
                                 <div class="bws_info"><?php _e( 'Enter Twitter account URL to display the timeline', 'twitter-plugin' ); ?>.</div>
                             </td>
                         </tr>
                         <tr>
                             <th><?php _e( 'Number Of Tweets', 'twitter-plugin' ); ?></th>
                             <td>
-                                <input name="twttr_timeline_tweet_limit" type="number" value="0" min="0" max="20" step="1" />
+                                <input name="twttr_timeline_tweet_limit" type="number" value="0" min="0" max="20" step="1" disabled="disabled" />
                                 <div class="bws_info"><?php _e( 'Enter the number of Tweets which will be displayed on the timeline. Enter "0" to display maximum number', 'twitter-plugin' ); ?></div>
                             </td>
                         </tr>
                         <tr>
                             <th><?php _e( 'Theme', 'twitter-plugin' ); ?></th>
                             <td>
-                                <select name="twttr_timeline_theme">
+                                <select name="twttr_timeline_theme" disabled="disabled">
                                     <option value="light" selected><?php _e( 'Light', 'twitter-plugin' ); ?></option>
                                     <option value="dark" ><?php _e( 'Dark', 'twitter-plugin' ); ?></option>
                                 </select>
@@ -331,7 +397,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
                         <tr>
                             <th><?php _e( 'Language', 'twitter-plugin' ); ?></th>
                             <td>
-                                <select id="twttr_timeline_language" name="twttr_timeline_language">
+                                <select id="twttr_timeline_language" name="twttr_timeline_language" disabled="disabled">
                                         <option value="en" selected>English</option>
                                 </select>
                             </td>
@@ -339,30 +405,30 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
                         <tr>
                             <th><?php _e( 'Height', 'twitter-plugin' ); ?></th>
                             <td>
-                                <input class="small-text" name="twttr_timeline_height" type="number" value="600" min="200"  step="1" />
-                                <span class="bws_info"><?php _e( 'Set a fixed height of the timeline block. The height parameter doesn\'t work when a "Number Of Tweets" is set to 0.', 'twitter-plugin' ); ?></span>
+                                <input class="small-text" name="twttr_timeline_height" type="number" value="600" min="200"  step="1" disabled="disabled" />
+                                <p class="bws_info"><?php _e( 'Set a fixed height of the timeline block. The height parameter doesn\'t work when a "Number Of Tweets" is set to 0.', 'twitter-plugin' ); ?></p>
                             </td>
                         </tr>
                         <tr>
                             <th><?php _e( 'Width', 'twitter-plugin' ); ?></th>
                             <td>
-                                <input class="small-text" name="twttr_timeline_width" type="number" value="300" min="0"  step="1" />
-                                <span class="bws_info"><?php _e( 'Set the maximum width of the timeline block. Set 0 to automatically determine the width', 'twitter-plugin' ); ?></span>
+                                <input class="small-text" name="twttr_timeline_width" type="number" value="300" min="0"  step="1" disabled="disabled" />
+                                <p class="bws_info"><?php _e( 'Set the maximum width of the timeline block. Set 0 to automatically determine the width', 'twitter-plugin' ); ?></p>
                             </td>
                         </tr>
                         <tr>
                             <th><?php _e( 'Design Elements', 'twitter-plugin' ); ?></th>
                             <td>
                                 <fieldset>
-                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="noheader" checked="checked"/> <?php _e( 'Hide the timeline header', 'twitter-plugin' ); ?></label>
+                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="noheader" disabled="disabled" /> <?php _e( 'Hide the timeline header', 'twitter-plugin' ); ?></label>
                                     <br />
-                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="nofooter"/> <?php _e( 'Hide the timeline footer', 'twitter-plugin' ); ?></label>
+                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="nofooter" disabled="disabled" /> <?php _e( 'Hide the timeline footer', 'twitter-plugin' ); ?></label>
                                     <br />
-                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="noborders"/> <?php _e( 'Hide the timeline borders', 'twitter-plugin' ); ?></label>
+                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="noborders" disabled="disabled" /> <?php _e( 'Hide the timeline borders', 'twitter-plugin' ); ?></label>
                                     <br />
-                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="transparent"/> <?php _e( 'Remove the timeline background color', 'twitter-plugin' ); ?></label>
+                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="transparent" disabled="disabled" /> <?php _e( 'Remove the timeline background color', 'twitter-plugin' ); ?></label>
                                     <br />
-                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="noscrollbar"/> <?php _e( 'Hide the timeline scrollbar', 'twitter-plugin' ); ?></label>
+                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="noscrollbar" disabled="disabled" /> <?php _e( 'Hide the timeline scrollbar', 'twitter-plugin' ); ?></label>
                                 </fieldset>
                             </td>
                         </tr>
@@ -370,8 +436,8 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
                             <th><?php _e( 'Border color', 'twitter-plugin' ); ?></th>
                             <td>
                                 <div>
-                                    <input type="text" maxlength="7" name="twttr_timeline_border_color" value="#f1f1f1" id="twttr_timeline_border_color" class="twttr_timeline_border_color twttr_color" />
-                                    <span class="bws_info"><?php _e( 'Set the color of borders inside of the timeline block.', 'twitter-plugin' ); ?></span>
+                                    <input type="text" maxlength="7" name="twttr_timeline_border_color" value="#f1f1f1" id="twttr_timeline_border_color" class="twttr_timeline_border_color twttr_color" disabled="disabled" />
+                                    <p class="bws_info"><?php _e( 'Set the color of borders inside of the timeline block.', 'twitter-plugin' ); ?></p>
                                 </div>
                             </td>
                         </tr>
@@ -379,8 +445,8 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
                             <th><?php _e( 'Link color', 'twitter-plugin' ); ?></th>
                             <td>
                                 <div>
-                                    <input type="text" maxlength="7" name="twttr_timeline_link_color" value="#2b7bb9" id="twttr_timeline_link_color" class="twttr_timeline_link_color twttr_color" />
-                                    <span class="bws_info"><?php _e( 'Set the color of links, including hashtags and @mentions, inside each Tweet.', 'twitter-plugin' ); ?></span>
+                                    <input type="text" maxlength="7" name="twttr_timeline_link_color" value="#2b7bb9" id="twttr_timeline_link_color" class="twttr_timeline_link_color twttr_color" disabled="disabled" />
+                                    <p class="bws_info"><?php _e( 'Set the color of links, including hashtags and @mentions, inside each Tweet.', 'twitter-plugin' ); ?></p>
                                 </div>
                             </td>
                         </tr>
@@ -483,7 +549,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 						<td>
 							<fieldset>
 								<label><input name="twttr_username_display" type="checkbox" value="1" <?php checked( 1, $this->options['username_display'] ); ?> /> <?php _e( 'Username', 'twitter-plugin' ); ?></label>
-								<br/>
+								<br />
 								<label><input name="twttr_followers_count_followme" type="checkbox" value="1" <?php checked( 1, $this->options['followers_count_followme'] ); ?> /> <?php _e( 'Count', 'twitter-plugin' ); ?></label>
 							</fieldset>
 						</td>
@@ -581,7 +647,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 		public function display_metabox() { ?>
 			<div class="postbox">
 				<h3 class="hndle">
-					<?php _e( 'Twitter Buttons Shortcode', 'twitter-plugin' ); ?>
+					<?php _e( 'Twitter Shortcode', 'twitter-plugin' ); ?>
 				</h3>
 				<div class="inside">
 					<?php _e( 'Add Twitter button(-s) to your posts, pages, custom post types or widgets by using the following shortcode:', 'twitter-plugin' );
@@ -590,7 +656,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
                 <?php if ( ! $this->hide_pro_tabs ) { ?>
                     <div class="bws_pro_version_bloc">
 					    <div class="bws_table_bg"></div>
-                        <button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'twitter-plugin' ); ?>"></button>
+                        <button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'twitter-plugin' ); ?>"></button><br />
                         <div class="inside">
                             <?php _e( 'Add Twitter timeline to your posts, pages, custom post types or widgets by using the following shortcode:', 'twitter-plugin' );
                             bws_shortcode_output( '[twitter_timeline]' ); ?>
@@ -646,7 +712,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 					<table class="form-table bws_pro_version">
 						<tr>
 							<td colspan="2">
-								<?php _e( 'Please choose the necessary post types (or single pages) where Twitter buttons will be displayed:', 'twitter-plugin' ); ?>
+								<?php _e( 'Choose the necessary post types (or single pages) where Twitter buttons will be displayed:', 'twitter-plugin' ); ?>
 							</td>
 						</tr>
 						<tr>

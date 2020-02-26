@@ -9,12 +9,8 @@
 .twttr_followme,
 .twttr_hashtag,
 .twttr_mention {
-	display: inline;
+	display: inline-block;
 	margin-right: 5px
-}
-.twttr_followme {
-	width: 50% !important;
-	height: auto !important;
 }
 .twttr_followme a img {
 	display: inline !important;

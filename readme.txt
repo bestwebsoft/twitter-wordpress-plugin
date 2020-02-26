@@ -1,10 +1,10 @@
-﻿=== Twitter Button by BestWebSoft ===
+﻿=== BestWebSoft's Twitter ===
 Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add social buttons, twitter buttons, add twitter buttons, share button, follow button, tweets, twitter share button, twitter follow button, twitter feeds, like button, twitter like button, social bookmark
-Requires at least: 3.9
-Tested up to: 5.2.2
-Stable tag: 2.62
+Requires at least: 4.5
+Tested up to: 5.3.2
+Stable tag: 2.63
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -92,16 +92,15 @@ Some of these translations are not complete. We are constantly adding new featur
 = Recommended Plugins =
 
 * [Updater](https://bestwebsoft.com/products/wordpress/plugins/updater/?k=4e3cbf90f06b1a8d47346da9a8ea106b) - Automatically check and update WordPress website core with all installed plugins and themes to the latest versions.
-* [Google +1](https://bestwebsoft.com/products/wordpress/plugins/google-plus-one/?k=e8425f26ec963119cc0e7e4b9eef7a9b) - Add Google +1 Share, Follow, Hangout buttons and profile badge to WordPress posts, pages and widgets.
 * [LinkedIn](https://bestwebsoft.com/products/wordpress/plugins/linkedin/?k=fe5130d56aa894f4227278e7b53859a4) - Add LinkedIn Share and Follow buttons to WordPress posts, pages and widgets. 5 plugins included – profile, insider, etc.
 * [Pinterest](https://bestwebsoft.com/products/wordpress/plugins/pinterest/?k=de0a862fe6c9aba43fc8d30202f312b2) - Add Pinterest Follow, Pin It buttons and profile widgets (Pin, Board, Profile) to WordPress posts, pages and widgets.
-* [Facebook Button](https://bestwebsoft.com/products/wordpress/plugins/facebook-like-button/?k=5da65dd74669c3eb5ddb6f27da1da65e) - Add Facebook Like, Share and Profile buttons to WordPress posts, pages and widgets.
+* [Like & Share](https://bestwebsoft.com/products/wordpress/plugins/facebook-like-button/?k=5da65dd74669c3eb5ddb6f27da1da65e) - Add Facebook Like, Share and Profile buttons to WordPress posts, pages and widgets.
 
 == Installation ==
 
 1. Upload the folder `twitter-plugin` to the directory `/wp-content/plugins/`.
 2. Activate the plugin via the 'Plugins' menu in your WordPress admin panel.
-3. You can adjust the necessary settings in your WordPress admin panel – ”Twitter Button”.
+3. You can adjust the necessary settings in your WordPress admin panel – ”Twitter”.
 
 [View a Step-by-step Instruction on Twitter Installation](https://docs.google.com/document/d/1IRWS_ih2ZFfWv0s4oU3LgjwWcBxtZ4UGlI7UmvPNMSQ/)
 
@@ -109,22 +108,22 @@ http://www.youtube.com/watch?v=ls9754Mr8Xg
 
 == Frequently Asked Questions ==
 
-= I cannot see the Twitter Button icon in the post after the plugin installation =
+= I cannot see the Twitter icon in the post after the plugin installation =
 
-In the WordPress admin panel go to "Plugins", find the "Twitter Button by BestWebSoft" plugin and click "Activate".
+In the WordPress admin panel go to "Plugins", find the "BestWebSoft's Twitter" plugin and click "Activate".
 
 = How can I deactivate the plugin =
 
-In the WordPress admin panel go to "Plugins", find the "Twitter Button by BestWebSoft" plugin and click "Deactivate".
+In the WordPress admin panel go to "Plugins", find the "BestWebSoft's Twitter" plugin and click "Deactivate".
 
-= How to adjust the Twitter Button icon position on the page =
+= How to adjust the Twitter icon position on the page =
 
-In WordPress admin panel, please go to "Twitter Button" settings page and select one of the listed positions: Before the post, After the post or display the buttons only via shortcode. Then click "Save Changes".
+In WordPress admin panel, please go to "Twitter" settings page and select one of the listed positions: Before the post, After the post or display the buttons only via shortcode. Then click "Save Changes".
 
 = After installation and settings adjustment on the plugin settings page it is not working still =
 
 1. Please click "Save Changes". Make sure that you got the message "Settings Saved".
-2. After saving your settings you should refresh the web page, where the Twitter Button icon should be placed.
+2. After saving your settings you should refresh the web page, where the Twitter icon should be placed.
 
 = Can I control the order of the recommended accounts? =
 
@@ -147,6 +146,11 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 4. Pasting Twitter shortcode into the content.
 
 == Changelog ==
+
+= V2.63 - 25.02.2019 =
+* Update : All functionality was updated for WordPress 5.3.2.
+* Update : BWS plugins section is updated.
+* Update : Plugin was renamed.
 
 = V2.62 - 04.09.2019 =
 * Update: The deactivation feedback has been changed. Misleading buttons have been removed.
@@ -386,6 +390,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * Ability to install Twitter Button icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.63 =
+* The compatibility with new WordPress version updated.
 
 = V2.62 =
 * Usability improved.
