@@ -77,9 +77,9 @@
 <p>If you have a feature suggestion or idea you&#8217;d like to see in the plugin, we&#8217;d love to hear about it! <a href="https://support.bestwebsoft.com/hc/en-us/requests/new" rel="nofollow ugc">Suggest a Feature</a></p>
 <h4>Documentation &amp; Videos</h4>
 <ul>
-<li><a href="https://docs.google.com/document/d/1IRWS_ih2ZFfWv0s4oU3LgjwWcBxtZ4UGlI7UmvPNMSQ/" rel="nofollow ugc">[Doc] Installation</a></li>
-<li><a href="https://docs.google.com/document/d/10-vIGgVw8SzZ8jU4e57mqn6VrasKtPFhS7vtgTIO3Dg/" rel="nofollow ugc">[Doc] Purchase, Installation &amp; Configuration</a></li>
-<li><a href="https://docs.google.com/document/d/1Zy0GILpchmrvwxeMXxIpti12hTKR_wuobiIku0xKYAQ/" rel="nofollow ugc">[Doc] How to Use</a></li>
+<li><a href="https://bestwebsoft.com/documentation/how-to-install-a-wordpress-product/how-to-install-a-wordpress-plugin/" rel="nofollow ugc">[Doc] Installation</a></li>
+<li><a href="https://bestwebsoft.com/documentation/how-to-purchase-a-wordpress-plugin/how-to-purchase-wordpress-plugin-from-bestwebsoft/" rel="nofollow ugc">[Doc] Purchase, Installation &amp; Configuration</a></li>
+<li><a href="https://bestwebsoft.com/documentation/bestwebsofts-twitter/bestwebsofts-twitter-user-guide/" rel="nofollow ugc">[Doc] How to Use</a></li>
 <li><a href="https://www.youtube.com/watch?v=ls9754Mr8Xg" rel="nofollow ugc">[Video] Installation Instruction</a></li>
 </ul>
 <h4>Help &amp; Support</h4>
