@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: twitter-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-25 10:57+0200\n"
-"PO-Revision-Date: 2020-02-25 10:57+0200\n"
+"POT-Creation-Date: 2021-08-23 14:57+0300\n"
+"PO-Revision-Date: 2021-08-23 14:59+0300\n"
 "Last-Translator: bestwebsoft.com <plugins@bestwebsoft.com>\n"
 "Language-Team: BestWebSoft <plugin@bestwebsoft.com>\n"
 "Language: ru_RU\n"
@@ -17,8 +17,8 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: bws_menu\n"
 
-#: includes/class-twttr-settings.php:25 twitter.php:47 twitter.php:471
-#: twitter.php:484
+#: includes/class-twttr-settings.php:25 twitter.php:46 twitter.php:470
+#: twitter.php:483
 msgid "Settings"
 msgstr "Настройки"
 
@@ -62,8 +62,8 @@ msgstr "Ошибка загрузки: Проверьте опции изобр�
 msgid "Settings saved"
 msgstr "Настройки сохранены"
 
-#: includes/class-twttr-settings.php:300 twitter.php:37 twitter.php:46
-#: twitter.php:224
+#: includes/class-twttr-settings.php:300 twitter.php:36 twitter.php:45
+#: twitter.php:222
 msgid "Twitter Settings"
 msgstr "Настройки Twitter"
 
@@ -75,21 +75,21 @@ msgstr "Общее"
 msgid "Buttons"
 msgstr "Кнопки"
 
-#: includes/class-twttr-settings.php:309 twitter.php:293 twitter.php:344
-#: twitter.php:348 twitter.php:430
+#: includes/class-twttr-settings.php:309 twitter.php:292 twitter.php:343
+#: twitter.php:347 twitter.php:429
 msgid "Tweet"
 msgstr "Твитнуть"
 
-#: includes/class-twttr-settings.php:311 twitter.php:431
+#: includes/class-twttr-settings.php:311 twitter.php:430
 msgid "Follow"
 msgstr "Читать"
 
-#: includes/class-twttr-settings.php:313 includes/class-twttr-settings.php:500
-#: includes/class-twttr-settings.php:561 twitter.php:432
+#: includes/class-twttr-settings.php:313 includes/class-twttr-settings.php:491
+#: includes/class-twttr-settings.php:552 twitter.php:431
 msgid "Hashtag"
 msgstr "Метка"
 
-#: includes/class-twttr-settings.php:315 twitter.php:433
+#: includes/class-twttr-settings.php:315 twitter.php:432
 msgid "Mention"
 msgstr "Упомянуть"
 
@@ -141,8 +141,8 @@ msgstr "Включите адаптированные предложения Т�
 msgid "Learn More"
 msgstr "Подробнее "
 
-#: includes/class-twttr-settings.php:369 includes/class-twttr-settings.php:659
-#: includes/class-twttr-settings.php:675 includes/class-twttr-settings.php:691
+#: includes/class-twttr-settings.php:369 includes/class-twttr-settings.php:651
+#: includes/class-twttr-settings.php:669 includes/class-twttr-settings.php:685
 msgid "Close"
 msgstr "Закрыть"
 
@@ -207,28 +207,28 @@ msgstr ""
 "определять ширину"
 
 #: includes/class-twttr-settings.php:420
-msgid "Design Elements"
-msgstr "Элементы дизайна"
+msgid "Timeline Design Elements"
+msgstr "Элементы дизайна ленты"
 
 #: includes/class-twttr-settings.php:423
-msgid "Hide the timeline header"
-msgstr "Скрыть заголовок ленты"
+msgid "header"
+msgstr "заголовок"
 
 #: includes/class-twttr-settings.php:425
-msgid "Hide the timeline footer"
-msgstr "Скрыть футер ленты"
+msgid "footer"
+msgstr "футер"
 
 #: includes/class-twttr-settings.php:427
-msgid "Hide the timeline borders"
-msgstr "Скрыть границы в ленте"
+msgid "borders"
+msgstr "границы"
 
 #: includes/class-twttr-settings.php:429
-msgid "Remove the timeline background color"
-msgstr "Убрать цвет фона в ленте"
+msgid "background color"
+msgstr "цвет фона"
 
 #: includes/class-twttr-settings.php:431
-msgid "Hide the timeline scrollbar"
-msgstr "Скрыть полосу прокрутки в ленте"
+msgid "scrollbar"
+msgstr "полоса прокрутки"
 
 #: includes/class-twttr-settings.php:436
 msgid "Border color"
@@ -238,62 +238,52 @@ msgstr "Цвет границы"
 msgid "Set the color of borders inside of the timeline block."
 msgstr "Установите цвет границ внутри блока ленты."
 
-#: includes/class-twttr-settings.php:445
-msgid "Link color"
-msgstr "Цвет ссылки"
-
-#: includes/class-twttr-settings.php:449
-msgid ""
-"Set the color of links, including hashtags and @mentions, inside each Tweet."
-msgstr ""
-"Установите цвет ссылок, включая хэштеги и упоминания, внутри каждого твита."
-
-#: includes/class-twttr-settings.php:459
+#: includes/class-twttr-settings.php:450
 msgid "Tweet Button"
 msgstr "Кнопка \"Твитнуть\""
 
-#: includes/class-twttr-settings.php:462 includes/class-twttr-settings.php:568
+#: includes/class-twttr-settings.php:453 includes/class-twttr-settings.php:559
 msgid "Share URL"
 msgstr "Отправить URL-адрес"
 
-#: includes/class-twttr-settings.php:465 includes/class-twttr-settings.php:573
-#: includes/class-twttr-settings.php:614
+#: includes/class-twttr-settings.php:456 includes/class-twttr-settings.php:564
+#: includes/class-twttr-settings.php:605
 msgid "Current page"
 msgstr "Текущая страница"
 
-#: includes/class-twttr-settings.php:467 includes/class-twttr-settings.php:575
+#: includes/class-twttr-settings.php:458 includes/class-twttr-settings.php:566
 msgid "Home page"
 msgstr "Главная страница"
 
-#: includes/class-twttr-settings.php:473 includes/class-twttr-settings.php:580
-#: includes/class-twttr-settings.php:611
+#: includes/class-twttr-settings.php:464 includes/class-twttr-settings.php:571
+#: includes/class-twttr-settings.php:602
 msgid "Tweet Text"
 msgstr "Текст твита"
 
-#: includes/class-twttr-settings.php:477 includes/class-twttr-settings.php:583
+#: includes/class-twttr-settings.php:468 includes/class-twttr-settings.php:574
 msgid "Current page title"
 msgstr "Заголовок текущей страницы"
 
-#: includes/class-twttr-settings.php:479 includes/class-twttr-settings.php:523
-#: includes/class-twttr-settings.php:585 includes/class-twttr-settings.php:616
+#: includes/class-twttr-settings.php:470 includes/class-twttr-settings.php:514
+#: includes/class-twttr-settings.php:576 includes/class-twttr-settings.php:607
 msgid "Custom"
 msgstr "Пользовательский"
 
-#: includes/class-twttr-settings.php:486
+#: includes/class-twttr-settings.php:477
 msgid "Via"
 msgstr "С помощью"
 
-#: includes/class-twttr-settings.php:489
+#: includes/class-twttr-settings.php:480
 msgid "Enter username for Tweet via parameter."
 msgstr "Введите имя пользователя для параметра \"твит с помощью\"."
 
-#: includes/class-twttr-settings.php:493 includes/class-twttr-settings.php:592
-#: includes/class-twttr-settings.php:623
+#: includes/class-twttr-settings.php:484 includes/class-twttr-settings.php:583
+#: includes/class-twttr-settings.php:614
 msgid "Recommend"
 msgstr "Рекомендовать"
 
-#: includes/class-twttr-settings.php:496 includes/class-twttr-settings.php:595
-#: includes/class-twttr-settings.php:626
+#: includes/class-twttr-settings.php:487 includes/class-twttr-settings.php:586
+#: includes/class-twttr-settings.php:617
 msgid ""
 "Enter usernames of someone you recommend (maximum 2 allowed). For example: "
 "bestwebsoft, wordpress."
@@ -301,7 +291,7 @@ msgstr ""
 "Введите имена пользователей, которых вы хотите порекомендовать (максимум 2). "
 "Например: bestwebsoft, wordpress."
 
-#: includes/class-twttr-settings.php:503 includes/class-twttr-settings.php:564
+#: includes/class-twttr-settings.php:494 includes/class-twttr-settings.php:555
 msgid ""
 "Enter one or multiple hashtags for your tweet. For example: bestwebsoft, "
 "wordpress, etc."
@@ -309,30 +299,30 @@ msgstr ""
 "Введите один или несколько хэштегов для вашего твита. Например: bestwebsoft, "
 "wordpress, и тд."
 
-#: includes/class-twttr-settings.php:507
+#: includes/class-twttr-settings.php:498
 msgid "Follow Button"
 msgstr "Кнопка \"Читать\""
 
-#: includes/class-twttr-settings.php:510
+#: includes/class-twttr-settings.php:501
 msgid "Twitter username"
 msgstr "Имя пользователя Tвиттера"
 
-#: includes/class-twttr-settings.php:513
+#: includes/class-twttr-settings.php:504
 #, php-format
 msgid "Enter your Twitter account username or %s create a new one %s."
 msgstr ""
 "Введите имя пользователя вашей учетной записи твиттера или %s создайте новую "
 "%s."
 
-#: includes/class-twttr-settings.php:517
+#: includes/class-twttr-settings.php:508
 msgid "Follow Button Image"
 msgstr "Изображение для кнопки \"Читать\""
 
-#: includes/class-twttr-settings.php:521
+#: includes/class-twttr-settings.php:512
 msgid "Default"
 msgstr "Стандартное"
 
-#: includes/class-twttr-settings.php:527
+#: includes/class-twttr-settings.php:518
 #, php-format
 msgid ""
 "To use custom image, You need to setup permissions to upload directory of "
@@ -341,11 +331,11 @@ msgstr ""
 "Чтобы использовать пользовательское изображение Вам нужно выдать права "
 "доступа на папку загрузок на вашем сайте - %s"
 
-#: includes/class-twttr-settings.php:535
+#: includes/class-twttr-settings.php:526
 msgid "Current image"
 msgstr "Текущее изображение"
 
-#: includes/class-twttr-settings.php:543
+#: includes/class-twttr-settings.php:534
 #, php-format
 msgid ""
 "Upload image with the %s dimensions, JPG, JPEG or PNG formats (maximum file "
@@ -354,48 +344,48 @@ msgstr ""
 "Загрузите изображение с параметрами %s, в JPG, JPEG или PNG формате "
 "(максимальный размер файла - %s)."
 
-#: includes/class-twttr-settings.php:548
+#: includes/class-twttr-settings.php:539
 msgid "Show Follow Button"
 msgstr "Отображать для кнопки \"Читать\""
 
-#: includes/class-twttr-settings.php:551
+#: includes/class-twttr-settings.php:542
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: includes/class-twttr-settings.php:553
+#: includes/class-twttr-settings.php:544
 msgid "Count"
 msgstr "Счетчик"
 
-#: includes/class-twttr-settings.php:558
+#: includes/class-twttr-settings.php:549
 msgid "Hashtag Button"
 msgstr "Кнопка \"Метка\""
 
-#: includes/class-twttr-settings.php:571
+#: includes/class-twttr-settings.php:562
 msgid "None"
 msgstr "Нет"
 
-#: includes/class-twttr-settings.php:599
+#: includes/class-twttr-settings.php:590
 msgid "Mention Button"
 msgstr "Кнопка \"Упомянуть\""
 
-#: includes/class-twttr-settings.php:603 twitter.php:365
+#: includes/class-twttr-settings.php:594 twitter.php:364
 msgid "Tweet to"
 msgstr "Упомянуть"
 
-#: includes/class-twttr-settings.php:607
+#: includes/class-twttr-settings.php:598
 msgid "Enter username of someone you want to mention."
 msgstr "Введите имя пользователя, которого вы хотите упомянуть."
 
-#: includes/class-twttr-settings.php:607
+#: includes/class-twttr-settings.php:598
 #, php-format
 msgid "For example, %s."
 msgstr "Например, %s."
 
-#: includes/class-twttr-settings.php:650
+#: includes/class-twttr-settings.php:641
 msgid "Twitter Shortcode"
 msgstr "Шорткод Twitter"
 
-#: includes/class-twttr-settings.php:653
+#: includes/class-twttr-settings.php:644
 msgid ""
 "Add Twitter button(-s) to your posts, pages, custom post types or widgets by "
 "using the following shortcode:"
@@ -403,7 +393,7 @@ msgstr ""
 "Добавить кнопки Twitter на ваши записи, страницы, пользовательские типы "
 "записей или виджеты с помощью данного шорткода:"
 
-#: includes/class-twttr-settings.php:661
+#: includes/class-twttr-settings.php:653
 msgid ""
 "Add Twitter timeline to your posts, pages, custom post types or widgets by "
 "using the following shortcode:"
@@ -411,19 +401,19 @@ msgstr ""
 "Добавить ленту Twitter на ваши записи, страницы, пользовательские типы "
 "записей или виджеты с помощью данного шорткода:"
 
-#: includes/class-twttr-settings.php:676
+#: includes/class-twttr-settings.php:670
 msgid "Twitter Buttons Preview"
 msgstr "Предварительный просмотр кнопок Twitter"
 
-#: includes/class-twttr-settings.php:692
+#: includes/class-twttr-settings.php:686
 msgid "Twitter Timeline Preview"
 msgstr "Предварительный просмотр ленты Твиттера"
 
-#: includes/class-twttr-settings.php:706
+#: includes/class-twttr-settings.php:700
 msgid "Display Settings"
 msgstr "Настройка отображения"
 
-#: includes/class-twttr-settings.php:715
+#: includes/class-twttr-settings.php:709
 msgid ""
 "Choose the necessary post types (or single pages) where Twitter buttons will "
 "be displayed:"
@@ -431,45 +421,67 @@ msgstr ""
 "Пожалуйста, выберите те типы записей (или отдельные страницы), на которых "
 "будут отображаться кнопки Twitter"
 
-#: includes/class-twttr-settings.php:722
+#: includes/class-twttr-settings.php:716
 msgid "Show URL for pages"
 msgstr "Показать URL для страниц"
 
-#: includes/class-twttr-settings.php:728
+#: includes/class-twttr-settings.php:722
 msgid "Example of the site's pages tree"
 msgstr "Пример дерева страниц сайта"
 
-#: includes/class-twttr-settings.php:728
+#: includes/class-twttr-settings.php:722
 msgid "Example of site pages' tree"
 msgstr "Пример дерева страниц сайта"
 
-#: twitter.php:64
+#: twitter.php:63
 msgid "Upgrade to Pro"
 msgstr "Обновиться до Pro"
 
-#: twitter.php:225
+#: twitter.php:223
 msgid "Please enable JavaScript in Your browser."
 msgstr "Пожалуйста, включите поддержку JavaScript в вашем браузере."
 
-#: twitter.php:311 twitter.php:315
+#: twitter.php:310 twitter.php:314
 msgid "Follow me"
 msgstr "Читать"
 
-#: twitter.php:324
+#: twitter.php:323
 msgid "TwitterStories"
 msgstr "Твит история"
 
-#: twitter.php:429
+#: twitter.php:428
 msgid "Please select twitter buttons which will be displayed"
 msgstr "Пожалуйста выберите кнопки твиттера, которые будут отображены"
 
-#: twitter.php:486
+#: twitter.php:485
 msgid "FAQ"
 msgstr "FAQ"
 
-#: twitter.php:487
+#: twitter.php:486
 msgid "Support"
 msgstr "Тех. поддержка"
+
+#~ msgid "Hide the timeline header"
+#~ msgstr "Скрыть заголовок ленты"
+
+#~ msgid "Hide the timeline footer"
+#~ msgstr "Скрыть футер ленты"
+
+#~ msgid "Hide the timeline borders"
+#~ msgstr "Скрыть границы в ленте"
+
+#~ msgid "Hide the timeline scrollbar"
+#~ msgstr "Скрыть полосу прокрутки в ленте"
+
+#~ msgid "Link color"
+#~ msgstr "Цвет ссылки"
+
+#~ msgid ""
+#~ "Set the color of links, including hashtags and @mentions, inside each "
+#~ "Tweet."
+#~ msgstr ""
+#~ "Установите цвет ссылок, включая хэштеги и упоминания, внутри каждого "
+#~ "твита."
 
 #~ msgid "Uploading Error: check image properties"
 #~ msgstr "Ошибка загрузки: Проверьте опции изображения"

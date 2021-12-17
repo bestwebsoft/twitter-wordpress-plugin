@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add social buttons, twitter buttons, add twitter buttons, share button, follow button, tweets, twitter share button, twitter follow button, twitter feeds, like button, twitter like button, social bookmark
 Requires at least: 4.5
-Tested up to: 5.3.2
-Stable tag: 2.63
+Tested up to: 5.8.2
+Stable tag: 2.64
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,9 +12,11 @@ Add Twitter Follow, Tweet, Hashtag, and Mention buttons to WordPress posts and p
 
 == Description ==
 
-Twitter plugin makes it easy to add Twitter Timeline, Follow, Tweet, Hashtag, and Mention buttons to Wordpress website posts, pages. This is a great way to increase social media shares.
+BestWebSoft's Twitter plugin makes it easy to add Twitter Timeline, Follow, Tweet, Hashtag, and Mention buttons to Wordpress website posts, pages. This is a great way to increase social media shares.
 
 Customize the appearance, configure settings, and enable other advanced options to encourage website visitors to communicate with you via Twitter.
+
+[View Demo](https://bestwebsoft.com/demo-twitter-plugin-for-wordpress/?ref=readme)
 
 http://www.youtube.com/watch?v=2qJ55xvGbDU
 
@@ -71,14 +73,18 @@ If you have a feature suggestion or idea you'd like to see in the plugin, we'd l
 
 = Documentation & Videos =
 
-* [[Doc] Installation](https://docs.google.com/document/d/1IRWS_ih2ZFfWv0s4oU3LgjwWcBxtZ4UGlI7UmvPNMSQ/)
-* [[Doc] Purchase, Installation & Configuration](https://docs.google.com/document/d/10-vIGgVw8SzZ8jU4e57mqn6VrasKtPFhS7vtgTIO3Dg/)
-* [[Doc] How to Use](https://docs.google.com/document/d/1Zy0GILpchmrvwxeMXxIpti12hTKR_wuobiIku0xKYAQ/)
+* [[Doc] User Guide](https://bestwebsoft.com/documentation/bestwebsofts-twitter/bestwebsofts-twitter-user-guide/)
+* [[Doc] Installation](https://bestwebsoft.com/documentation/how-to-install-a-wordpress-product/how-to-install-a-wordpress-plugin/)
+* [[Doc] Purchase, Installation & Configuration](https://bestwebsoft.com/documentation/how-to-purchase-a-wordpress-plugin/how-to-purchase-wordpress-plugin-from-bestwebsoft/)
 * [[Video] Installation Instruction](https://www.youtube.com/watch?v=ls9754Mr8Xg)
 
 = Help & Support =
 
 Visit our Help Center if you have any questions, our friendly Support Team is happy to help — <https://support.bestwebsoft.com/>
+
+= Affiliate Program =
+
+Earn 20% commission by selling the premium WordPress plugins and themes by BestWebSoft — https://bestwebsoft.com/affiliate/
 
 = Translation =
 
@@ -92,9 +98,9 @@ Some of these translations are not complete. We are constantly adding new featur
 = Recommended Plugins =
 
 * [Updater](https://bestwebsoft.com/products/wordpress/plugins/updater/?k=4e3cbf90f06b1a8d47346da9a8ea106b) - Automatically check and update WordPress website core with all installed plugins and themes to the latest versions.
-* [LinkedIn](https://bestwebsoft.com/products/wordpress/plugins/linkedin/?k=fe5130d56aa894f4227278e7b53859a4) - Add LinkedIn Share and Follow buttons to WordPress posts, pages and widgets. 5 plugins included – profile, insider, etc.
-* [Pinterest](https://bestwebsoft.com/products/wordpress/plugins/pinterest/?k=de0a862fe6c9aba43fc8d30202f312b2) - Add Pinterest Follow, Pin It buttons and profile widgets (Pin, Board, Profile) to WordPress posts, pages and widgets.
-* [Like & Share](https://bestwebsoft.com/products/wordpress/plugins/facebook-like-button/?k=5da65dd74669c3eb5ddb6f27da1da65e) - Add Facebook Like, Share and Profile buttons to WordPress posts, pages and widgets.
+* [BestWebSoft's LinkedIn](https://bestwebsoft.com/products/wordpress/plugins/linkedin/?k=fe5130d56aa894f4227278e7b53859a4) - Add LinkedIn Share and Follow buttons to WordPress posts, pages and widgets. 5 plugins included – profile, insider, etc.
+* [BestWebSoft's Pinterest](https://bestwebsoft.com/products/wordpress/plugins/pinterest/?k=de0a862fe6c9aba43fc8d30202f312b2) - Add Pinterest Follow, Pin It buttons and profile widgets (Pin, Board, Profile) to WordPress posts, pages and widgets.
+* [BestWebSoft's Like & Share](https://bestwebsoft.com/products/wordpress/plugins/facebook-like-button/?k=5da65dd74669c3eb5ddb6f27da1da65e) - Add Facebook Like, Share and Profile buttons to WordPress posts, pages and widgets.
 
 == Installation ==
 
@@ -102,7 +108,7 @@ Some of these translations are not complete. We are constantly adding new featur
 2. Activate the plugin via the 'Plugins' menu in your WordPress admin panel.
 3. You can adjust the necessary settings in your WordPress admin panel – ”Twitter”.
 
-[View a Step-by-step Instruction on Twitter Installation](https://docs.google.com/document/d/1IRWS_ih2ZFfWv0s4oU3LgjwWcBxtZ4UGlI7UmvPNMSQ/)
+[View a Step-by-step Instruction on Twitter Installation](https://bestwebsoft.com/documentation/how-to-install-a-wordpress-product/how-to-install-a-wordpress-plugin/)
 
 http://www.youtube.com/watch?v=ls9754Mr8Xg
 
@@ -136,7 +142,7 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 1. the link to the page where the problem occurs
 2. the name of the plugin and its version. If you are using a pro version - your order number.
 3. the version of your WordPress installation
-4. copy and paste into the message your system status report. Please read more here: [Instruction on System Status](https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit)
+4. copy and paste into the message your system status report. Please read more here: [Instruction on System Status](https://bestwebsoft.com/documentation/admin-panel-issues/system-status/)
 
 == Screenshots ==
 
@@ -147,7 +153,13 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 
 == Changelog ==
 
-= V2.63 - 25.02.2019 =
+= V2.64 - 13.12.2021 =
+* Update : All functionality was updated for WordPress 5.8.2.
+* Update : BWS plugins section is updated.
+* Pro : Ability to change the color of the link have been removed. That parameter does not seem to be supported.
+* Bugfix : Error: Invalid Twitter URL has been fixed.
+
+= V2.63 - 25.02.2020 =
 * Update : All functionality was updated for WordPress 5.3.2.
 * Update : BWS plugins section is updated.
 * Update : Plugin was renamed.
@@ -390,6 +402,11 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * Ability to install Twitter Button icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.64 =
+* The compatibility with new WordPress version updated.
+* Bugs fixed.
+* Plugin optimization completed.
 
 = V2.63 =
 * The compatibility with new WordPress version updated.

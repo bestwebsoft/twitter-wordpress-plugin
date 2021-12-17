@@ -41,11 +41,9 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 				'options' 			 => $twttr_options,
 				'is_network_options' => is_network_admin(),
 				'tabs' 				 => $tabs,
-				'doc_link'			=> 'https://docs.google.com/document/d/1Zy0GILpchmrvwxeMXxIpti12hTKR_wuobiIku0xKYAQ/',
+				'doc_link'			=> 'https://bestwebsoft.com/documentation/bestwebsofts-twitter/bestwebsofts-twitter-user-guide/',
 				/*pls */
 				'wp_slug'			 => 'twitter-plugin',
-				'pro_page' 			 => 'admin.php?page=twitter-pro.php',
-				'bws_license_plugin' => 'twitter-pro/twitter-pro.php',
 				'link_key' 			 => 'a8417eabe3c9fb0c2c5bed79e76de43c',
 				'link_pn' 			 => '76'
 				/* pls*/
@@ -53,10 +51,10 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 
 			add_action( get_parent_class( $this ) . '_additional_misc_options', array( $this, 'additional_misc_options' ) );
 			add_action( get_parent_class( $this ) . '_display_metabox', array( $this, 'display_metabox' ) );
-			/*pls *//* display preview */
+            /*pls */ /*## display preview */
 			add_action( get_parent_class( $this ) . '_display_second_postbox', array( $this, 'display_second_postbox' ) );
 			add_action( get_parent_class( $this ) . '_display_second_postbox', array( $this, 'display_third_postbox' ) );
-			/* pls*//* */
+			/* ##*/ /* pls*/
 
             $this->lang_codes = array(
                 "af_ZA" => 'Afrikaans',
@@ -363,7 +361,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 				</tr>
 				<?php do_action( 'twttr_settings_page_action', $this->options ); ?>
 			</table>
-
+            <!-- general -->
             <?php if ( ! $this->hide_pro_tabs ) { ?>
 			<div class="bws_pro_version_bloc">
                 <button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'twitter-plugin' ); ?>"></button>
@@ -417,18 +415,18 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
                             </td>
                         </tr>
                         <tr>
-                            <th><?php _e( 'Design Elements', 'twitter-plugin' ); ?></th>
+                            <th><?php _e( 'Timeline Design Elements', 'twitter-plugin' ); ?></th>
                             <td>
                                 <fieldset>
-                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="noheader" disabled="disabled" /> <?php _e( 'Hide the timeline header', 'twitter-plugin' ); ?></label>
+                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="noheader" disabled="disabled" /> <?php _e( 'Header', 'twitter-plugin' ); ?></label>
                                     <br />
-                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="nofooter" disabled="disabled" /> <?php _e( 'Hide the timeline footer', 'twitter-plugin' ); ?></label>
+                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="nofooter" disabled="disabled" /> <?php _e( 'Footer', 'twitter-plugin' ); ?></label>
                                     <br />
-                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="noborders" disabled="disabled" /> <?php _e( 'Hide the timeline borders', 'twitter-plugin' ); ?></label>
+                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="noborders" disabled="disabled" /> <?php _e( 'Borders', 'twitter-plugin' ); ?></label>
                                     <br />
-                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="transparent" disabled="disabled" /> <?php _e( 'Remove the timeline background color', 'twitter-plugin' ); ?></label>
+                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="transparent" disabled="disabled" /> <?php _e( 'Background color', 'twitter-plugin' ); ?></label>
                                     <br />
-                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="noscrollbar" disabled="disabled" /> <?php _e( 'Hide the timeline scrollbar', 'twitter-plugin' ); ?></label>
+                                    <label><input name="twttr_timeline_design[]" type="checkbox" value="noscrollbar" disabled="disabled" /> <?php _e( 'Scrollbar', 'twitter-plugin' ); ?></label>
                                 </fieldset>
                             </td>
                         </tr>
@@ -441,21 +439,12 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <th><?php _e( 'Link color', 'twitter-plugin' ); ?></th>
-                            <td>
-                                <div>
-                                    <input type="text" maxlength="7" name="twttr_timeline_link_color" value="#2b7bb9" id="twttr_timeline_link_color" class="twttr_timeline_link_color twttr_color" disabled="disabled" />
-                                    <p class="bws_info"><?php _e( 'Set the color of links, including hashtags and @mentions, inside each Tweet.', 'twitter-plugin' ); ?></p>
-                                </div>
-                            </td>
-                        </tr>
                     </table>
                 </div>
 			    <?php $this->bws_pro_block_links(); ?>
             </div>
 		    <?php } ?>
-
+            <!-- end general -->
 			<div class="bws_tab_sub_label twttr_tweet_enabled"><?php _e( 'Tweet Button', 'twitter-plugin' ); ?></div>
 			<table class="form-table twttr_settings_form twttr_tweet_enabled">
 				<tr>
@@ -532,7 +521,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 						<tr class="twttr_display_option_custom">
 							<th></th>
 							<td>
-								<?php _e( "Current image", 'twitter-plugin' ); ?>: <img src="<?php echo $this->options['img_link']; ?>" />
+								<img src="<?php echo $this->options['img_link']; ?>" />
 								<input type="hidden" name="twttr_img_link" value="<?php echo $this->options['img_link']; ?>" />
 							</td>
 						</tr>
@@ -653,6 +642,7 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 					<?php _e( 'Add Twitter button(-s) to your posts, pages, custom post types or widgets by using the following shortcode:', 'twitter-plugin' );
 					bws_shortcode_output( '[twitter_buttons display=tweet,follow,hashtag,mention]' ); ?>
 				</div>
+                <!-- general -->
                 <?php if ( ! $this->hide_pro_tabs ) { ?>
                     <div class="bws_pro_version_bloc">
 					    <div class="bws_table_bg"></div>
@@ -664,9 +654,11 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 	                    <?php $this->bws_pro_block_links(); ?>
                     </div>
                 <?php } ?>
+                <!-- end general -->
 			</div>
-		<?php /*pls */ }
+		<?php }
 
+        /*pls */
 		public function display_second_postbox() {
 			if ( ! $this->hide_pro_tabs ) { ?>
 				<div class="postbox bws_pro_version_bloc">
@@ -732,6 +724,8 @@ if ( ! class_exists( 'Twttr_Settings_Tabs' ) ) {
 				</div>
 				<?php $this->bws_pro_block_links(); ?>
 			</div>
-		<?php /* pls*/ }
-	}
+		<?php }
+        /* pls*/
+
+    }
 }
