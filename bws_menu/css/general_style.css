@@ -33,6 +33,12 @@
 	content: "\e93c";
 }
 
+.bws_tab .ui-accordion .ui-accordion-header.ui-state-active {
+	color: inherit;
+}
+.bws_tab .ui-accordion .ui-state-active .ui-icon {
+	background-color: #ccc;
+}
 /*
 * styles for bws_panel top level menu
 */
@@ -94,7 +100,6 @@ body:not(.rtl) div.updated.bws-notice {
 	padding: 10px;
 	display: block;
 }
-
 @media screen and (min-width: 1600px) {
 	.bws-plugin-reviews-rate,
 	.bws-plugin-reviews-support,
@@ -710,6 +715,9 @@ span.bws_code {
 #bws_settings_tabs li.bws-tab-images a:before {
 	content: "\f128";
 }
+#bws_settings_tabs li.bws-tab-reviews a:before {
+	content: "\f18b";
+}
 #bws_settings_tabs li.bws-tab-cover a:before {
 	content: "\f318";
 }
@@ -738,7 +746,12 @@ span.bws_code {
 #bws_settings_tabs li.bws-tab-output a:before {
 	content: "\f498";
 }
-
+#bws_settings_tabs li.bws-tab-recommend-button a:before {
+	content: "\f529";
+}
+#bws_settings_tabs li.bws-tab-recommend-settings a:before {
+	content: "\f100";
+}
 #bws_settings_tabs li:last-child a {
 	border-bottom: none;
 }
@@ -766,11 +779,18 @@ span.bws_code {
 	margin-right: 10px;
 	width: calc( 100% - 20px );
 }
+.bws_tab h4 {
+  color: red;
+}
 #bws_settings_tabs_wrapper .bws_tab button,
 #bws_settings_tabs_wrapper .bws_tab input[type="submit"],
 #bws_settings_tabs_wrapper .bws_tab input[type="button"] {
 	white-space: normal;
 	height: auto;
+}
+.toplevel_page_rrrlgvwr #bws_settings_tabs_wrapper .bws_tab .form-table th.th-full {
+	overflow-wrap: break-word;
+	max-width: 200px;
 }
 .bws_form .postbox .hndle {
 	cursor: inherit;

@@ -67,6 +67,7 @@
 <p><strong>Pro Features</strong></p>
 <p>All features from Free version included plus:</p>
 <ul>
+<li>Make a buttons for specific users</li>
 <li>Add Twitter Timeline</li>
 <li>Twitter buttons preview</li>
 <li>Display Twitter buttons for certain pages and/or post types</li>

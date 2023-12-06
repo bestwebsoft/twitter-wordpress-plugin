@@ -2,9 +2,9 @@
 Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add social buttons, twitter buttons, add twitter buttons, share button, follow button, tweets, twitter share button, twitter follow button, twitter feeds, like button, twitter like button, social bookmark
-Requires at least: 4.5
-Tested up to: 5.8.2
-Stable tag: 2.64
+Requires at least: 5.6
+Tested up to: 6.4
+Stable tag: 2.65
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,7 @@ http://www.youtube.com/watch?v=2qJ55xvGbDU
 >
 > All features from Free version included plus:
 >
+> * Make a buttons for specific users
 > * Add Twitter Timeline
 > * Twitter buttons preview
 > * Display Twitter buttons for certain pages and/or post types
@@ -152,6 +153,11 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 4. Pasting Twitter shortcode into the content.
 
 == Changelog ==
+
+= V2.65 - 06.12.2023 =
+* Update : BWS menu has been updated.
+* New : Ability to display buttons for specific users has been added
+* Update : All functionality was updated for WordPress 6.4.2
 
 = V2.64 - 13.12.2021 =
 * Update : All functionality was updated for WordPress 5.8.2.
@@ -402,6 +408,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * Ability to install Twitter Button icon with a link to the account page, including adjustment functionality settings via WordPress admin panel are added.
 
 == Upgrade Notice ==
+
+= V2.65 =
+* Bugs fixed.
+* New features added.
 
 = V2.64 =
 * The compatibility with new WordPress version updated.

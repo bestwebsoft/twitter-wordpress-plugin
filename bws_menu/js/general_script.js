@@ -11,12 +11,12 @@ function bws_show_settings_notice() {
 	$( document ).ready(
 		function() {
 				/**
-				 * add notice about changing on the settings page
-				 */
+				* add notice about changing on the settings page
+				*/
 				$( '.bws_form input, .bws_form textarea, .bws_form select' ).on(
 					"change paste select",
-					function() {
-						if ( $( this ).attr( 'type' ) != 'submit' && ! $( this ).hasClass( 'bws_no_bind_notice' ) ) {
+					function( e ) {
+						if ( $( this ).attr( 'type' ) != 'submit' && ! $( this ).hasClass( 'bws_no_bind_notice' ) && typeof ( e.originalEvent ) != 'undefined' ) {
 							bws_show_settings_notice();
 						};
 					}
@@ -42,8 +42,9 @@ function bws_show_settings_notice() {
 							styleActiveLine: true,
 							matchBrackets: true,
 							lineNumbers: true,
-							addModeClass: 'bws_newcontent_css'
-							}
+							addModeClass: 'bws_newcontent_css',
+              readOnly: 'nocursor'
+						}
 					);
 				}
 
@@ -55,7 +56,8 @@ function bws_show_settings_notice() {
 							styleActiveLine: true,
 							matchBrackets: true,
 							lineNumbers: true,
-							}
+              readOnly: 'nocursor'
+						}
 					);
 					/* disable lines */
 					editor.markText( {ch:0,line:0}, {ch:0,line:5}, { readOnly: true, className: 'bws-readonly' } );
@@ -69,26 +71,27 @@ function bws_show_settings_notice() {
 							styleActiveLine: true,
 							matchBrackets: true,
 							lineNumbers: true,
-							 }
+              readOnly: 'nocursor'
+						}
 					);
 				}
 			}
 
-				/* banner to settings */
-				$( '.bws_banner_to_settings_joint .bws-details' ).addClass( 'hidden' ).removeClass( 'hide-if-js' );
-				$( '.bws_banner_to_settings_joint .bws-more-links' ).on(
-					"click",
-					function( event ) {
-						event.preventDefault();
-						if ( $( '.bws_banner_to_settings_joint .bws-less' ).hasClass( 'hidden' ) ) {
-							$( '.bws_banner_to_settings_joint .bws-less, .bws_banner_to_settings_joint .bws-details' ).removeClass( 'hidden' );
-							$( '.bws_banner_to_settings_joint .bws-more' ).addClass( 'hidden' );
-						} else {
-							$( '.bws_banner_to_settings_joint .bws-less, .bws_banner_to_settings_joint .bws-details' ).addClass( 'hidden' );
-							$( '.bws_banner_to_settings_joint .bws-more' ).removeClass( 'hidden' );
-						}
+			/* banner to settings */
+			$( '.bws_banner_to_settings_joint .bws-details' ).addClass( 'hidden' ).removeClass( 'hide-if-js' );
+			$( '.bws_banner_to_settings_joint .bws-more-links' ).on(
+				"click",
+				function( event ) {
+					event.preventDefault();
+					if ( $( '.bws_banner_to_settings_joint .bws-less' ).hasClass( 'hidden' ) ) {
+						$( '.bws_banner_to_settings_joint .bws-less, .bws_banner_to_settings_joint .bws-details' ).removeClass( 'hidden' );
+						$( '.bws_banner_to_settings_joint .bws-more' ).addClass( 'hidden' );
+					} else {
+						$( '.bws_banner_to_settings_joint .bws-less, .bws_banner_to_settings_joint .bws-details' ).addClass( 'hidden' );
+						$( '.bws_banner_to_settings_joint .bws-more' ).removeClass( 'hidden' );
 					}
-				);
+				}
+			);
 
 				/* help tooltips */
 			if ( $( '.bws_help_box' ).length > 0 ) {
@@ -141,9 +144,9 @@ function bws_show_settings_notice() {
 				 */
 				var tabs = $( '#bws_settings_tabs_wrapper' );
 			if ( tabs.length ) {
-				  var current_tab_field = $( 'input[name="bws_active_tab"]' ),
-				 prevent_tabs_change    = false,
-				 active_tab             = current_tab_field.val();
+				var current_tab_field = $( 'input[name="bws_active_tab"]' ),
+					prevent_tabs_change    = false,
+					active_tab             = current_tab_field.val();
 				if ( '' == active_tab ) {
 					var active_tab_index = 0;
 				} else {
